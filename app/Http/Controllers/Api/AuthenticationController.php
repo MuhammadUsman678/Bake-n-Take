@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 /**
  * @group Auth endpoints
@@ -29,6 +30,7 @@ class AuthenticationController extends Controller
      */
     public function user()
     {
+        // return  new UserResource(auth()->user());
         return auth()->user();
     }
 }
