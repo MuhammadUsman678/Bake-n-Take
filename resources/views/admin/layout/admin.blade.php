@@ -62,7 +62,7 @@
     <div class="app-content content">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
-        @yeild('main')
+        @yield('main')
     </div>
     <!-- END: Content-->
 

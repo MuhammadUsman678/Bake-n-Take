@@ -1,0 +1,29 @@
+<!-- discount popup -->
+    <!-- <div class="sb-popup-frame">
+        <div class="sb-popup-body">
+            <div class="sb-close-popup">+</div>
+            <div class="sb-promo-content">
+                <div class="sb-text-frame">
+                    <h3 class="sb-mb-15">Visit Starbelly and get your coffee*</h3>
+                    <h3 class="sb-mb-10"><b class="sb-h2">FOR FREE!</b></h3>
+                    <p class="sb-text sb-text-sm sb-mb-15">*Et modi itaque praesentium.</p>
+                    
+                    <a href="product.html" class="sb-btn sb-ppc">
+                        <span class="sb-icon">
+                            <img src="img/ui/icons/arrow.svg" alt="icon">
+                        </span>
+                        <span>Get it now</span>
+                    </a>
+                </div>
+                <div class="sb-image-frame">
+                    <div class="sb-illustration-5">
+                        <img src="img/illustrations/cup.png" alt="cup" class="sb-cup">
+                        <div class="sb-cirkle-1"></div>
+                        <div class="sb-cirkle-2"></div>
+                        <div class="sb-cirkle-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- discount popup end -->
