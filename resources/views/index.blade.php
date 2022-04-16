@@ -15,8 +15,8 @@
                         @auth 
                            <span  class="sb-suptitle sb-mb-30">Hi, {{auth()->user()->name}}!</span> 
                         @endauth
-                        <h1 class="sb-mb-30">We do not <span>cook</span>, <br>we <span>create</span> your <br>emotions!</h1>
-                        <p class="sb-text sb-text-lg sb-mb-30">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
+                        <h1 class="sb-mb-30">BakeenTake <span>Team</span></h1>
+                        <p class="sb-text sb-text-lg sb-mb-30">Provide You Facility To Order Online.<br>Now in Gujranwala</p>
                         <!-- button -->
                         <a href="#" class="sb-btn">
                             <span class="sb-icon">
@@ -60,26 +60,26 @@
     <div class="container">
         <div class="row flex-md-row-reverse">
             <div class="col-lg-6 align-self-center sb-mb-30">
-                <h2 class="sb-mb-60">We are doing more than <br>you expect</h2>
+                <h2 class="sb-mb-60">To Register <br>your Bakery</h2>
                 <ul class="sb-features">
                     <li class="sb-features-item sb-mb-60">
                         <div class="sb-number">01</div>
                         <div class="sb-feature-text">
-                            <h3 class="sb-mb-15">We are located in the city center</h3>
+                            <h3 class="sb-mb-15">Fill Registration Form on Our Site</h3>
                             <p class="sb-text">Porro nemo veniam necessitatibus praesentium eligendi rem temporibus adipisci quo modi numquam.</p>
                         </div>
                     </li>
                     <li class="sb-features-item sb-mb-60">
                         <div class="sb-number">02</div>
                         <div class="sb-feature-text">
-                            <h3 class="sb-mb-15">Fresh, organic ingredients</h3>
+                            <h3 class="sb-mb-15">Our Team Will Contact And verify</h3>
                             <p class="sb-text">Consectetur numquam porro nemo veniam necessitatibus praesentium eligendi rem temporibus adipisci quo modi.</p>
                         </div>
                     </li>
                     <li class="sb-features-item sb-mb-60">
                         <div class="sb-number">03</div>
                         <div class="sb-feature-text">
-                            <h3 class="sb-mb-15">Own fast delivery</h3>
+                            <h3 class="sb-mb-15">You  upload Your Product after verification</h3>
                             <p class="sb-text">Necessitatibus praesentium eligendi rem temporibus adipisci quo modi. Lorem ipsum dolor sit.</p>
                         </div>
                     </li>
@@ -88,7 +88,7 @@
             <div class="col-lg-6 align-self-center">
                 <div class="sb-illustration-2 sb-mb-90">
                     <div class="sb-interior-frame">
-                        <img src="{{asset('front/assets/img/illustrations/interior.jpg')}}" alt="interior" class="sb-interior">
+                        <img src="{{asset('front/assets/img/illustrations/download.jpg')}}" alt="interior" class="sb-interior">
                     </div>
                     <div class="sb-square"></div>
                     <div class="sb-cirkle-1"></div>
@@ -97,8 +97,8 @@
                     <div class="sb-cirkle-4"></div>
                     <div class="sb-experience">
                         <div class="sb-exp-content">
-                            <p class="sb-h1 sb-mb-10">17</p>
-                            <p class="sb-h3">Years Experiense</p>
+                           
+                            <p class="sb-h3">Final Year Project</p>
                         </div>
                     </div>
                 </div>
@@ -354,7 +354,7 @@
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
-                <h2 class="sb-mb-30">They will <span>cook</span> for you</h2>
+                <h2 class="sb-mb-30">Our <span>Team</span> </h2>
                 <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
             </div>
             <div class="sb-right sb-mb-30">
@@ -372,11 +372,11 @@
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
-                        <img src="{{asset('front/assets/img/team/1.png')}}" alt="Team member">
+                        <img src="{{asset('front/assets/img/team/talha.jpg')}}" alt="Team member">
                     </div>
                     <div class="sb-member-description">
-                        <h4 class="sb-mb-10">Paul Trueman</h4>
-                        <p class="sb-text sb-text-sm sb-mb-10">Chef</p>
+                        <h4 class="sb-mb-10">Talha Nawaz</h4>
+                        <p class="sb-text sb-text-sm sb-mb-10">Group Leader</p>
                         <ul class="sb-social">
                             <li><a href="#."><i class="fab fa-twitter"></i></a></li>
                             <li><a href="#."><i class="fab fa-instagram"></i></a></li>
@@ -389,11 +389,11 @@
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
-                        <img src="{{asset('front/assets/img/team/2.png')}}" alt="Team member">
+                        <img src="{{asset('front/assets/img/team/hamdan.jpg')}}" alt="Team member">
                     </div>
                     <div class="sb-member-description">
-                        <h3 class="sb-mb-10">Emma Newman</h3>
-                        <p class="sb-text sb-text-sm sb-mb-10">Assistant chef</p>
+                        <h3 class="sb-mb-10">Muhammad Hamdan</h3>
+                        <p class="sb-text sb-text-sm sb-mb-10">Team Member</p>
                         <ul class="sb-social">
                             <li><a href="#."><i class="fab fa-twitter"></i></a></li>
                             <li><a href="#."><i class="fab fa-instagram"></i></a></li>
@@ -406,11 +406,11 @@
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
-                        <img src="{{asset('front/assets/img/team/3.png')}}" alt="Team member">
+                        <img src="{{asset('front/assets/img/team/ahsan.jpg')}}" alt="Team member">
                     </div>
                     <div class="sb-member-description">
-                        <h3 class="sb-mb-10">Oscar Oldman</h3>
-                        <p class="sb-text sb-text-sm sb-mb-10">Chef</p>
+                        <h3 class="sb-mb-10">Ahsan Ilyas</h3>
+                        <p class="sb-text sb-text-sm sb-mb-10">Team Member</p>
                         <ul class="sb-social">
                             <li><a href="#."><i class="fab fa-twitter"></i></a></li>
                             <li><a href="#."><i class="fab fa-instagram"></i></a></li>
@@ -423,11 +423,11 @@
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
-                        <img src="{{asset('front/assets/img/team/4.png')}}" alt="Team member">
+                        <img src="{{asset('front/assets/img/team/hanan.jpg')}}" alt="Team member">
                     </div>
                     <div class="sb-member-description">
-                        <h3 class="sb-mb-10">Ed Freeman</h3>
-                        <p class="sb-text sb-text-sm sb-mb-10">Assistant chef</p>
+                        <h3 class="sb-mb-10">Hanan Ali</h3>
+                        <p class="sb-text sb-text-sm sb-mb-10">Team Member</p>
                         <ul class="sb-social">
                             <li><a href="#."><i class="fab fa-twitter"></i></a></li>
                             <li><a href="#."><i class="fab fa-instagram"></i></a></li>

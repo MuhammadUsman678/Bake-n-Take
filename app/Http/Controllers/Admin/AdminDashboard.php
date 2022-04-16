@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminDashboard extends Controller
 {
     public function adminLogin(Request $request){
-        $auth=Auth::attempt(['email' => $request->email, 'password' => $request->password]);
+        $auth=Auth::attempt(['email' => $request->email, 'password' => $request->password,'role_id'=>1]);
         if($auth)
         {
             return redirect()->route('admin.dashboard');

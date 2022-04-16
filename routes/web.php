@@ -29,7 +29,7 @@ Route::middleware(['verified','auth'])->group(function () {
     })->name('admin.dashboard');
     
     Route::get('/shop/dashboard', function () {
-        return view('admin.dashboard');
+        return view('shop.dashboard');
     })->name('shop.dashboard');
     
     
