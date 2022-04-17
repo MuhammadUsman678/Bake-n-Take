@@ -16,6 +16,6 @@ class VerifyEmail extends \Illuminate\Auth\Notifications\VerifyEmail
     {
         $hash = Crypt::encrypt($notifiable->getKey());
 
-        return config('frontend.email_verify_url') . $hash;
+        return url('/') . $hash;
     }
 }

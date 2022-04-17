@@ -43,4 +43,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $this->notify(new VerifyEmail());
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updating(function (User $user) {
+            if (in_array('email', $user->getChanges())) {
+                $user->email_verified_at = null;
+                $user->sendEmailVerificationNotification();
+            }
+        });
+    }
+
 }

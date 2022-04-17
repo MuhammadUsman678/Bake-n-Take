@@ -76,12 +76,14 @@
               <!-- <li>
                 <router-link to="/shop">Shop</router-link>
               </li> -->
+              @if(empty(auth()->user()))
               <li>
                 <a href="{{ route('login') }}">Login</a>
               </li>
               <li>
                 <a href="{{ route('register') }}">Register</a>
               </li>
+              @endif
               @auth 
                 <li>
                   <a href="{{ url('/logout') }}" >Logout</a>

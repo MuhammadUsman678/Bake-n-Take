@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class AdminDashboard extends Controller
 {
@@ -22,4 +23,13 @@ class AdminDashboard extends Controller
     {
         return view('admin.dashboard');
     }
+    // public function verified()
+    // {
+    //     $verified=User::where('role_id',2)->where()
+    //     return view('admin.verified');
+    // }
+    // public function nonverified()
+    // {
+    //     return view('admin.nonverified');
+    // }
 }

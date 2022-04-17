@@ -50,12 +50,12 @@
 <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
     <!-- BEGIN: Header-->
-    @include('admin.layout.header')
+    @include('shop.layout.header')
     <!-- END: Header-->
 
 
     <!-- BEGIN: Main Menu-->
-   @include('admin.layout.menu')
+   @include('shop.layout.menu')
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->

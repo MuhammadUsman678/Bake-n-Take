@@ -10,7 +10,7 @@
             </div>
             <div class="content-body">
                 <!-- Dashboard Analytics Start -->
-        
+        Admin Side
                 <!-- Dashboard Analytics end -->
 
             </div>

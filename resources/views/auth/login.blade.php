@@ -14,7 +14,7 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
-                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"   id="email"  placeholder="Enter email" required>
+                                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"   id="email"   required>
                                             <span class="sb-bar"></span>
                                             <label>Email address</label>
                                             @error('email')
@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="col-lg-12 mt-1">
                                         <div class="sb-group-input">
-                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="password"  placeholder="Password" required>
+                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="password"  required>
                                             <span class="sb-bar"></span>
                                             <label>Password</label>
                                             @error('password')

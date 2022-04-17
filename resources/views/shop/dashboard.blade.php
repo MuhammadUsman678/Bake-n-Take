@@ -1,4 +1,4 @@
-@extends('admin.layout.admin')
+@extends('shop.layout.shop')
 
 
 
@@ -10,7 +10,7 @@
             </div>
             <div class="content-body">
                 <!-- Dashboard Analytics Start -->
-        
+        Shop Page
                 <!-- Dashboard Analytics end -->
 
             </div>

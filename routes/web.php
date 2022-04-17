@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,8 +32,8 @@ Route::middleware(['verified','auth'])->group(function () {
     Route::get('/shop/dashboard', function () {
         return view('shop.dashboard');
     })->name('shop.dashboard');
-    
-    
+    Route::get('admin/verifiedcustomers','Admin.AdminDashboard@verified');
+    Route::get('admin/nonverifiedcustomers','Admin.AdminDashboard@nonverified');
     Route::get('/home', 'HomeController@index')->name('home');
 });
 
