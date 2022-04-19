@@ -23,11 +23,11 @@ class AdminDashboard extends Controller
     {
         return view('admin.dashboard');
     }
-    // public function verified()
-    // {
-    //     $verified=User::where('role_id',2)->where()
-    //     return view('admin.verified');
-    // }
+    public function seller()
+    {
+        
+        return view('admin.seller');
+    }
     // public function nonverified()
     // {
     //     return view('admin.nonverified');

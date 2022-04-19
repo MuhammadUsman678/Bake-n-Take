@@ -31,6 +31,9 @@
               <li class="sb-has-children">
                 <a href="{{ url('/') }}">Home</a>
               </li>
+              <li class="sb-has-children">
+                <a href="#">Shop</a>
+              </li>
               <!-- <li class="sb-active sb-has-children">
                 <a href="about-1.html">Pages</a>
                 <ul>
@@ -96,7 +99,7 @@
               @endauth
             </ul>
           </nav>
-          <div class="sb-buttons-frame">
+          {{-- <div class="sb-buttons-frame">
             <!-- button -->
             <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
               <span class="sb-icon">
@@ -109,7 +112,7 @@
             <div class="sb-menu-btn"><span></span></div>
             <!-- info btn -->
             <div class="sb-info-btn"><span></span></div>
-          </div>
+          </div> --}}
         </div>
       </div>
     </div>

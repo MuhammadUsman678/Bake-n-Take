@@ -15,7 +15,7 @@
                         @auth 
                            <span  class="sb-suptitle sb-mb-30">Hi, {{auth()->user()->name}}!</span> 
                         @endauth
-                        <h1 class="sb-mb-30">BakeenTake <span>Team</span></h1>
+                        <h1 class="sb-mb-30">Bake Take <span>Team</span></h1>
                         <p class="sb-text sb-text-lg sb-mb-30">Provide You Facility To Order Online.<br>Now in Gujranwala</p>
                         <!-- button -->
                         <a href="#" class="sb-btn">
@@ -26,7 +26,7 @@
                         </a>
                         <!-- button end -->
                         <!-- button -->
-                        <a href="#" class="sb-btn sb-btn-2 sb-btn-gray">
+                        <a href="#team" class="sb-btn sb-btn-2 sb-btn-gray">
                             <span class="sb-icon">
                                 <img src="{{asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                             </span>
@@ -192,7 +192,7 @@
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
-                <h2 class="sb-mb-30">Most <span>popular</span> dishes</h2>
+                <h2 class="sb-mb-30">Most <span>popular</span> Products</h2>
                 <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
             </div>
             <div class="sb-right sb-mb-30">
@@ -207,7 +207,7 @@
                     <span class="sb-icon">
                         <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
                     </span>
-                    <span>Full menu</span>
+                    <span>All Products</span>
                 </a>
                 <!-- button end -->
             </div>
@@ -220,8 +220,8 @@
                             <img src="{{asset('front/assets/img/menu/3.jpg')}}" alt="product">
                         </div>
                         <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Carpaccio de daurade</h4>
-                            <div class="sb-price"><sub>$</sub> 14</div>
+                            <h4 class="sb-card-title">Biscuits</h4>
+                            <div class="sb-price"><sub>Pkr</sub> 1000</div>
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
@@ -241,8 +241,8 @@
                             <img src="{{asset('front/assets/img/menu/1.jpg')}}" alt="product">
                         </div>
                         <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Chevrefrit au miel</h4>
-                            <div class="sb-price"><sub>$</sub> 14</div>
+                            <h4 class="sb-card-title">Special Cake</h4>
+                            <div class="sb-price"><sub>Pkr</sub> 1400</div>
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
@@ -263,8 +263,8 @@
                             <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> Vegan</div>
                         </div>
                         <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Saumon Gravlax</h4>
-                            <div class="sb-price"><sub>$</sub> 9</div>
+                            <h4 class="sb-card-title">Special Sandwich</h4>
+                            <div class="sb-price"><sub>Pkr</sub> 150</div>
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
@@ -285,8 +285,8 @@
                             <div class="sb-badge sb-hot"><i class="fas fa-pepper-hot"></i> Hot</div>
                         </div>
                         <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Croustillant de poisson</h4>
-                            <div class="sb-price"><sub>$</sub> 4</div>
+                            <h4 class="sb-card-title">Pastrey</h4>
+                            <div class="sb-price"><sub>Pkr</sub> 400</div>
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
@@ -308,7 +308,7 @@
                         </div>
                         <div class="sb-card-tp">
                             <h4 class="sb-card-title">Carpaccio de daurade</h4>
-                            <div class="sb-price"><sub>$</sub> 6</div>
+                            <div class="sb-price"><sub>Pkr</sub> 6</div>
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
@@ -328,8 +328,8 @@
                             <img src="{{asset('front/assets/img/menu/4.jpg')}}" alt="product">
                         </div>
                         <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Stracciatella</h4>
-                            <div class="sb-price"><sub>$</sub> 11</div>
+                            <h4 class="sb-card-title">Black Coffee</h4>
+                            <div class="sb-price"><sub>Pkr</sub> 110</div>
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
@@ -368,7 +368,7 @@
                 <!-- button end -->
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="team">
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
