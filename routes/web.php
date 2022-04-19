@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboard;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ Route::get('/logout',function(){
     Auth::logout();
     return redirect('/');
 })->middleware('auth');
+
+
 Route::middleware(['verified','auth'])->group(function () {
 
     Route::get('/admin/dashboard', function () {

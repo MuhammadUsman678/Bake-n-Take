@@ -9,6 +9,7 @@
     <title>@yield('title','Home') | {{ config('app.name', "Bake'n Take") }}</title>
     @include('layouts.style')
     @yield('style')
+
     <!-- page title -->
   </head>
   <body>
@@ -27,5 +28,6 @@
 
   @include('layouts.script')
   @yield('script')
+
   </body>
 </html>

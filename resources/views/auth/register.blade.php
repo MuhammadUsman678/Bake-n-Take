@@ -39,7 +39,11 @@
                                     </div>
                                     <div class="col-lg-12 mt-1">
                                         <div class="sb-group-input">
-                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="password"  placeholder="Password" >
+                                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"  id="id_password"  placeholder="Password" >
+                                            <i class="far fa-eye" id="togglePassword" style="cursor: pointer;
+                                                position: absolute;
+                                                top: 17px;
+                                                right: 12px;"></i>
                                             <span class="sb-bar"></span>
                                             <label>Password</label>
                                             @error('password')
@@ -52,6 +56,10 @@
                                     <div class="col-lg-12 mt-1">
                                         <div class="sb-group-input">
                                             <input type="password" name="password_confirmation" class="form-control "  id="password_confirmation"  placeholder="Confirm Password">
+                                            <i class="far fa-eye" id="togglePassword2" style="cursor: pointer;
+                                            position: absolute;
+                                            top: 17px;
+                                            right: 12px;"></i>
                                             <span class="sb-bar"></span>
                                             <label>Confirm Password</label>
                                         </div>
@@ -76,3 +84,27 @@
 <section class="mt-4"></section>
 <!-- banner end -->
 @endsection
+@section('script')
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const togglePassword2 = document.querySelector('#togglePassword2');
+  const password = document.querySelector('#id_password');
+  const password2 = document.querySelector('#password_confirmation');
+ 
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+togglePassword2.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+    password2.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+    </script>
+@endsection
+
