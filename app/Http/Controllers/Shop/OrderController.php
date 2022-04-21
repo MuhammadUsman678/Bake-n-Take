@@ -18,10 +18,10 @@ class OrderController extends Controller
         return view('shop.orders.order-detail',compact('order'));
     }
 
-    public function changeStatus($id){
+    public function changeStatus($id,$status){
         $order=Order::with('shopProducts')->has('shopProducts')->find($id);
         foreach($order->shopProducts as $row){
-            $row->update(['status'=>'packed','status_change_date'=>now()]);
+            $row->update(['status'=>$status,'status_change_date'=>now()]);
         }
         return redirect()->route('shop.order.detail',[$order->id]);
     }

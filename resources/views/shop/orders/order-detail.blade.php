@@ -78,7 +78,21 @@
                                         <div class="col-md-6">
                                            <b> Delivery Date </b> :{{ date('Y-F-d H:i:A',strtotime($order->delivery_date)) }}
                                         </div>
-                                        
+                                        <div class="col-md-12 mt-5">
+                                            @php
+                                              $product_status=$order->shopProducts->first()->status;
+                                              if($product_status=='new') $status='packed';
+                                              else if($product_status=='packed') $status ='delivered';
+                                              else if($product_status=='delivered') $status =null;
+
+                                            @endphp
+                                            Chage Order Status :
+                                            @if(($product_status !='delivered'))
+                                            <a onclick="return confirm('Are you sure you want to change order status ?')" href=" {{  route('shop.order.changeStatus',[$order->id,$status]) }}" class="btn btn-primary btn-sm"> {{ strtoupper($product_status) }}</a>
+                                            @else
+                                            <a  href="#" class="btn btn-primary btn-sm">  Delivered From Your Site </a>
+                                            @endif
+                                         </div>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped data-table" id="datatable">

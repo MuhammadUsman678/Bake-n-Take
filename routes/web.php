@@ -160,7 +160,7 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
     Route::get('/orders','Shop\OrderController@Orders')->name('orders');
     Route::get('/orders/detail/{id}','Shop\OrderController@orderDetail')->name('order.detail');
 
-    Route::get('/orders/changeStatus/{id}','Shop\OrderController@changeStatus')->name('order.changeStatus');
+    Route::get('/orders/changeStatus/{id}/{status}','Shop\OrderController@changeStatus')->name('order.changeStatus');
    
 
 //Rfq
