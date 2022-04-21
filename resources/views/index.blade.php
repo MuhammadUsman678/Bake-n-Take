@@ -236,12 +236,15 @@
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
                             @if($product->rating->count() > 0)
+                            @php
+                            $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
+                            @endphp
                             <ul class="sb-stars">
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 1 ?'' : 'no-start' }}" ></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 2 ?'' : 'no-start' }}"></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 3 ?'' : 'no-start' }}"></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 4 ?'' : 'no-start' }}"></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') == 5 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 1 ?'' : 'no-start' }}" ></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 2 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 3 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 4 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating == 5 ?'' : 'no-start' }}"></i></li>
                             </ul>
                             @else
                             Not rated yet.
@@ -334,12 +337,15 @@
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
                             @if($product->rating->count() > 0)
+                            @php
+                            $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
+                            @endphp
                             <ul class="sb-stars">
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 1 ?'' : 'no-start' }}" ></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 2 ?'' : 'no-start' }}"></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 3 ?'' : 'no-start' }}"></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 4 ?'' : 'no-start' }}"></i></li>
-                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') == 5 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 1 ?'' : 'no-start' }}" ></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 2 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 3 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating >= 4 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ $avgRating == 5 ?'' : 'no-start' }}"></i></li>
                             </ul>
                             @else
                             Not rated yet.

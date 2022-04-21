@@ -27,7 +27,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body">
-                                    <form class="form form-horizontal" method="post" action="{{url('admin/updateprofile')}}" enctype="multipart/form-data">
+                                    <form class="form form-horizontal" method="post" action="{{url('shop/updateprofile')}}" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-body">
                                             <div class="row">

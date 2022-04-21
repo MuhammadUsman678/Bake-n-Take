@@ -77,6 +77,7 @@
                                                     <td> {{ date('Y-F-d H:i:A',strtotime($row->delivery_date)) }} </td>
                                                     <td>
                                                         <a href="{{ route('shop.order.detail',[$row->id]) }}" class="btn btn-primary btn-sm">Order Detail</a>
+                                                        <a href="{{ url('shop/chat',[$row->user_id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-message-square"></i></a>
                                                     </td>
                                                 </tr>
                                                 @empty

@@ -110,7 +110,8 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-               
+                <li class="nav-item"><a href="{{url('shop/dashboard')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Quill Editor">Dashboard</span></a>
+                </li>
                 <li class="nav-item hover"><a href="{{ route('shop.product.index') }}"><i class="feather icon-eye"></i><span class="menu-title" data-i18n="Profile">View Products</span></a>
                 </li>
       

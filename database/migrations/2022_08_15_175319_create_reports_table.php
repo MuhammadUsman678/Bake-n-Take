@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToProductReviewsTable extends Migration
+class CreateReportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddFieldsToProductReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::table('product_reviews', function (Blueprint $table) {
-            $table->bigInteger('order_id');
+        Schema::create('reports', function (Blueprint $table) {
+            $table->id();
+            $table->integer('user_id');
+            $table->string('description');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddFieldsToProductReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::table('product_reviews', function (Blueprint $table) {
-            $table->dropColumn(['order_id']);
-        });
+        Schema::dropIfExists('reports');
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class registermail extends Mailable implements ShouldQueue
+class ordermail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -29,6 +29,6 @@ class registermail extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->from('Baketake@gmail.com')->subject('Shop Regitration in Bake\'n Take')->view('mail.mail')->with('maildetail', $this->maildetail);
+        return $this->from('Baketake@gmail.com')->subject('your Order in Bake\'n Take')->view('mail.order')->with('maildetail', $this->maildetail);
     }
 }

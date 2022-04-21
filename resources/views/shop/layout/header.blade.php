@@ -32,7 +32,7 @@
                             </li>
                             <li class="scrollable-container media-list">
                                 @forelse (App\notification_user::where('user_id',Auth::user()->id)->where('is_read',false)->latest()->get() as $notification)
-                                    <a class="d-flex justify-content-between {{ $notification->is_read === 0 ? 'bg-light' : '' }}" href="{{ route('see_all_notifications',Auth::user()->id)  }}">
+                                    <a class="d-flex justify-content-between {{ $notification->is_read === 0 ? 'bg-light' : '' }}" href="{{ route('shop.see_all_notifications',Auth::user()->id)  }}">
                                         <div class="media d-flex align-items-start">
                                             <div class="media-left"><i class="feather icon-plus-square font-medium-5 primary"></i></div>
                                             <div class="media-body">
@@ -95,7 +95,7 @@
                                                 <time class="media-meta" datetime="2015-06-11T18:29:20+08:00">Last month</time></small>
                                         </div>
                                     </a></li> --}}
-                                <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="{{ route('see_all_notifications',Auth::user()->id)  }}">View all notifications</a></li>
+                                <li class="dropdown-menu-footer"><a class="dropdown-item p-1 text-center" href="{{ route('shop.see_all_notifications',Auth::user()->id)  }}">View all notifications</a></li>
                             </ul>
                         </li>
                

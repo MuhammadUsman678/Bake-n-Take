@@ -11,6 +11,8 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item"><a href="{{url('admin/dashboard')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Quill Editor">Dashboard</span></a>
+                </li> 
                 <li class="nav-item has-sub"><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Sellers</span></a>
                     <ul class="menu-content" style="">
                         <li class="is-shown"><a href="{{url('admin/approvedshop')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Approved Seller</span></a>
@@ -20,7 +22,7 @@
                         
                     </ul>
                 </li>
-                <li class="nav-item"><a href="{{url('admin/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat With Buyer</span></a>
+                <li class="nav-item"><a href="{{url('admin/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat</span></a>
                 </li> 
 
                 <li class="nav-item"><a href="{{url('admin/category')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Category</span></a>
@@ -38,7 +40,7 @@
                         
                     </ul>
                 </li>
-                    <li class="nav-item"><a href="#"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Manage Complains</span></a>
+                    <li class="nav-item"><a href="{{url('admin/managecomplain')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Manage Complains</span></a>
                     </li>
                     <li class="nav-item"><a href="{{ route('admin.transactions')  }}"><i class="feather icon-briefcase"></i><span class="menu-title" data-i18n="Quill Editor">Manage Transactions</span></a>
                     </li> 

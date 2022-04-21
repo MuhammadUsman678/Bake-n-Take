@@ -38,13 +38,8 @@ class UsersTableSeeder extends Seeder
                 'email'    => 'customer@gmail.com',
                 'password' => bcrypt('password'),
                 'role_id'  => 2
-            ],
-            [
-                'name'     => 'Shop',
-                'email'    => 'shop@gmail.com',
-                'password' => bcrypt('password'),
-                'role_id'  => 3
             ]
+            
         ];
 
         foreach ($users as $user) {

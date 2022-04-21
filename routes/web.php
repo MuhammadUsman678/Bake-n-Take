@@ -21,6 +21,7 @@ Auth::routes(['verify'=>true]);
 Route::get('/mark-as-read/{id}', 'UserNotificationController@mark_as_read')->name('mark_as_read');
 Route::get('/mark-as-all-read', 'UserNotificationController@mark_as_all_read')->name('mark_all_read');
 Route::get('/notifications/{user}', 'UserNotificationController@see_all_notifications')->name('see_all_notifications');
+Route::get('shop/notifications/{user}', 'UserNotificationController@see_all_notificationshop')->name('shop.see_all_notifications');
 
 
 
@@ -68,6 +69,10 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
 
 
     Route::get('orders', 'AccountController@orders')->name('orders');
+    Route::get('quotation/message/{id}', 'AccountController@quotationmessage');
+    Route::get('front/chat/{id}', 'AccountController@getMessages');
+    Route::get('myaccount', 'AccountController@myaccount');
+    Route::post('updateregister', 'AccountController@updateregister')->name('updateregister');
     Route::get('quotation', 'AccountController@quotation')->name('quotation');
     Route::get('view-order/{uuid}', 'AccountController@viewOrder')->name('view.order');
 
@@ -136,7 +141,7 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
     Route::get('/orders/changeStatus/{id}/{status}','Admin\OrderController@changeStatus')->name('order.changeStatus');
 
     Route::get('/orders/paid/{id}','Admin\OrderController@paid')->name('order.paid');
-
+    Route::get('/managecomplain','Shop\ProductController@complain');
 
 });
  //end Admin Side   
@@ -145,7 +150,7 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
 
  Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth','isShopUser']],function () {
     
-    Route::get('/dashboard', 'Shop\DashboardController@dashboard');
+  
 
 
     Route::get('/product','Shop\ProductController@index')->name('product.index');
@@ -155,14 +160,19 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
     Route::post('/product/{id}','Shop\ProductController@update');
     Route::get('/product/delete/{id}','Shop\ProductController@destroy')->name('product.delete');
     Route::get('/dashboard', 'Shop\DashboardController@dashboard')->name('dashboard');
-
+    Route::get('editprofile','shop\productController@editprofile');
+    Route::get('reportbuyer','shop\productController@reportbuyer');
+    Route::post('post/reportbuyer','shop\productController@postreportbuyer');
+    Route::post('/updateprofile', 'Admin\AdminDashboard@updateprofile');
 
     Route::get('/orders','Shop\OrderController@Orders')->name('orders');
     Route::get('/orders/detail/{id}','Shop\OrderController@orderDetail')->name('order.detail');
 
     Route::get('/orders/changeStatus/{id}/{status}','Shop\OrderController@changeStatus')->name('order.changeStatus');
    
-
+Route::get('reject_quotation','shop\RfqController@reject');
+Route::get('accept_quotation','shop\RfqController@accept');
+Route::get('complete_quotation','shop\RfqController@complete');
 //Rfq
 Route::get('/rfq', 'Shop\RfqController@index');
     // Shop Products Images

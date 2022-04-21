@@ -47,7 +47,11 @@ class UserNotificationController extends Controller
        return view("partials._notifications",compact('notifications'));
      }
 
-
+     public function see_all_notificationshop($user)
+     {
+         $notifications = notification_user::latest()->where('user_id',Auth::user()->id)->get();
+         return view('shop.notification',compact('notifications'));
+     }
 
      public function markNotificationsRead(){
          $notifications = auth()->user()->unreadNotifications;

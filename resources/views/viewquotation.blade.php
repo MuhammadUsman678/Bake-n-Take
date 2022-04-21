@@ -56,15 +56,24 @@
                                 </thead>
                                 <tbody>
                                    @forelse ($quote as $order)
+                                   @php
+                                   $shop=App\quotation_detail::where('id',$order->id)->first();
+                                  
+                                   @endphp
+                                   @if(!empty($shop))
                                    <tr>
                                         <td>#{{ $order->id }}</td>
                                         <td>{{ $order->name }}</td>
                                         <td>{{ date('M  d ,Y',strtotime($order->created_at)) }}</td>
                                         <td>{{ date('M  d ,Y',strtotime($order->date)) }}</td>
                                         <td>@if($order->status==0)
-Not Accepted
+
+<button class="btn btn-danger">Not Accepted yet</button>
+@elseif($order->status==1)
+
+<button class="btn btn-primary">Accepted and in progress</button>
 @else
-Accepted
+<button class="btn btn-success">Completed</button>
                                         @endif
                                         </td>
                                         <td>Rs.{{ $order->price }}</td>
@@ -74,6 +83,7 @@ Accepted
                                         
                                         </td>
                                     </tr>
+                                    @endif
                                    @empty
                                    <tr>
                                       No Quotation Available

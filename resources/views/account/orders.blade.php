@@ -56,7 +56,8 @@
                                         <td>{{ date('M  d ,Y',strtotime($order->created_at)) }}</td>
                                         <td>{{ strtoupper($order->status) }}</td>
                                         <td>Rs.{{ $order->total_amount }} for {{ $order->products->sum('quantity') }} item</td>
-                                        <td><a href="{{ route('front.view.order',[$order->order_number]) }}" class="btn-small d-block" style="color: #f5c332">View</a></td>
+                                        <td><a href="{{ route('front.view.order',[$order->order_number]) }}" class="btn-small d-block" style="color: #f5c332">View</a>
+                                        </td>
                                     </tr>
                                    @empty
                                    <tr>

@@ -105,6 +105,8 @@
                           <p class="sb-text sb-text-sm">x{{ $row['quantity'] }}</p>
                           <p class="sb-text sb-text-sm"><small class="badge badge-info">{{ $order->status==='delivered' ? 'Delivered' : $row['status'] }}</small></p>
                         </div>
+                        <a data-no-swup="" href="{{url('front/chat/'.$row['shop_id'])}}" class="btn-small d-block" style="color: #f5c332"><i class="fas fa-comment"></i> Chat Now</a>
+
                       </a>
                     </div>
                     <div class="col-lg-{{ ($order->status==='delivered') ?'3' :'6' }} text-md-right">
