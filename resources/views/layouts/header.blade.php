@@ -1,3 +1,5 @@
+ 
+ @if(\Request::is('/login')||\Request::is('/register'))
  <!-- preloader -->
  <div class="sb-preloader">
     <div class="sb-preloader-bg"></div>
@@ -15,6 +17,7 @@
   <div class="sb-click-effect"></div>
   <!-- loader -->
   <div class="sb-load"></div>
+  @endif
   <!-- top bar -->
   <div class="sb-top-bar-frame">
     <div class="sb-top-bar-bg"></div>

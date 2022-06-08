@@ -13,6 +13,15 @@
                 <div class="sb-main-title-frame">
                     <div class="sb-main-title">
                         @auth 
+                        @if(!auth()->user()->email_verified_at)
+                           <div class="alert alert-danger">
+                               We have send you a email verification link please verify first. If you havn't receive any email please click 
+                               <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
+                                @csrf
+                                <button type="submit" class="btn btn-link p-0 m-0 align-baseline text-warning">{{ __('Here') }}</button>.
+                            </form> to resend email. 
+                           </div>
+                        @endif   
                            <span  class="sb-suptitle sb-mb-30">Hi, {{auth()->user()->name}}!</span> 
                         @endauth
                         <h1 class="sb-mb-30">Bake Take <span>Team</span></h1>
