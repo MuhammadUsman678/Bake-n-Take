@@ -6,7 +6,7 @@
                         <h2 class="brand-text mb-0"style="color:#FFC107">BakeenTake</h2>
                     </li>
                
-            </ul>
+            </ul> 
         </div>
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">

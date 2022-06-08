@@ -70,7 +70,7 @@
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-  >
+  
     <!-- END: Footer-->
 
 
@@ -92,8 +92,7 @@
 
     <!-- BEGIN: Page JS-->
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
-    <!-- END: Page JS-->
-
+    
 </body>
 <!-- END: Body-->
 
