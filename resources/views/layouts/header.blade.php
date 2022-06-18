@@ -100,6 +100,9 @@
                 </li>
                 @endif
               @endauth
+              <li class="sb-has-children">
+                <a href="#" ><button type="button" class="btn btn-warning">Register Shop</button></a>
+              </li>
             </ul>
           </nav>
           {{-- <div class="sb-buttons-frame">

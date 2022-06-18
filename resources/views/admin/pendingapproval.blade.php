@@ -48,7 +48,7 @@
                                             @php
                                             $no=1;
                                                 @endphp
-                                            @endphp
+                                          
                                             <tbody>
                                         @foreach($pendingshop as $pending)
                                                 <tr>
