@@ -15,8 +15,10 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-             $table->foreignId('shop_id')->constrained();
              $table->string('category_name');
+             $table->string('slug')->nullable();
+             $table->string('image')->nullable();
+             $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

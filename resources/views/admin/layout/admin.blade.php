@@ -40,8 +40,10 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
-    <!-- END: Custom CSS-->
 
+   
+    <!-- END: Custom CSS-->
+    @yield('css')
 </head>
 <!-- END: Head-->
 
@@ -73,15 +75,14 @@
   
     <!-- END: Footer-->
 
-
     <!-- BEGIN: Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/extensions/tether.min.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/extensions/shepherd.min.js')}}"></script>
+    {{-- <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('app-assets/vendors/js/extensions/tether.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('app-assets/vendors/js/extensions/shepherd.min.js')}}"></script> --}}
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -91,8 +92,8 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
-    
+    {{-- <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script> --}}
+    @yield('js')
 </body>
 <!-- END: Body-->
 
