@@ -34,7 +34,7 @@ Route::get('/logout',function(){
 
 
 //Admin Side
-Route::prefix('/admin')->middleware(['auth'])->group(function () {
+Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],function () {
     Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('admin.dashboard');
     Route::get('/pendingapproved', 'Admin\AdminDashboard@pendingapproved');
     Route::get('/editprofile', 'Admin\AdminDashboard@editprofile');
@@ -42,6 +42,12 @@ Route::prefix('/admin')->middleware(['auth'])->group(function () {
     Route::get('/approvedshop', 'Admin\AdminDashboard@approvedshop');
     Route::get('/delete_shop', 'Admin\AdminDashboard@delete_shop');
     Route::get('/shop_status_active', 'Admin\AdminDashboard@status_active');
+    Route::get('/category','Admin\CategoryController@index')->name('category');
+    Route::get('/category/create','Admin\CategoryController@create')->name('category.create');
+    Route::post('/category','Admin\CategoryController@store')->name('category.store');
+    Route::get('/category/{id}','Admin\CategoryController@edit')->name('category.edit');
+    Route::put('/category/{id}','Admin\CategoryController@update')->name('category.update');
+    Route::DELETE('/category/{id}','Admin\CategoryController@destroy')->name('category.delete');
 });
  //end Admin Side   
 
