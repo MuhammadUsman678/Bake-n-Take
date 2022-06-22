@@ -37,6 +37,8 @@ Route::get('/logout',function(){
 Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],function () {
     Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('dashboard');
     Route::get('/pendingapproved', 'Admin\AdminDashboard@pendingapproved');
+    Route::get('/editprofile', 'Admin\AdminDashboard@editprofile');
+    Route::post('/updateprofile', 'Admin\AdminDashboard@updateprofile');
     Route::get('/approvedshop', 'Admin\AdminDashboard@approvedshop');
     Route::get('/delete_shop', 'Admin\AdminDashboard@delete_shop');
     Route::get('/shop_status_active', 'Admin\AdminDashboard@status_active');

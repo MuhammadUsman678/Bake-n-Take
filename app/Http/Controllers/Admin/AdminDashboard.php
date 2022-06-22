@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Notifications\newusernotification;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\shop;
@@ -79,5 +80,53 @@ $user->update([
      
 //    }
 
+public function editprofile(){
+    $user=User::find(auth()->user()->id);
+   
+    return view('admin.editprofile',compact('user'));
+}
+public function updateprofile(Request $request){
+    $user=User::find(auth()->user()->id);
 
+   $user->name=$request->name;
+   $user->email=$request->email;
+ 
+   if(isset($request->image))
+   {
+    
+   $image=$request->file('image');
+   $imageName = $image->getClientOriginalName();
+   $user->image=$imageName;
+   $path=$image->move('profileimages',$imageName);
+   
+   }
+ $user->update();
+   if(isset($request->c_password))
+   {
+     $request->validate([
+        'new_password' => 'required|min:8',
+        'confirm_password' => 'required_with:password|same:new_password|min:8'
+
+    ]);
+    if(Hash::check($request->c_password,$user->password)) {
+            $user->update([
+        'password' => Hash::make($request->new_password),
+    ]);
+               return back()->with('success','Your profile has been updated!');
+
+
+    }else{
+        $msg= "Your Password does't match";
+         $request->session()->flash('error',$msg);
+        return redirect('/admin/editprofile');
+    }
+  }else{
+                return back()->with('success','Your profile has been updated!');
+
+
+  }
+
+  
+  return back()->with('success','Your profile has been updated!');
+}
 }
