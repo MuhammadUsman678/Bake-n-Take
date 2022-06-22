@@ -80,8 +80,8 @@
 
     <!-- BEGIN: Page Vendor JS-->
     <script src="{{asset('app-assets/vendors/js/charts/apexcharts.min.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/extensions/tether.min.js')}}"></script>
-    <script src="{{asset('app-assets/vendors/js/extensions/shepherd.min.js')}}"></script>
+    {{-- <script src="{{asset('app-assets/vendors/js/extensions/tether.min.js')}}"></script> --}}
+    {{-- <script src="{{asset('app-assets/vendors/js/extensions/shepherd.min.js')}}"></script> --}}
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->

@@ -63,7 +63,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
-                                    {{ Form::open(array('route' => 'admin.category.store','method'=>'POST','class'=>'form-horizontal','novalidate','enctype' => 'multipart/form-data')) }}
+                                    {{ Form::open(array('route' => 'admin.category.store','method'=>'POST','class'=>'form-horizontal','novalidate')) }}
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12">
                                             <div class="form-group">

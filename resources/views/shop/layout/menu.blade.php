@@ -12,7 +12,7 @@
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                
-                <li class="nav-item hover"><a href="#"><i class="feather icon-eye"></i><span class="menu-title" data-i18n="Profile">View Products</span></a>
+                <li class="nav-item hover"><a href="{{ route('shop.product.index') }}"><i class="feather icon-eye"></i><span class="menu-title" data-i18n="Profile">View Products</span></a>
                 </li>
       
                     <li class="nav-item"><a href="#"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">View Rfq</span></a>
