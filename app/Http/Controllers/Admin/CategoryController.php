@@ -33,7 +33,7 @@ class CategoryController extends Controller
                     ->addColumn('action', function($row){
 
                            $btn = '<a href="'.route('admin.category.edit',[$row->id]).'" data-toggle="tooltip" data-placement="top" title="Edit"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary">Edit</a>';
-                           $btn = $btn.'<a href="'.route('admin.category.delete',[$row->id]).'" data-toggle="tooltip" title="Status"  data-id="'.$row->id.'" data-original-title="Status" class="btn ml-1 btn-danger" >Delete</a>';
+                           $btn = $btn.'<a href="'.route('admin.category.delete',[$row->id]).'" data-toggle="tooltip" title="Status"  data-id="'.$row->id.'" data-original-title="Status" class="btn ml-1 btn-danger delete" >Delete</a>';
                             return $btn;
                     })
 

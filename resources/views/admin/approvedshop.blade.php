@@ -1,38 +1,64 @@
 @extends('admin.layout.admin')
-
-
-<link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/core/colors/palette-gradient.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/file-uploaders/dropzone.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/data-list-view.css')}}">
+@section('title', 'Approved Shops')
+@section('css')
+<style>
+    html body .content {
+       margin-left: 130px !important;
+    }
+    </style>
+@include('partials._datatable-css')
+@endsection
 
 
 @section('main')
-<div class="">
+<div class="app-content content">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-9 col-12 mb-2">
-               
+                <div class="row breadcrumbs-top">
+                    <div class="col-12">
+                        <h2 class="content-header-title float-left mb-0">Approved Shops</h2>
+                        <div class="breadcrumb-wrapper col-12">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">Approved Shops
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
             </div>
-         
         </div>
+
         <div class="content-body">
-            
-            <!-- Zero configuration table -->
-            <section id="basic-datatable">
+            <!-- Column selectors with Export Options and print table -->
+            <section id="column-selectors">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Approved Sellers</h4>
+                                <div class="col-md-12">
+                                    @if (session('error'))
+                                        <div class="alert alert-danger">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                   
+                                </div>
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
-                                    <p class="card-text">All Approved Seelers List.</p>
+
                                     <div class="table-responsive">
-                                        <table class="table zero-configuration">
+                                        <table class="table table-striped data-table" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -70,7 +96,7 @@
                                                         <span class=" userDeleteBtn" userId="{{$user->id}}"><i class="feather icon-trash"></i></span>
                                                     </td>
                                                 </tr>
-                                             @endforeach   
+                                             @endforeach      
                                         </table>
                                     </div>
                                 </div>
@@ -79,33 +105,31 @@
                     </div>
                 </div>
             </section>
-            <!--/ Zero configuration table -->
-         
-
-         
-
-       
-
-      
-
-           
-
+            <!-- Column selectors with Export Options and print table -->
         </div>
     </div>
 </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-    <script src="{{asset('app-assets/js/scripts/datatables/datatable.js')}}"></script>
-</section>
+<!-- END: Content-->
+
+@endsection
+
+@section('js')
+    
 
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-crossorigin="anonymous"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 <script src="{{asset('app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+@include('partials._datatable-js')
+<script>
+   $(document).ready(function () {
+       $('#datatable').DataTable();
+     
+   })
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $('.userDeleteBtn').click(function(e){
             e.preventDefault();
