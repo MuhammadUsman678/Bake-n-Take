@@ -35,7 +35,7 @@ Route::get('/logout',function(){
 
 //Admin Side
 Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],function () {
-    Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('admin.dashboard');
+    Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('dashboard');
     Route::get('/pendingapproved', 'Admin\AdminDashboard@pendingapproved');
     Route::get('/editprofile', 'Admin\AdminDashboard@editprofile');
     Route::post('/updateprofile', 'Admin\AdminDashboard@updateprofile');
@@ -53,10 +53,16 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
 
 
 
+ Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth']],function () {
+    Route::get('/product','Shop\ProductController@index')->name('product.index');
+    Route::get('/product/create','Shop\ProductController@create')->name('product.create');
+    Route::post('/product','Shop\ProductController@store')->name('product.store');
+    Route::get('/product/{id}','Shop\ProductController@edit')->name('product.edit');
+    Route::put('/product/{id}','Shop\ProductController@update')->name('product.update');
+    Route::DELETE('/product/{id}','Shop\ProductController@destroy')->name('product.delete');
+    Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
 
-    Route::get('/shop/dashboard', function () {
-        return view('shop.dashboard');
-    })->name('shop.dashboard');
+});
     // Route::get('admin/sellers','Admin.AdminDashboard@seller');
     // Route::get('admin/nonverifiedcustomers','Admin.AdminDashboard@nonverified');
     Route::middleware(['verified','auth'])->group(function () {
