@@ -46,8 +46,8 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('/category/create','Admin\CategoryController@create')->name('category.create');
     Route::post('/category','Admin\CategoryController@store')->name('category.store');
     Route::get('/category/{id}','Admin\CategoryController@edit')->name('category.edit');
-    Route::put('/category/{id}','Admin\CategoryController@update')->name('category.update');
-    Route::DELETE('/category/{id}','Admin\CategoryController@destroy')->name('category.delete');
+    Route::post('/category_update/{id}','Admin\CategoryController@update');
+    Route::get('/category/delete/{id}','Admin\CategoryController@destroy')->name('category.delete');
 });
  //end Admin Side   
 

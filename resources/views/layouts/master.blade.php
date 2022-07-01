@@ -17,8 +17,10 @@
      <!-- app wrapper -->
   <div class="sb-app">
       @include('layouts.header')
+      
         <!-- dynamic content -->
         <div id="sb-dynamic-content" class="sb-transition-fade">
+          @include('sweet::alert')
             @yield('content')
         </div>    
       @include('layouts.footer')

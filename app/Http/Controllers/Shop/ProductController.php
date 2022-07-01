@@ -9,6 +9,7 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Support\Str;
 use Validator;
 use Image;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -48,7 +49,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+ $category=Category::whereStatus('1')->get();
+        return view('shop.products.create',compact('category'));
     }
 
     /**

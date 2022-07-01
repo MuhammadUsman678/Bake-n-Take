@@ -1,5 +1,5 @@
-@extends('admin.layout.admin')
-@section('title','Create Category')
+@extends('shop.layout.shop')
+@section('title','Create product')
 @section('css')
 <style>
     html body .content {
@@ -18,12 +18,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0"> Category</h2>
+                        <h2 class="content-header-title float-left mb-0"> Product</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item "> Category
+                                <li class="breadcrumb-item "> Product
                                 </li>
                                 <li class="breadcrumb-item active">Create
                                 </li>
@@ -63,46 +63,108 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
-                                    {{ Form::open(array('route' => 'admin.category.store','method'=>'POST','class'=>'form-horizontal','novalidate')) }}
-                                    <div class="row">
-                                        <div class="col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <div class="controls">
-                                                    {{ Form::label('category_name', 'Category Name', array('class' => 'control-label mb-1')) }}
-                                                    <span class="text-danger"> *</span>
-                                                    {{ Form::text('category_name',null,['class'=>'form-control','id'=>'category_name','placeholder'=>'Category Name','required' ,'data-validation-required-message'=>'Category Name is required'] )  }}
+                                    <form  method="post" class="form-horizontal" action="{{url('admin/category_update/')}}" enctype="multipart/form-data">
+                                        <div class="row">
+                                            @csrf
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                       
+                                                        <label class="control-label mb-1">Product Name</label>
+                                                        <span class="text-danger"> *</span>
+                                                       
+                                                        <input type="text" name="product_name" class="form-control" id="producr_name" placeholder="Product name" required data-validation-required-message='Product Name is required'>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                       
+                                                        <label class="control-label mb-1">Select Category</label>
+                                                        <span class="text-danger"> *</span>
+                                                        <select class="form-control" id="category" name="category" >
+                                                            <option disabled selected>Select Category</option>
+                                                            @foreach($category as $categories)
+                                                            
+                                                            <option value={{$categories->id}}>{{$categories->name}}</option>
+                                                           @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                       
+                                                        <label class="control-label mb-1">Product Quantity</label>
+                                                        <span class="text-danger"> *</span>
+                                                       
+                                                        <input type="number" name="product_quantity" class="form-control" id="producr_quantity" placeholder="Product name" required data-validation-required-message='Product Quantity is required'>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                       
+                                                        <label class="control-label mb-1">Product Price</label>
+                                                        <span class="text-danger"> *</span>
+                                                       
+                                                        <input type="number" name="product_price" class="form-control" id="producr_price" placeholder="Product Price" required data-validation-required-message='Product Price is required'>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                       
+                                                        <label class="control-label mb-1">Product Price</label>
+                                                        <span class="text-danger"> *</span>
+                                                        <textarea class="form-control" id="summary-ckeditor" name="product_description"></textarea>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label class="control-label mb-1">Category Status</label>
+                                                        <span class="text-danger"> *</span>
+                                                    
+                                                   
+                                                    </div>
+                                                </div>
+                                            </div>
+                                              <div class="col-sm-6 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label class="control-label mb-1">Category Image</label>
+                                                        <span class="text-danger"> *</span>
+                                                   
+    
+                                                        <input type="file" name="image" class="btn btn-primary media-btn mt-2 p-2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <label class="control-label mb-1">Category Status</label>
+                                                        <span class="text-danger"> *</span>
+                                                    
+                                                    <select class="form-control" id="status" name="status" >
+                                                        <option >Publish</option>
+                                                        <option >UnPublish</option>
+                                                    </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-6 col-md-6 col-lg-6">
-                                            <div class="form-group">
-                                                <div class="controls">
-                                                    {{ Form::label('image', 'Category Image', array('class' => 'control-label mb-1')) }}
-                                                    <span class="text-danger"> *</span>
-                                                    {{ Form::file('image',['class'=>'btn btn-primary media-btn mt-2 p-2','id'=>'image'] )  }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="form-group">
-                                                <div class="controls">
-                                                    {{ Form::label('status', 'Status', array('class' => 'control-label mb-1')) }}
-                                                    <span class="text-danger"> *</span>
-                                                    {{Form::select("status",['1' => 'Publish', '0' => 'Unpublish'],'1',
-                                                    [
-                                                        "class" => "form-control",
-                                                        "placeholder" => "Select Status...",
-                                                        'required' ,
-                                                        'id'=>'status',
-                                                        'data-validation-required-message'=>'Category Status is required'
-                                                    ])
-                                                }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary pull-right mb-1">Add Category</button>
-                                {{ Form::close() }}
+                                        <button type="submit" class="btn btn-primary pull-right mb-1">Add product</button>
+                                        </form>
+    
 
                                 </div>
                             </div>
@@ -126,4 +188,8 @@
     <!-- BEGIN: Page JS-->
     @include('partials._form_validation-js')
     <!-- END: Page JS-->
+    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'summary-ckeditor' );
+</script>
 @endsection
