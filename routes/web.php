@@ -70,8 +70,8 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('/product/create','Shop\ProductController@create')->name('product.create');
     Route::post('/product','Shop\ProductController@store')->name('product.store');
     Route::get('/product/{id}','Shop\ProductController@edit')->name('product.edit');
-    Route::put('/product/{id}','Shop\ProductController@update')->name('product.update');
-    Route::DELETE('/product/{id}','Shop\ProductController@destroy')->name('product.delete');
+    Route::post('/product/{id}','Shop\ProductController@update');
+    Route::get('/product/delete/{id}','Shop\ProductController@destroy')->name('product.delete');
     Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
 
     // Shop Products Images

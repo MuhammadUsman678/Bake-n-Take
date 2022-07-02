@@ -70,7 +70,7 @@
                                                         <label class="control-label mb-1">Product Name</label>
                                                         <span class="text-danger"> *</span>
                                                        
-                                                        <input type="text" name="product_name" class="form-control" id="producr_name" placeholder="Product name" required data-validation-required-message='Product Name is required'>
+                                                        <input type="text" name="product_name" class="form-control" id="producr_name" placeholder="Product name" required data-validation-required-message='Product Name is required' >
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                                             <option disabled selected>Select Category</option>
                                                             @foreach($category as $categories)
                                                             
-                                                            <option value={{$categories->id}}>{{$categories->name}}</option>
+                                                            <option value={{$categories->id}}>{{$categories->category_name}}</option>
                                                            @endforeach
 
                                                         </select>
@@ -138,7 +138,7 @@
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label class="control-label mb-1">Category Status</label>
+                                                        <label class="control-label mb-1">Product Status</label>
                                                         <span class="text-danger"> *</span>
                                                     
                                                     <select class="form-control" id="status" name="status" >
