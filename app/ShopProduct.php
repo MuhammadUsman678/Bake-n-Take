@@ -12,6 +12,7 @@ class ShopProduct extends Model implements HasMedia
 {
     use Sluggable,InteractsWithMedia;
 
+    protected $guarded=[];
     /**
      * Return the sluggable configuration array for this model.
      *
