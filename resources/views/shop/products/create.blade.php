@@ -116,35 +116,37 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+                                            <div class="col-sm-12 col-md-12">
                                                 <div class="form-group">
                                                     <div class="controls">
                                                        
-                                                        <label class="control-label mb-1">Product Price</label>
+                                                        <label class="control-label mb-1">Product Description</label>
                                                         <span class="text-danger"> *</span>
                                                         <textarea class="form-control" id="summary-ckeditor" name="product_description"></textarea>
 
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-6 col-md-6">
+               
+                                              <div class="col-sm-12 col-md-12 col-lg-12">
                                                 <div class="form-group">
                                                     <div class="controls">
-                                                        <label class="control-label mb-1">Category Status</label>
-                                                        <span class="text-danger"> *</span>
-                                                    
-                                                   
-                                                    </div>
-                                                </div>
-                                            </div>
-                                              <div class="col-sm-6 col-md-6 col-lg-6">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label class="control-label mb-1">Category Image</label>
+                                                        <label class="control-label mb-1">Product Images</label>
                                                         <span class="text-danger"> *</span>
                                                    
     
                                                         <input type="file" name="image" class="btn btn-primary media-btn mt-2 p-2">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                       
+                                                        <label class="control-label mb-1">Product Sku</label>
+                                                        <span class="text-danger"> *</span>
+                                                       
+                                                        <input type="text" name="product_sku" class="form-control" id="producr_price" placeholder="Product Sku" required data-validation-required-message='Product Price is required'>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +182,10 @@
     </div>
 </div>
 <!-- END: Content-->
-
+<script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+<script>
+CKEDITOR.replace( 'summary-ckeditor' );
+</script>
 @endsection
 @section('js')
 <!-- BEGIN: Page Vendor JS-->
@@ -188,8 +193,5 @@
     <!-- BEGIN: Page JS-->
     @include('partials._form_validation-js')
     <!-- END: Page JS-->
-    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-<script>
-CKEDITOR.replace( 'summary-ckeditor' );
-</script>
+   
 @endsection
