@@ -60,7 +60,7 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
-                                    <form  method="post" class="form-horizontal" action="{{url('admin/category_update/')}}" enctype="multipart/form-data">
+                                    <form  method="post" class="form-horizontal" action="{{route('shop.product.store')}}" enctype="multipart/form-data">
                                         <div class="row">
                                             @csrf
                                             <div class="col-sm-6 col-md-6">
@@ -142,8 +142,8 @@
                                                         <span class="text-danger"> *</span>
                                                     
                                                     <select class="form-control" id="status" name="status" >
-                                                        <option >Publish</option>
-                                                        <option >UnPublish</option>
+                                                        <option value="1">Publish</option>
+                                                        <option value="0">UnPublish</option>
                                                     </select>
                                                     </div>
                                                 </div>

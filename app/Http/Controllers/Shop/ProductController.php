@@ -64,7 +64,24 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'product_name'=>'required|max:255',
+            'category'=>'required',
+            'product_quantity'=>'required',
+            'product_price'=>'required',
+            'product_description'=>'required',
+            'product_sku'=>'required',
+            'status'=>'required',
+            // 'image'=>'nullable|image|mimes:jpg,png,jpeg,gif,svg',
+        ]);
+        $product=new ShopProduct();
+        $product->shop_id=auth()->user()->id;
+        $product->category_id=$request->category;
+        $product->product_name=$request->product_name;
+        $product->quantity=$request->product_quantity;
+        $product->product_description=$request->product_description;
+        $product->sku=$request->product_sku;
+$product->save();
     }
 
     /**

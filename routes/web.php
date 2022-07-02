@@ -80,6 +80,7 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('product/existingImages/{id}', 'Shop\ProductController@existingImages')->name('products.exists');
     Route::post('product/image/remove', 'Shop\ProductController@remvoeImage')->name('products.remove');
 
+
 });
     // Route::get('admin/sellers','Admin.AdminDashboard@seller');
     // Route::get('admin/nonverifiedcustomers','Admin.AdminDashboard@nonverified');
