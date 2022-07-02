@@ -20,6 +20,8 @@
                         
                     </ul>
                 </li>
+                <li class="nav-item"><a href="{{url('admin/category')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Category</span></a>
+                </li>
                 <li class="nav-item has-sub "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Orders</span></a>
                     <ul class="menu-content" style="">
                         <li class="is-shown"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Pending Orders</span></a>

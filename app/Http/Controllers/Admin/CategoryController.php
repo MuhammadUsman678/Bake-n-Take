@@ -102,11 +102,12 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $selected_category)
+    public function edit($id)
     {
         
-        $categories=Category::where('status',1)->pluck('category_id','id')->get();
-        return view('site.admin.courses.batch.create',compact('categories','selected_category'));
+        
+        $category=Category::findorFail($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -119,33 +120,24 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'title'=>'required|max:255',
+            'category_name'=>'required|max:255',
             'status'=>'required',
-            'course_id'=>'required',
-            'instructor_id'=>'required',
-            'start_date'=>'required|date',
-
+            // 'image'=>'nullable|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
-        $batch=Batch::with('enrollment')->find($id);
-
-        $course=Course::select('title')->find($batch->course_id);
-        if($batch->request_accept==1)
-        {
-            $req=1;
+        $fileName='';
+        if($request->has('image') && $request->image !=null){
+            $file_image = $request->file('image');
+            $extension_image = $file_image->getClientOriginalExtension();
+            $image = date('mdyhms').'image'.'.'.$extension_image;
+            $fileName=public_path('/category/'.$image);
+            Image::make($file_image)->resize(255,255)->save($fileName);
         }
-        else
-        {
-            $req=0;
-        }
-        $batch->update([
-            'title' => $request->title,
-            'status' => $request->status,
-            'course_id' => $request->course_id,
-            'instructor_id' => $request->instructor_id,
-            'start_date' => $request->start_date,
-            'request_accept'=>$req,
-            'end_date' => $request->end_date]);
-        return redirect()->action('Site\Admin\BatchController@index')->with('success',$request->title.' Batch for Course '.$course->title.' Created Successfully');
+        $category = Category::findorfail($id);
+        $category->category_name=$request->category_name;
+        $category->status=$request->status;
+        $category->image=$fileName;
+        $category->update();
+        return redirect()->action('Admin\CategoryController@index')->with('success',$request->category_name.' Edit Successfully');
 
     }
 
@@ -157,15 +149,12 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $batch=Batch::with('enrollment')->find($id);
-        if($batch->enrollment->count()>0)
-        {
-            return redirect()->action('Site\Admin\BatchController@index')->with('error',' You Can not Delete '.$batch->title.' Batch Because Some Students Enrolled in This Batch');
-        }
+        $batch=Category::find($id);
+        
 
-        $title=$batch->title;
+       
         $batch->delete();
-        return redirect()->action('Site\Admin\BatchController@index')->with('success',$title.' Batch Deleted Successfully');
+        return back()->with('success',$batch->category_name.' Category Deleted Successfully');
     }
 
 

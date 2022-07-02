@@ -1,5 +1,5 @@
-@extends('admin.layout.admin')
-@section('title', 'Products')
+@extends('shop.layout.shop')
+@section('title', 'Add Products')
 @section('css')
 <style>
     html body .content {

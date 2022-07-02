@@ -9,7 +9,7 @@ use App\shop;
 use App\notification_user;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-
+use Alert;
 class FrontController extends Controller
 {
     public function shopregister(){
@@ -50,8 +50,8 @@ class FrontController extends Controller
 
     $id="1";
     $this->userNotify($id,$details);
-
-       return back()->with('success','Thankyou our team will contact you soon');
+    Alert::success('Congrats', 'You\'ve Successfully Registered');
+       return back();
     }
     function userNotify($id,$details)
     {
