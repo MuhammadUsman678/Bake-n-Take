@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Validator;
 use Image;
 use App\Category;
+use App\Http\Resources\ProductsImagesResource;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProductController extends Controller
 {
@@ -31,7 +33,8 @@ class ProductController extends Controller
                    })
                     ->addColumn('action', function($row){
                            $btn = '<a href="'.route('shop.product.edit',[$row->id]).'" data-toggle="tooltip" data-placement="top" title="Edit"  data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-primary">Edit</a>';
-                           $btn = $btn.'<a href="'.route('shop.product.delete',[$row->id]).'" data-toggle="tooltip" title="Status"  data-id="'.$row->id.'" data-original-title="Status" class="btn ml-1 btn-danger" >Delete</a>';
+                           $btn = $btn.'<a href="'.route('shop.product.delete',[$row->id]).'" data-toggle="tooltip" title="Delete"  data-id="'.$row->id.'" data-original-title="Delete" class="btn ml-1 btn-danger" >Delete</a>';
+                           $btn = $btn.'<a href="'.route('shop.products.images',[$row->id]).'" data-toggle="tooltip" title="Attch Images"  data-id="'.$row->id.'" data-original-title="Attach Images" class="btn ml-1 btn-info" >Images</a>';
                             return $btn;
                     })
 
@@ -107,5 +110,39 @@ class ProductController extends Controller
     public function destroy(ShopProduct $shopProduct)
     {
         //
+    }
+
+    public function images($id)
+    {
+        $product = ShopProduct::withCount('media')->find($id);
+        $maxFiles=$product->media_count;
+      return view('shop.products.product_images',compact('maxFiles','id','product'));
+    }
+
+    public function existingImages(Request $request,$id){
+
+        $file = ShopProduct::find($id);
+        $fileList=ProductsImagesResource::collection($file->getMedia('images'));
+        return response()->json($fileList);
+    }
+
+    public function uploadImages(Request $request,$id)
+    {
+        $name=null;
+        if ($request->hasFile('file')) {
+            $name = time().rand(1,1000000).'.'.$request->file->extension();
+            $ext = $request->file->extension();
+                $file = ShopProduct::find($id);
+                $file->addMediaFromRequest('file')->usingFileName($name)
+                    ->toMediaCollection('images');
+        }
+        return response()->json($name);
+    }
+
+    public function remvoeImage(Request $request)
+    {
+        $file_name=$request->file_name;
+        Media::where('file_name',$file_name)->delete();
+        return $file_name;
     }
 }

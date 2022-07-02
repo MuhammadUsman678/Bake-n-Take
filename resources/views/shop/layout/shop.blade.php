@@ -41,7 +41,8 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <!-- END: Custom CSS-->
-
+    <!-- END: Custom CSS-->
+    @yield('css')
 </head>
 <!-- END: Head-->
 
@@ -93,7 +94,8 @@
     <!-- BEGIN: Page JS-->
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
     <!-- END: Page JS-->
-
+    <!-- END: Custom JS-->
+    @yield('js')
 </body>
 <!-- END: Body-->
 

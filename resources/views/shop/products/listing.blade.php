@@ -1,11 +1,7 @@
 @extends('shop.layout.shop')
 @section('title', 'Add Products')
 @section('css')
-<style>
-    html body .content {
-       margin-left: 130px !important;
-    }
-    </style>
+
 @include('partials._datatable-css')
 @endsection
 @section('main')

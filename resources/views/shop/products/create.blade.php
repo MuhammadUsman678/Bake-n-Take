@@ -1,11 +1,7 @@
 @extends('shop.layout.shop')
 @section('title','Create product')
 @section('css')
-<style>
-    html body .content {
-       margin-left: 130px !important;
-    }
-    </style>
+
 @include('partials._form_validation-css')
 @endsection
 @section('main')
@@ -21,9 +17,10 @@
                         <h2 class="content-header-title float-left mb-0"> Product</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a>
+                                <li class="breadcrumb-item"><a href="{{ route('shop.dashboard') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item "> Product
+                                <li class="breadcrumb-item "> 
+                                    <a href="{{ route('shop.product.index') }}">Product</a>
                                 </li>
                                 <li class="breadcrumb-item active">Create
                                 </li>
@@ -57,7 +54,7 @@
                                   </div>
                                     @endif
                                     <div class="pull-right">
-                                        <a href="{{ url('/admin/category') }}" class="btn btn-primary">Back</a>
+                                        <a href="{{ route('shop.product.index') }}" class="btn btn-primary">Back</a>
                                     </div>
                                 </div>
                             </div>
@@ -124,18 +121,6 @@
                                                         <span class="text-danger"> *</span>
                                                         <textarea class="form-control" id="summary-ckeditor" name="product_description"></textarea>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-               
-                                              <div class="col-sm-12 col-md-12 col-lg-12">
-                                                <div class="form-group">
-                                                    <div class="controls">
-                                                        <label class="control-label mb-1">Product Images</label>
-                                                        <span class="text-danger"> *</span>
-                                                   
-    
-                                                        <input type="file" name="image" class="btn btn-primary media-btn mt-2 p-2">
                                                     </div>
                                                 </div>
                                             </div>
