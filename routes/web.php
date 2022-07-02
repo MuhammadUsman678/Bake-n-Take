@@ -21,6 +21,16 @@ Route::get('/mark-as-read/{id}', 'UserNotificationController@mark_as_read')->nam
 Route::get('/mark-as-all-read', 'UserNotificationController@mark_as_all_read')->name('mark_all_read');
 Route::get('/notifications/{user}', 'UserNotificationController@see_all_notifications')->name('see_all_notifications');
 
+
+
+Route::get('files', 'FileController@index' );
+Route::post('files', 'FileController@store')->name('file.store');
+Route::get('files/existingFiles', 'FileController@existingFiles')->name('file.exists');
+Route::post('files/remove', 'FileController@remvoeFile')->name('file.remove');
+
+
+
+
 Route::get('/', function () { 
     return view('index');
 });
@@ -63,6 +73,12 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::put('/product/{id}','Shop\ProductController@update')->name('product.update');
     Route::DELETE('/product/{id}','Shop\ProductController@destroy')->name('product.delete');
     Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
+
+    // Shop Products Images
+    Route::get('product/images/{id}', 'Shop\ProductController@images')->name('products.images');
+    Route::post('product/images/upload/{id}', 'Shop\ProductController@uploadImages')->name('products.store');
+    Route::get('product/existingImages/{id}', 'Shop\ProductController@existingImages')->name('products.exists');
+    Route::post('product/image/remove', 'Shop\ProductController@remvoeImage')->name('products.remove');
 
 });
     // Route::get('admin/sellers','Admin.AdminDashboard@seller');
