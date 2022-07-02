@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Notifications\newusernotification;
 use App\User;
 use App\shop;
@@ -58,5 +59,15 @@ class FrontController extends Controller
         $notify->user_id =$id;
         $notify->data = $details;
         $notify->save();
+    }
+
+    public function category($slug){
+        $category=Category::where('slug',$slug)->where('status',1)->first();
+        return $category;
+    }
+
+    public function categories(){
+        $categories=Category::where('status',1)->get();
+        return $categories;
     }
 }

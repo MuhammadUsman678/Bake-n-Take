@@ -25,6 +25,8 @@ Route::get('/', function () {
     return view('index');
 });
 Route::get('shop/register','FrontController@shopregister');
+Route::get('category/{slug}','FrontController@category')->name('front.category');
+Route::get('categories','FrontController@categories')->name('front.categories');
 Route::post('storeshop','FrontController@storeshop');
 Route::get('/logout',function(){
     Auth::logout();

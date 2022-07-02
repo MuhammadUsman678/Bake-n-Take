@@ -97,7 +97,7 @@ $(document).ready(function () {
     if ($(window).width() > 576) {
       $('#tour').on("click", function () {
         clearTimeout(window.resizeEvt);
-        tour.start();
+        // tour.start();
       })
     }
     else {
