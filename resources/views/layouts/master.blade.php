@@ -48,6 +48,7 @@
   @yield('script')
   <!-- Start of Async Drift Code -->
 
+  @include('layouts.add-to-cart')
   <!-- End of Async Drift Code -->
   </body>
 </html>

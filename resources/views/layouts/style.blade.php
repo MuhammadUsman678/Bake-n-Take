@@ -15,3 +15,10 @@
     <link rel="stylesheet" href="{{ asset('front/assets/css/plugins/fancybox.min.css')}}" />
     <!-- starbelly css -->
     <link rel="stylesheet" href="{{ asset('front/assets/css/style.css')}}" />
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        .sb-cart-quantity{
+            z-index:5;
+        }
+    </style>
