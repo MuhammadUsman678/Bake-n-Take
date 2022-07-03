@@ -119,10 +119,7 @@
 
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<script src="{{asset('app-assets/js/scripts/ui/data-list-view.js')}}"></script>
-@include('partials._datatable-js')
 <script>
    $(document).ready(function () {
        $('#datatable').DataTable();

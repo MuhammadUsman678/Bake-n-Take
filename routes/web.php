@@ -60,6 +60,9 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('/category/{id}','Admin\CategoryController@edit')->name('category.edit');
     Route::post('/category_update/{id}','Admin\CategoryController@update');
     Route::get('/category/delete/{id}','Admin\CategoryController@destroy')->name('category.delete');
+//Chat Api
+    Route::get('/chat','ChatController@index')->name('chat');
+    Route::get('/chat/{id}','ChatController@chat');
 });
  //end Admin Side   
 
@@ -79,13 +82,17 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::post('product/images/upload/{id}', 'Shop\ProductController@uploadImages')->name('products.store');
     Route::get('product/existingImages/{id}', 'Shop\ProductController@existingImages')->name('products.exists');
     Route::post('product/image/remove', 'Shop\ProductController@remvoeImage')->name('products.remove');
-
+    Route::get('/chat','ChatController@shopindex')->name('chat');
+    Route::get('/chat/{id}','ChatController@shopchat');
 
 });
+Route::get('/get-message','ChatController@getMessages');
+Route::post('/chat/store/messages','ChatController@storeMessage');
     // Route::get('admin/sellers','Admin.AdminDashboard@seller');
     // Route::get('admin/nonverifiedcustomers','Admin.AdminDashboard@nonverified');
     Route::middleware(['verified','auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
+
 });
 
 

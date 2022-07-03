@@ -20,6 +20,9 @@
                         
                     </ul>
                 </li>
+                <li class="nav-item"><a href="{{url('admin/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat With Buyer</span></a>
+                </li> 
+
                 <li class="nav-item"><a href="{{url('admin/category')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Category</span></a>
                 </li>
                 <li class="nav-item has-sub "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Orders</span></a>

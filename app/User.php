@@ -54,5 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
     //         }
     //     });
     // }
-
+    public function shop(){
+        return $this->hasOne(Shop::class,'user_id','id');
+    }
 }
