@@ -50,7 +50,13 @@ $(function() {
       });
     }, 400);
   });
+
+
+ 
   /***************************
+
+  
+
 
   faq
 
@@ -140,24 +146,7 @@ $(function() {
       cursor.classList.remove('sb-click')
     }, 600)
   });
-  /***************************
 
-  add to cart
-
-  ***************************/
-  var counter = $('.sb-cart-number').text();
-
-  $('.sb-atc').on('click', function() {
-    counter++;
-    $('.sb-cart-number').addClass('sb-added');
-    $(this).addClass('sb-added');
-    setTimeout(() => {
-      $('.sb-cart-number').removeClass('sb-added');
-    }, 600);
-    setTimeout(() => {
-      $('.sb-cart-number').text(counter);
-    }, 300);
-  });
   /***************************
 
   menu
@@ -486,22 +475,7 @@ $(function() {
     $('.sb-breadcrumbs a[href]:not([href^="mailto\\:"], [href$="\\#"], [href$="\\#."])').on('click', function() {
       $('.sb-breadcrumbs').addClass('sb-click');
     });
-    /***************************
-
-    add to cart
-
-    ***************************/
-    $('.sb-atc').on('click', function() {
-      counter++;
-      $('.sb-cart-number').addClass('sb-added');
-      $(this).addClass('sb-added');
-      setTimeout(() => {
-        $('.sb-cart-number').removeClass('sb-added');
-      }, 600);
-      setTimeout(() => {
-        $('.sb-cart-number').text(counter);
-      }, 300);
-    });
+   
     /***************************
 
     menu

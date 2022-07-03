@@ -40,4 +40,8 @@ class ShopProduct extends Model implements HasMedia
             ->performOnCollections('images')
             ->nonQueued();
     }
+
+    public function carts(){
+        return $this->hasOne(Cart::class,'product_id','id');
+    }
 }

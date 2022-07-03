@@ -109,25 +109,27 @@
                 </li>
                 @endif
               @endauth
-              <li class="sb-has-children">
-                <a href="{{url('shop/register')}}" ><button type="button" class="btn btn-warning">Register Shop</button></a>
-              </li>
+              @guest  
+                <li class="sb-has-children">
+                  <a href="{{url('shop/register')}}" ><button type="button" class="btn btn-warning">Register Shop</button></a>
+                </li>
+              @endguest
             </ul>
           </nav>
-          {{-- <div class="sb-buttons-frame">
+          <div class="sb-buttons-frame">
             <!-- button -->
             <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
               <span class="sb-icon">
                 <img src="{{asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
               </span>
-              <i class="sb-cart-number">5</i>
+              <i class="sb-cart-number">{{ $cartItems }}</i>
             </div>
             <!-- button end -->
             <!-- menu btn -->
             <div class="sb-menu-btn"><span></span></div>
             <!-- info btn -->
             <div class="sb-info-btn"><span></span></div>
-          </div> --}}
+          </div>
         </div>
       </div>
     </div>
@@ -199,58 +201,13 @@
     <!-- minicart -->
     <div class="sb-minicart">
       <div class="sb-minicart-content">
-        <div class="sb-ib-title-frame sb-mb-30">
-          <h4>Your order.</h4><i class="fas fa-arrow-down"></i>
-        </div>
-        <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/menu/4.jpg')}}" alt="product">
-          </div>
-          <div class="sb-card-tp">
-            <h4 class="sb-card-title">Saumon Gravlax</h4>
-            <div class="sb-price"><sub>$</sub> 9</div>
-          </div>
-        </a>
-        <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/menu/1.jpg')}}" alt="product">
-          </div>
-          <div class="sb-card-tp">
-            <h4 class="sb-card-title">Chevrefrit au miel</h4>
-            <div class="sb-price"><sub>$</sub> 14</div>
-          </div>
-        </a>
-        <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/menu/2.jpg')}}" alt="product">
-          </div>
-          <div class="sb-card-tp">
-            <h4 class="sb-card-title">Croustillant de poisson</h4>
-            <div class="sb-price"><sub>$</sub> 4</div>
-          </div>
-        </a>
-        <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/menu/3.jpg')}}" alt="product">
-          </div>
-          <div class="sb-card-tp">
-            <h4 class="sb-card-title">Stracciatella</h4>
-            <div class="sb-price"><sub>$</sub> 11</div>
-          </div>
-        </a>
-        <a href="#" class="sb-menu-item sb-menu-item-sm sb-mb-15">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/menu/5.jpg')}}" alt="product">
-          </div>
-          <div class="sb-card-tp">
-            <h4 class="sb-card-title">Carpaccio de daurade</h4>
-            <div class="sb-price"><sub>$</sub> 19</div>
-          </div>
-        </a>
+       
       </div>
+      
       <div class="sb-minicart-footer">
+        
         <!-- button -->
-        <a href="#" class="sb-btn sb-btn-gray sb-btn-text">
+        <a href="{{ route('front.cart') }}" class="sb-btn sb-btn-gray sb-btn-text">
           <span>View order</span>
         </a>
         <!-- button end -->

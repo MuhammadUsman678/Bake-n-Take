@@ -18,6 +18,8 @@
 <script src="{{ asset('front/assets/js/plugins/fancybox.min.js')}}"></script>
 <!-- starbelly js -->
 
+<script src="{{ asset('front/assets/js/main.js')}}"></script>
+
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Start of Async Drift Code -->
 

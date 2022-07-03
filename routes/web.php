@@ -1,5 +1,6 @@
 <?php
 
+use App\Cart;
 use App\Http\Controllers\Admin\AdminDashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +32,9 @@ Route::post('files/remove', 'FileController@remvoeFile')->name('file.remove');
 
 
 
-Route::get('/', function () { 
-    return view('index');
-});
+Route::get('/', 'HomeController@index');
+
+
 Route::get('shop/register','FrontController@shopregister');
 Route::get('category/{slug}','FrontController@category')->name('front.category');
 Route::get('categories','FrontController@categories')->name('front.categories');
@@ -42,6 +43,38 @@ Route::get('/logout',function(){
     Auth::logout();
     return redirect('/');
 })->middleware('auth');
+
+
+// Frontend
+Route::group(['as'=>'front.','middleware' => ['auth']],function () {
+   
+    Route::post('product/add-to-cart','CartController@addToCart')->name('addToCart');
+    Route::get('product/get-cart-items','CartController@getCartItems')->name('getCartItems');
+    Route::get('product/remove-cart-item','CartController@removeCartItem')->name('removeCartItem');
+    Route::get('product/increment-quantity','CartController@incrementQuantity')->name('incrementQuantity');
+    Route::get('product/decrement-quantity','CartController@decrementQuantity')->name('decrementQuantity');
+    Route::get('product/cart','CartController@cart')->name('cart');
+
+
+    Route::get('product/{slug}','CartController@cart')->name('product.show');
+
+
+
+});
+
+Route::get('test',function(){
+    $cartItems=Cart::with('product')->where('user_id',(auth()->user()->id))->get();
+    $data=[];
+    foreach($cartItems as $key=>$cart){
+        $data[$key]['name']=$cart->product->product_name;
+        $data[$key]['quantity']=$cart->quantity;
+        $data[$key]['price']=$cart->price;
+        $data[$key]['image']=$cart->product->getFirstMediaUrl('images','thumb') ? $cart->product->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
+    }
+    return $data;
+});
+
+
 
 
 

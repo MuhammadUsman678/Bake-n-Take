@@ -201,7 +201,7 @@
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
-                <h2 class="sb-mb-30">Most <span>popular</span> Products</h2>
+                <h2 class="sb-mb-30"><span>All</span> Products</h2>
                 <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
             </div>
             <div class="sb-right sb-mb-30">
@@ -223,60 +223,19 @@
         </div>
         <div class="swiper-container sb-short-menu-slider-4i swiper-container-horizontal">
             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                <div class="swiper-slide swiper-slide-active" style="width: 270px; margin-right: 30px;">
-                    <a data-fancybox="menu" data-no-swup="" href="{{asset('front/assets/img/menu/3.jpg')}}" class="sb-menu-item">
-                        <div class="sb-cover-frame">
-                            <img src="{{asset('front/assets/img/menu/3.jpg')}}" alt="product">
-                        </div>
-                        <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Biscuits</h4>
-                            <div class="sb-price"><sub>Pkr</sub> 1000</div>
-                        </div>
-                        <div class="sb-description">
-                            <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
-                            <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide swiper-slide-next" style="width: 270px; margin-right: 30px;">
-                    <a data-fancybox="menu" data-no-swup="" href="{{asset('front/assets/img/menu/1.jpg')}}" class="sb-menu-item">
-                        <div class="sb-cover-frame">
-                            <img src="{{asset('front/assets/img/menu/1.jpg')}}" alt="product">
-                        </div>
-                        <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Special Cake</h4>
-                            <div class="sb-price"><sub>Pkr</sub> 1400</div>
-                        </div>
-                        <div class="sb-description">
-                            <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
-                            <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
+               @foreach ($products as $key => $product)    
                 <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
-                    <a data-fancybox="menu" data-no-swup="" href="{{asset('front/assets/img/menu/2.jpg')}}" class="sb-menu-item">
+                    <a data-fancybox="menu" data-no-swup="" href="{{ $product->getFirstMediaurl('images') ? $product->getFirstMediaurl('images') : 'https://via.placeholder.com/270?text=No+Image+Found'  }}" class="sb-menu-item">
                         <div class="sb-cover-frame">
-                            <img src="{{asset('front/assets/img/menu/2.jpg')}}" alt="product">
-                            <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> Vegan</div>
+                            <img src="{{ $product->getFirstMediaurl('images') ? $product->getFirstMediaurl('images') : 'https://via.placeholder.com/270?text=No+Image+Found'  }}" alt="{{ $product->product_name}}">
+                            <div class="sb-badge sb-vegan">{{ $product->category->category_name }}</div>
                         </div>
                         <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Special Sandwich</h4>
-                            <div class="sb-price"><sub>Pkr</sub> 150</div>
+                            <h4 class="sb-card-title">{{ $product->product_name }}</h4>
+                            <div class="sb-price"><sub>Rs.</sub> {{ $product->price }}</div>
                         </div>
                         <div class="sb-description">
-                            <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
+                            <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
                             <ul class="sb-stars">
                                 <li><i class="fas fa-star"></i></li>
                                 <li><i class="fas fa-star"></i></li>
@@ -285,78 +244,48 @@
                                 <li><i class="fas fa-star"></i></li>
                             </ul>
                         </div>
+                        <div class="sb-card-buttons-frame">
+                            <!-- button -->
+                            <a href="product.html" class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 float-left">
+                              <span class="sb-icon">
+                                <img src="{{ asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
+                              </span>
+                            </a>
+                            <!-- button end -->
+                            <!-- button -->
+                            @auth    
+                                <a data-id="{{ $product->id }}"  href="#" class="sb-btn sb-atc sb-atc-add-to-cart float-right">
+                                <span class="sb-icon">
+                                    <img src="{{ asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
+                                </span>
+                                <span class="sb-add-to-cart-text">Add to cart</span>
+                                <span class="sb-added-text">Added</span>
+                                </a>
+                            @endauth
+                            @guest
+                               <a href="{{ route('login') }}" class="sb-btn sb-atc float-right">
+                                    <span class="sb-icon">
+                                        <img src="{{ asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
+                                    </span>
+                                    <span class="sb-add-to-cart-text">Add to cart</span>
+                                    <span class="sb-added-text">Added</span>
+                                </a>
+                            @endguest
+                            
+                            <!-- button end -->
+                          </div>
                     </a>
                 </div>
-                <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
-                    <a data-fancybox="menu" data-no-swup="" href="{{asset('front/assets/img/menu/9.jpg')}}" class="sb-menu-item">
-                        <div class="sb-cover-frame">
-                            <img src="{{asset('front/assets/img/menu/9.jpg')}}" alt="product">
-                            <div class="sb-badge sb-hot"><i class="fas fa-pepper-hot"></i> Hot</div>
-                        </div>
-                        <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Pastrey</h4>
-                            <div class="sb-price"><sub>Pkr</sub> 400</div>
-                        </div>
-                        <div class="sb-description">
-                            <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
-                            <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
-                    <a data-fancybox="menu" data-no-swup="" href="{{asset('front/assets/img/menu/5.jpg')}}" class="sb-menu-item">
-                        <div class="sb-cover-frame">
-                            <img src="{{asset('front/assets/img/menu/5.jpg')}}" alt="product">
-                            <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> Vegan</div>
-                        </div>
-                        <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Carpaccio de daurade</h4>
-                            <div class="sb-price"><sub>Pkr</sub> 6</div>
-                        </div>
-                        <div class="sb-description">
-                            <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
-                            <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
-                    <a data-fancybox="menu" data-no-swup="" href="{{asset('front/assets/img/menu/4.jpg')}}" class="sb-menu-item">
-                        <div class="sb-cover-frame">
-                            <img src="{{asset('front/assets/img/menu/4.jpg')}}" alt="product">
-                        </div>
-                        <div class="sb-card-tp">
-                            <h4 class="sb-card-title">Black Coffee</h4>
-                            <div class="sb-price"><sub>Pkr</sub> 110</div>
-                        </div>
-                        <div class="sb-description">
-                            <p class="sb-text sb-mb-15"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
-                            <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
+               @endforeach
+              
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>
 </section>
+
+
+
 
 <!-- team -->
 <section class="sb-p-0-60">
