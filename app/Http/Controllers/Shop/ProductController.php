@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Validator;
 use Image;
 use App\Category;
+use App\Shop;
 use App\Http\Resources\ProductsImagesResource;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -64,7 +65,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'product_name'=>'required|max:255',
+            'category'=>'required',
+            'product_quantity'=>'required',
+            'product_price'=>'required',
+            'product_description'=>'required',
+            'product_sku'=>'required',
+            'status'=>'required',
+            // 'image'=>'nullable|image|mimes:jpg,png,jpeg,gif,svg',
+        ]);
+        $shop=Shop::where('user_id',auth()->user()->id)->first();
+       
+        $product=new ShopProduct();
+        $product->shop_id=$shop->id;
+        $product->category_id=$request->category;
+        $product->product_name=$request->product_name;
+        $product->price=$request->product_price;
+        $product->quantity=$request->product_quantity;
+        $product->product_description=$request->product_description;
+        $product->sku=$request->product_sku;
+$product->save();
+return redirect()->action('Shop\ProductController@index')->with('success',$request->product_name.' Created Successfully');
     }
 
     /**
@@ -84,9 +106,11 @@ class ProductController extends Controller
      * @param  \App\ShopProduct  $shopProduct
      * @return \Illuminate\Http\Response
      */
-    public function edit(ShopProduct $shopProduct)
+    public function edit($id)
     {
-        //
+        $shop=ShopProduct::find($id);
+        $category=Category::whereStatus('1')->get();
+        return view('shop.products.edit',compact('category','shop'));
     }
 
     /**
@@ -96,9 +120,17 @@ class ProductController extends Controller
      * @param  \App\ShopProduct  $shopProduct
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ShopProduct $shopProduct)
+    public function update(Request $request, $id)
     {
-        //
+        $product=ShopProduct::find($id);
+        $product->category_id=$request->category;
+        $product->product_name=$request->product_name;
+        $product->price=$request->product_price;
+        $product->quantity=$request->product_quantity;
+        $product->product_description=$request->product_description;
+        $product->sku=$request->product_sku;
+$product->save();
+return redirect()->action('Shop\ProductController@index')->with('success',$request->product_name.' Updated Successfully');
     }
 
     /**
@@ -107,9 +139,10 @@ class ProductController extends Controller
      * @param  \App\ShopProduct  $shopProduct
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ShopProduct $shopProduct)
+    public function destroy($id)
     {
-        //
+      $delete=ShopProduct::find($id)->delete();
+      return redirect()->action('Shop\ProductController@index')->with('error','Product DeletedSuccessfully');
     }
 
     public function images($id)

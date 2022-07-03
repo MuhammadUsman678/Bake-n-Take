@@ -21,7 +21,7 @@ class CreateShopProductsTable extends Migration
             $table->string('quantity');
             $table->integer('price');
             $table->string('product_description');
-            $table->string('product_images');
+           
            
             $table->timestamps();
         });
