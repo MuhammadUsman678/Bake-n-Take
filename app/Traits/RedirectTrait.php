@@ -19,7 +19,7 @@ trait RedirectTrait {
             return route('shop.dashboard');
 
         } else {
-            return url()->previous();
+            return '/';
         }
     }
 }
