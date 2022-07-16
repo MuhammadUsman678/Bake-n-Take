@@ -33,8 +33,8 @@ Route::post('files/remove', 'FileController@remvoeFile')->name('file.remove');
 
 
 Route::get('/', 'HomeController@index');
-
-
+Route::get('/all_shop', 'FrontController@allshop');
+Route::get('/shop_product/{id}', 'FrontController@shopproduct');
 Route::get('shop/register','FrontController@shopregister');
 Route::get('category/{slug}','FrontController@category')->name('front.category');
 Route::get('categories','FrontController@categories')->name('front.categories');

@@ -24,4 +24,7 @@ class Category extends Model
             ]
         ];
     }
+    public function product(){
+        return $this->hasMany(ShopProduct::class,'category_id','id');
+}
 }

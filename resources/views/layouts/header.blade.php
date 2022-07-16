@@ -35,16 +35,16 @@
                 <a href="{{ url('/') }}">Home</a>
               </li>
               <li class="sb-has-children">
-                <a href="about-1.html" target="_blank" data-no-swup="">Categories</a>
+                <a href="#" target="_blank" data-no-swup="">Categories</a>
                 <ul>
                   @foreach($productCategories as $cat)
                     <li><a href="{{ route('front.category',[$cat->slug]) }}" ta-no-swup="">{{$cat->category_name}}</a></li>
                   @endforeach
-                  <li><a href="{{ route('front.categories') }}" ta-no-swup="">View All Categories</a></li>
+                  {{-- <li><a href="{{ route('front.categories') }}" ta-no-swup="">View All Categories</a></li> --}}
                 </ul>
               </li>
               <li class="sb-has-children">
-                <a href="#">Shop</a>
+                <a href="{{url('all_shop')}}">Shop</a>
               </li>
               <!-- <li class="sb-active sb-has-children">
                 <a href="about-1.html">Pages</a>
