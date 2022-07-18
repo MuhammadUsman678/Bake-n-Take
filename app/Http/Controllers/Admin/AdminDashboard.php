@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\shop;
+use App\mail\approvedmail;
+use App\mail\rejectmail;
 
 
 class AdminDashboard extends Controller
@@ -60,11 +62,21 @@ $user->update([
     $shop->update([
         'status'=>1
     ]);
+    $maildetail=[
+        'username'=>$user->name,
+        'shop_name'=>$shop->shop_name,
+    ];
+    \Mail::to($user->email)->send(new approvedmail($maildetail));
     return response()->json(['success'=>'Shop Approved Successfully']);
    }else{
     $shop->update([
         'status'=>0
-    ]); 
+    ]);
+    $maildetail=[
+        'username'=>$user->name,
+        'shop_name'=>$shop->shop_name,
+    ];
+    \Mail::to($user->email)->send(new rejectmail($maildetail)); 
     return response()->json(['success'=>'Shop Rejected Successfully']); 
    }  
         

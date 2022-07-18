@@ -6,7 +6,9 @@ use App\Category;
 use App\Notifications\newusernotification;
 use App\User;
 use App\shop;
+use App\ShopProduct;
 use App\notification_user;
+use App\Mail\registermail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Alert;
@@ -20,12 +22,22 @@ class FrontController extends Controller
         return view('auth.shopregister');
     }
     public function storeshop(Request $request){
+        if ($request->hasfile('shopimg'))
+        {
+        $shopimage=$request->file('shopimg');
+        $shopName = $shopimage->getClientOriginalName();
+       
+        $shopimage->move('shopdocument',$shopName);
+        }else{
+            $shopName=null;   
+        }
       $user=User::create([
        'name'=>$request->name,
        'email'=>$request->email,
        'role_id'=>3,
        'password'=>Hash::make($request->password),
        'status'=>0,
+       'image'=>$shopName,
        ]);
        if ($request->hasfile('file'))
         {
@@ -49,7 +61,12 @@ class FrontController extends Controller
     
     
        ]);
-    //    $user->notify(new newusernotification($user));
+       $maildetail=[
+        'username'=>$user->name,
+        'shop_name'=>$shop->shopname,
+       ];
+       \Mail::to($user->email)->send(new registermail($maildetail));
+        //    $user->notify(new newusernotification($user));
     $details =$user->name.' Requested for new shp registeration';
 
     $id="1";
@@ -66,8 +83,8 @@ class FrontController extends Controller
     }
 
     public function category($slug){
-        $category=Category::where('slug',$slug)->where('status',1)->first();
-        return $category;
+        $category=Category::where('slug',$slug)->where('status',1)->whereHas('product')->first();
+        return view('categories',compact('category'));
     }
 
     public function categories(){
@@ -107,5 +124,14 @@ class FrontController extends Controller
             }
         }
         return response(['data' => $search], 200);
+    }
+    public function allshop(){
+        $shop=shop::where('status',1)->whereHas('user')->get();
+      return view('allshop',compact('shop'));
+    }
+    public function shopproduct($id){
+        $shop=shop::findorfail($id);
+        $shopproduct=ShopProduct::where('shop_id',$shop->id)->get();
+      return view('shopproduct',compact('shop','shopproduct'));
     }
 }

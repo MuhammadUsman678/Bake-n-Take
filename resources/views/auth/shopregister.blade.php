@@ -77,6 +77,14 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
+                                            <input type="file" name="shopimg" class="form-control" id="file"  >
+                                            <span class="sb-bar"></span>
+                                            <label>Upload Shop Image</label>
+                                       
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="sb-group-input">
                                             <input type="email" name="email" class="form-control " id="email"  placeholder="Enter email" >
                                             <span class="sb-bar"></span>
                                             <label>Email address</label>
