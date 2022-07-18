@@ -10,6 +10,10 @@ use App\notification_user;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Alert;
+use App\Demo;
+use App\ShopProduct;
+use Str;
+
 class FrontController extends Controller
 {
     public function shopregister(){
@@ -69,5 +73,39 @@ class FrontController extends Controller
     public function categories(){
         $categories=Category::where('status',1)->get();
         return $categories;
+    }
+
+    public function searchProducts(Request $request){
+        if ($request->key == null) {
+            $products = null;
+        } else {
+            $products = ShopProduct::where('status',1)->where('product_name', 'LIKE', "%{$request->key}%")->get();
+        }
+
+
+        $search = collect();
+
+
+        if ($products == null) {
+            return response(['data' => $search], 200);
+        } else {
+            if ($products->count() > 0) {
+                foreach ($products as $item) {
+                    $demo = new Demo();
+                    $demo->title = Str::limit($item->product_name, 58);
+                    $demo->image = $item->getFirstMediaUrl('images','thumb') ? $item->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
+                    $demo->link = route('front.single.product', $item->slug);
+                    $search->push($demo);
+                }
+
+            } else {
+                $demo = new Demo();
+                $demo->title = 'No product Found';
+                $demo->image = null;
+                $demo->link = null;
+                $search->push($demo);
+            }
+        }
+        return response(['data' => $search], 200);
     }
 }

@@ -118,6 +118,7 @@
           </nav>
           <div class="sb-buttons-frame">
             <!-- button -->
+            <a href="#" data-target=".search-modal" data-toggle="modal" style="margin-right: 10px;margin-top: 10px;"> <i class="fa fa-search" style="font-size: 25px"><span></span></i></a> 
             <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
               <span class="sb-icon">
                 <img src="{{asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
@@ -205,16 +206,17 @@
       </div>
       
       <div class="sb-minicart-footer">
-        
+        @auth
         <!-- button -->
         <a href="{{ route('front.cart') }}" class="sb-btn sb-btn-gray sb-btn-text">
           <span>View order</span>
         </a>
         <!-- button end -->
         <!-- button -->
-        <a href="#" class="sb-btn sb-btn-text">
+        <a href="{{ route('front.checkout') }}" class="sb-btn sb-btn-text">
           <span>Checkout</span>
         </a>
+        @endauth
         <!-- button end -->
       </div>
     </div>

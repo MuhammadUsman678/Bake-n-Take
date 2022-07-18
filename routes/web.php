@@ -55,6 +55,11 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/decrement-quantity','CartController@decrementQuantity')->name('decrementQuantity');
     Route::get('product/cart','CartController@cart')->name('cart');
 
+    Route::get('checkout','CheckOutController@checkout')->name('checkout');
+    Route::post('confirm-order','CheckOutController@order')->name('order.confirm');
+    Route::get('search', 'FrontController@searchProducts')->name('search.products');
+    Route::get('product', 'FrontController@singleProduct')->name('single.product');
+
 
     Route::get('product/{slug}','CartController@cart')->name('product.show');
 
@@ -62,16 +67,27 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
 
 });
 
+Route::get('stripe', 'StripePaymentController@stripe');
+Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+
+Route::post('/paymentStatus','CheckOutController@paymentStatus');
+
+
+
 Route::get('test',function(){
-    $cartItems=Cart::with('product')->where('user_id',(auth()->user()->id))->get();
+    $cartItems=Cart::with('product:id,price')->where('user_id',(auth()->user()->id))->get();
+    $total_price=0;
     $data=[];
     foreach($cartItems as $key=>$cart){
-        $data[$key]['name']=$cart->product->product_name;
         $data[$key]['quantity']=$cart->quantity;
-        $data[$key]['price']=$cart->price;
-        $data[$key]['image']=$cart->product->getFirstMediaUrl('images','thumb') ? $cart->product->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
+        $data[$key]['product_id']=$cart->product->id;
+        $total_price +=$cart->quantity*$cart->product->price;
     }
+    foreach ($data as $key => $value) {
+           $data[$key]['order_id']=13;
+    }    
     return $data;
+    // return $total_price;
 });
 
 

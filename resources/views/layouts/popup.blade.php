@@ -27,3 +27,41 @@
         </div>
     </div> -->
     <!-- discount popup end -->
+
+
+
+    <!-- Search Modal Start -->
+<div aria-hidden="true" class="modal fade search-modal" role="dialog" tabindex="-1" style="background-color: #000000;opacity: 0.9;">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true" class="fa fa-times"></span>
+    </button>
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="search-block clearfix">
+                {{-- <form>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="eg: Computer Technology" type="text">
+                    </div>
+                </form> --}}
+                 <form action="#" style="margin:20px">
+                                <input class="form-control" id="search" type="text" name="search"
+                                       placeholder="Search for Products">
+                                {{-- <button type="submit"><i class="fa fa-search"></i></button> --}}
+
+                                <!-- Search bar END - -->
+
+                                <!-- ======================== Search Suggession ============================= -->
+
+                                <div class="overflow-hidden search-list w-100">
+                                    <div id="appendSearchCart1"></div>
+                                </div>
+                                {{--some ajax value--}}
+                                <input value="@translate(Your Cart is Empty)" type="hidden"
+                                       id="emptyUrl" name="emptyUrl">
+                                <input value="{{route('front.search.products')}}" type="hidden"
+                                       id="searchUrl" name="searchUrl">
+                            </form>
+            </div>
+        </div>
+    </div>
+</div>
