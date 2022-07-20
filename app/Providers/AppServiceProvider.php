@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
             if (Auth::check()) {
                 $cartItems=\App\Cart::where('user_id',(auth()->user()->id))->sum('quantity');
             }
-            $productCategories= Category::where(['status' => 1])->get()->take(7);
+            $productCategories= Category::where(['status' => 1])->whereHas('product')->get()->take(7);
             //...with this variable
             $view->with(['cartItems'=>$cartItems,'productCategories'=>$productCategories]);    
         });  

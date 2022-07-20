@@ -6,7 +6,6 @@ use App\Category;
 use App\Notifications\newusernotification;
 use App\User;
 use App\shop;
-use App\ShopProduct;
 use App\notification_user;
 use App\Mail\registermail;
 use Illuminate\Support\Facades\Hash;

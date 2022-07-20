@@ -61,6 +61,10 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product', 'FrontController@singleProduct')->name('single.product');
 
 
+    Route::get('orders', 'AccountController@orders')->name('orders');
+    Route::get('view-order/{uuid}', 'AccountController@viewOrder')->name('view.order');
+
+
     Route::get('product/{slug}','CartController@cart')->name('product.show');
 
 
@@ -75,19 +79,9 @@ Route::post('/paymentStatus','CheckOutController@paymentStatus');
 
 
 Route::get('test',function(){
-    $cartItems=Cart::with('product:id,price')->where('user_id',(auth()->user()->id))->get();
-    $total_price=0;
-    $data=[];
-    foreach($cartItems as $key=>$cart){
-        $data[$key]['quantity']=$cart->quantity;
-        $data[$key]['product_id']=$cart->product->id;
-        $total_price +=$cart->quantity*$cart->product->price;
-    }
-    foreach ($data as $key => $value) {
-           $data[$key]['order_id']=13;
-    }    
-    return $data;
-    // return $total_price;
+   $order=\App\Order::with('products')->latest()->first();
+//    return $order->products->sum('quantity');
+    return $order;
 });
 
 

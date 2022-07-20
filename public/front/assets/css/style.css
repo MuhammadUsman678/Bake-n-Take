@@ -413,6 +413,20 @@ group title
 list
 
 ***************************/
+
+.list-group-item.active {
+  z-index: 2;
+  color: #fff;
+  background-color: #f5c332 !important;
+  border-color: #f5c332 !important;
+}
+
+.sb-info-bar .sb-list li:hover {
+  color:#f5c332;
+}
+
+
+
 .sb-list li {
   display: flex;
   justify-content: space-between;
@@ -833,7 +847,7 @@ mobile menu button
 .sb-info-btn,
 .sb-menu-btn {
   margin-left: 15px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
   width: 30px;
   height: 55px;
   cursor: pointer;
@@ -848,14 +862,14 @@ mobile menu button
 .sb-menu-btn span,
 .sb-menu-btn span:after,
 .sb-menu-btn span:before {
-  content: "";
+  /* content: "";
   display: block;
   width: 20px;
   height: 2px;
   border-radius: 1px;
   background: #231e41;
-  backface-visibility: hidden;
-  transition: 0.3s ease-in-out;
+  backface-visibility: hidden;*/
+  transition: 0.3s ease-in-out; 
 }
 .sb-info-btn span,
 .sb-menu-btn span {
@@ -878,7 +892,7 @@ mobile menu button
 }
 .sb-info-btn.sb-active span,
 .sb-menu-btn.sb-active span {
-  transform: rotate(45deg);
+  /* transform: rotate(45deg); */
 }
 .sb-info-btn.sb-active span:before,
 .sb-menu-btn.sb-active span:before {
@@ -4691,4 +4705,3 @@ illustration 9
   animation: anima1 3s 3s infinite ease-in-out;
 }
 
-/*# sourceMappingURL=style.css.map */
