@@ -48,7 +48,7 @@ class AdminDashboard extends Controller
     public function status_active(Request $request)
     {
         $user=User::findorfail($request->statusId);
-$shop=Shop::where('user_id',$user->id)->first();
+$shop=shop::where('user_id',$user->id)->first();
      if($user->status==0){
 $user->update([
     'status'=>1

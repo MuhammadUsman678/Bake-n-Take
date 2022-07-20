@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 use Validator;
 use Image;
 use App\Category;
-use App\Shop;
+use App\shop;
 use App\Http\Resources\ProductsImagesResource;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -75,7 +75,7 @@ class ProductController extends Controller
             'status'=>'required',
             // 'image'=>'nullable|image|mimes:jpg,png,jpeg,gif,svg',
         ]);
-        $shop=Shop::where('user_id',auth()->user()->id)->first();
+        $shop=shop::where('user_id',auth()->user()->id)->first();
        
         $product=new ShopProduct();
         $product->shop_id=$shop->id;

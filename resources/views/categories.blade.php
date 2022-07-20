@@ -41,7 +41,7 @@
                 </div>
                 <!-- slider navigation end -->
                 <!-- button -->
-                <a href="#" class="sb-btn">
+                <a href="{{ route('front.all.products') }}" class="sb-btn">
                     <span class="sb-icon">
                         <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
                     </span>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="sb-card-buttons-frame">
                             <!-- button -->
-                            <a href="product.html" class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 float-left">
+                            <a href="{{ route('front.single.product',[$product->slug]) }}" class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 float-left">
                               <span class="sb-icon">
                                 <img src="{{ asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                               </span>
