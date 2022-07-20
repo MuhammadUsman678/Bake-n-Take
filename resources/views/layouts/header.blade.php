@@ -122,17 +122,25 @@
           </nav>
           <div class="sb-buttons-frame">
             <!-- button -->
+            <a href="#" data-target=".search-modal" data-toggle="modal" style="margin-right: 10px;margin-top: 10px;"> <i class="fa fa-search" style="font-size: 25px"><span></span></i></a> 
             <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
               <span class="sb-icon">
                 <img src="{{asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
               </span>
               <i class="sb-cart-number">{{ $cartItems }}</i>
             </div>
+            {{-- <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-account-bar">
+              <span class="sb-icon">
+                <img style="width: 45px" src="{{asset('front/assets/img/ui/icons/account.svg')}}" alt="icon">
+              </span>
+            </div> --}}
             <!-- button end -->
             <!-- menu btn -->
             <div class="sb-menu-btn"><span></span></div>
             <!-- info btn -->
-            <div class="sb-info-btn"><span></span></div>
+            <div class="sb-info-btn"><span class="sb-icon">
+              <img style="width: 45px" src="{{asset('front/assets/img/ui/icons/account.svg')}}" alt="icon">
+            </span></div>
           </div>
         </div>
       </div>
@@ -141,63 +149,13 @@
     <div class="sb-info-bar">
       <div class="sb-infobar-content">
         <div class="sb-ib-title-frame sb-mb-30">
-          <h4>Contact</h4><i class="fas fa-arrow-down"></i>
+          <h4>Account</h4><i class="fas fa-arrow-down"></i>
         </div>
         <ul class="sb-list sb-mb-30">
-          <li><b>Address:</b><span>Montréal, 1510 Rue Sauvé</span></li>
-          <li><b>Working hours:</b><span>09:00 - 23:00</span></li>
-          <li><b>Phone:</b><span>+02 (044) 756-X6-52</span></li>
-          <li><b>Email:</b><span>starbelly@mail.com</span></li>
-        </ul>
-        <div class="sb-ib-title-frame sb-mb-30">
-          <h4>Instagram</h4><i class="fas fa-arrow-down"></i>
-        </div>
-        <ul class="sb-instagram sb-mb-30">
-          <li><a href="#."><img src="{{asset('front/assets/img/instagram/1.jpg')}}" alt="instagram"></a></li>
-          <li><a href="#."><img src="{{asset('front/assets/img/instagram/2.jpg')}}" alt="instagram"></a></li>
-          <li><a href="#."><img src="{{asset('front/assets/img/instagram/3.jpg')}}" alt="instagram"></a></li>
-          <li><a href="#."><img src="{{asset('front/assets/img/instagram/4.jpg')}}" alt="instagram"></a></li>
-          <li><a href="#."><img src="{{asset('front/assets/img/instagram/5.jpg')}}" alt="instagram"></a></li>
-          <li><a href="#."><img src="{{asset('front/assets/img/instagram/6.jpg')}}" alt="instagram"></a></li>
-        </ul>
-        <hr>
-        <div class="sb-ib-title-frame sb-mb-30">
-          <h4>Latest publications</h4><i class="fas fa-arrow-down"></i>
-        </div>
-        <a href="#" class="sb-blog-card sb-blog-card-sm sb-mb-30">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/blog/1.jpg')}}" alt="cover">
-          </div>
-          <div class="sb-blog-card-descr">
-            <h5 class="sb-mb-5">Simple Homemade Tomato Soup</h5>
-            <p class="sb-text sb-text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero optio, sed expedita.</p>
-          </div>
-        </a>
-        <a href="#" class="sb-blog-card sb-blog-card-sm sb-mb-30">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/blog/2.jpg')}}" alt="cover">
-          </div>
-          <div class="sb-blog-card-descr">
-            <h5 class="sb-mb-5">Thai Coconut Soup with Tofu and Rice</h5>
-            <p class="sb-text sb-text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero optio, sed expedita.</p>
-          </div>
-        </a>
-        <a href="#" class="sb-blog-card sb-blog-card-sm sb-mb-30">
-          <div class="sb-cover-frame">
-            <img src="{{asset('front/assets/img/blog/3.jpg')}}" alt="cover">
-          </div>
-          <div class="sb-blog-card-descr">
-            <h5 class="sb-mb-5">21 Things You Should Absolutely Be Buying at ALDI</h5>
-            <p class="sb-text sb-text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero optio, sed expedita.</p>
-          </div>
-        </a>
-      </div>
-      <div class="sb-info-bar-footer">
-        <ul class="sb-social">
-          <li><a href="#."><i class="fab fa-twitter"></i></a></li>
-          <li><a href="#."><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#."><i class="fab fa-facebook-f"></i></a></li>
-          <li><a href="#."><i class="fab fa-youtube"></i></a></li>
+          <li> <a href="#"><b>My Account:</b> </a> </li>
+          <li> <a href="{{ route('front.orders') }}"><b>Orders:</b> </a> </li>
+          <li> <a href="#"><b>Phone:</b> </a> </li>
+          <li> <a href="#"><b>Email:</b> </a> </li>
         </ul>
       </div>
     </div>
@@ -209,19 +167,22 @@
       </div>
       
       <div class="sb-minicart-footer">
-        
+        @auth
         <!-- button -->
         <a href="{{ route('front.cart') }}" class="sb-btn sb-btn-gray sb-btn-text">
           <span>View order</span>
         </a>
         <!-- button end -->
         <!-- button -->
-        <a href="#" class="sb-btn sb-btn-text">
+        <a href="{{ route('front.checkout') }}" class="sb-btn sb-btn-text">
           <span>Checkout</span>
         </a>
+        @endauth
         <!-- button end -->
       </div>
     </div>
     <!-- minicart end -->
+
+     
   </div>
   <!-- top bar end -->

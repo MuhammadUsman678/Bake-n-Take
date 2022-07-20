@@ -55,6 +55,15 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/decrement-quantity','CartController@decrementQuantity')->name('decrementQuantity');
     Route::get('product/cart','CartController@cart')->name('cart');
 
+    Route::get('checkout','CheckOutController@checkout')->name('checkout');
+    Route::post('confirm-order','CheckOutController@order')->name('order.confirm');
+    Route::get('search', 'FrontController@searchProducts')->name('search.products');
+    Route::get('product', 'FrontController@singleProduct')->name('single.product');
+
+
+    Route::get('orders', 'AccountController@orders')->name('orders');
+    Route::get('view-order/{uuid}', 'AccountController@viewOrder')->name('view.order');
+
 
     Route::get('product/{slug}','CartController@cart')->name('product.show');
 
@@ -62,16 +71,17 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
 
 });
 
+Route::get('stripe', 'StripePaymentController@stripe');
+Route::post('stripe', 'StripePaymentController@stripePost')->name('stripe.post');
+
+Route::post('/paymentStatus','CheckOutController@paymentStatus');
+
+
+
 Route::get('test',function(){
-    $cartItems=Cart::with('product')->where('user_id',(auth()->user()->id))->get();
-    $data=[];
-    foreach($cartItems as $key=>$cart){
-        $data[$key]['name']=$cart->product->product_name;
-        $data[$key]['quantity']=$cart->quantity;
-        $data[$key]['price']=$cart->price;
-        $data[$key]['image']=$cart->product->getFirstMediaUrl('images','thumb') ? $cart->product->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
-    }
-    return $data;
+   $order=\App\Order::with('products')->latest()->first();
+//    return $order->products->sum('quantity');
+    return $order;
 });
 
 
