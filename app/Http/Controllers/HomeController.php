@@ -19,4 +19,8 @@ class HomeController extends Controller
         $products=ShopProduct::with('category:id,category_name')->where('status',1)->get();
         return view('index',compact('products'));
     }
+    public function quotation()
+    {
+        return view('quotation_request');
+    }
 }

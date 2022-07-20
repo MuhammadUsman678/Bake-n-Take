@@ -103,6 +103,9 @@
                 <li>
                   <a href="{{ url('/logout') }}" >Logout</a>
                 </li>
+                <li>
+                  <a href="{{ url('/request_quotation') }}" >Request Quatiotion</a>
+                </li>
                 @if(auth()->user()->role_id !=2)
                 <li >
                   <a href="{{ (auth()->user()->role_id ==1) ? url('admin/dashboard') : 'shop/dashboard' }}" >Dashboard</a>
@@ -113,6 +116,7 @@
                 <li class="sb-has-children">
                   <a href="{{url('shop/register')}}" ><button type="button" class="btn btn-warning">Register Shop</button></a>
                 </li>
+               
               @endguest
             </ul>
           </nav>

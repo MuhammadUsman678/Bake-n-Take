@@ -125,7 +125,7 @@ Route::post('/chat/store/messages','ChatController@storeMessage');
     // Route::get('admin/nonverifiedcustomers','Admin.AdminDashboard@nonverified');
     Route::middleware(['verified','auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/request_quotation','HomeController@quotation');
 });
 
 
