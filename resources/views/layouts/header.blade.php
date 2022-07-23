@@ -46,6 +46,9 @@
               <li class="sb-has-children">
                 <a href="{{url('all_shop')}}">Shop</a>
               </li>
+              <li class="sb-has-children">
+                <a href="{{ route('front.all.products')}}">Products</a>
+              </li>
               <!-- <li class="sb-active sb-has-children">
                 <a href="about-1.html">Pages</a>
                 <ul>

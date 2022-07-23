@@ -22,6 +22,7 @@ class CheckOutController extends Controller
             $data[$key]['name']=$cart->product->product_name;
             $data[$key]['quantity']=$cart->quantity;
             $data[$key]['price']=$cart->product->price;
+            $data[$key]['slug']=$cart->product->slug;
             $data[$key]['image']=$cart->product->getFirstMediaUrl('images','thumb') ? $cart->product->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
         }
         $products=$data;
@@ -82,7 +83,7 @@ class CheckOutController extends Controller
         OrderProduct::insert($pivot_data);
 
         $cartItems->delete();
-		return "Success";
+		return redirect()->route('front.orders');
     }
 
     public function jazzcashOrder(Request $request){

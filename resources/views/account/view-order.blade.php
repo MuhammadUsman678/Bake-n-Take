@@ -131,7 +131,7 @@
                 <div class="sb-cart-item">
                     <div class="row align-items-center">
                       <div class="col-lg-9">
-                        <a class="sb-product" href="product.html">
+                        <a class="sb-product" href="{{ route('front.single.product',[$row['slug']]) }}">
                           <div class="sb-cover-frame"> 
                             <img src="{{ $row['image'] ?? 'https://via.placeholder.com/270?text=No+Image+Found'  }}" alt="product">
                           </div>

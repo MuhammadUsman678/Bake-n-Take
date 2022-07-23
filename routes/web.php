@@ -58,7 +58,8 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('checkout','CheckOutController@checkout')->name('checkout');
     Route::post('confirm-order','CheckOutController@order')->name('order.confirm');
     Route::get('search', 'FrontController@searchProducts')->name('search.products');
-    Route::get('product', 'FrontController@singleProduct')->name('single.product');
+    Route::get('single-product/{slug}', 'FrontController@singleProduct')->name('single.product');
+    Route::get('products', 'FrontController@allProducts')->name('all.products');
 
 
     Route::get('orders', 'AccountController@orders')->name('orders');

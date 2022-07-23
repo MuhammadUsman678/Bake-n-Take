@@ -133,4 +133,15 @@ class FrontController extends Controller
         $shopproduct=ShopProduct::where('shop_id',$shop->id)->get();
       return view('shopproduct',compact('shop','shopproduct'));
     }
+
+    public function singleProduct($slug){
+        $product=ShopProduct::with('category')->where('slug',$slug)->first();
+        $realtedProducts=ShopProduct::with('category')->where('category_id',$product->category_id)->get()->take(8);
+        return view('single-product',compact('product','realtedProducts'));
+    }
+
+    public function allProducts(Request $request){
+      $products=ShopProduct::with('category')->where('status',1)->paginate(4);
+      return view('all-products',compact('products'));
+    }
 }

@@ -56,7 +56,6 @@ class ChatController extends Controller
     {
        
             $user=User::whereRole_id('1')->get();
-            
             return view('shop.chat.index',compact('user'));
       
     }
