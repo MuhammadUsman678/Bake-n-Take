@@ -1,7 +1,12 @@
 @extends('layouts.master')
 @section('title','Shop Register')
 
+{{-- selec2 cdn --}}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 @section('content')
+
 <!-- banner -->
 <section class="sb-banner sb-banner-color mt-3">
     <div class="container">
@@ -17,47 +22,62 @@
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
                                             <input type="text" name="productname" class="form-control"  id="shopname"  placeholder="Enter Product Name" >
-                                            <span class="sb-bar"></span>
-                                            <label>Product name</label>
+                                            
+                                           
                                       
                                
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <div class="sb-group-select">
-                                            <select name="category" class="form-control">
-                                                <option>Select Category</option>
-
+                                        <div class="sb-group-input">
+                                            <select name="category" id="" value="" class="form-control custom-select">
+                                                <option value="pakistan" disabled selected="">Select Category</option>
+                                                @foreach($category as $cat)
+                                                <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                                                @endforeach
                                             </select>
-                                            <span class="sb-bar"></span>
-                                            <label>Category</label>
+                                            
+                                         
                                     
                                
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="sb-group-input">
+                                            <select name="shop" id="id-name" multiple="multiple" class="form-control select2-multiple">
+                                                <option value="pakistan" disabled selected="">Selects Shop</option>
+                                                @foreach($category as $cat)
+                                                <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                                                @endforeach
+                                            </select>
+                                            
+                                         
                                     
+                               
+                                        </div>
+                                    </div>
+                                  
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
                                             <input type="number" name="price" class="form-control"    placeholder="Enter Expected Price" >
-                                            <span class="sb-bar"></span>
-                                            <label>Expected Price</label>
+                                            
+                                          
                                        
                                
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
-                                            <input type="text" name="phoneno" class="form-control " id="phone"  placeholder="Enter phone No" >
-                                            <span class="sb-bar"></span>
-                                            <label>product Description</label>
-                                        
-                                        </div>
+                                            <textarea name="description" required=""></textarea>
+                                          
+                                            <label>Product Description</label>
+                                          </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
-                                            <input type="date" name="deliverydate"    id="ntnno"  placeholder="Enter Ntn No" >
+                                            <input type="text" name="date" data-language="en" class="datepicker-here sb-datepicker" data-timepicker="true" data-position="bottom left" required=""  placeholder="Time and Date">
                                             <span class="sb-bar"></span>
-                                            <label>Delivery Date</label>
+                                            
                                       
                                         </div>
                                     </div>
@@ -86,19 +106,20 @@
 <section class="mt-4"></section>
 <!-- banner end -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-        
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
        
-     <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/3.x/dist/jquery.inputmask.bundle.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+        <script>
+     $(document).ready(function() {
+            // Select2 Multiple
+            $('.select2-multiple').select2({
+                placeholder: "Select",
+                allowClear: true
+            });
+
+        });
+            </script>   
+      
 
      
 @endsection

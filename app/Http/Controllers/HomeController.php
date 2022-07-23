@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ShopProduct;
+use App\Category;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,6 +22,7 @@ class HomeController extends Controller
     }
     public function quotation()
     {
-        return view('quotation_request');
+        $category=Category::get();
+        return view('quotation_request',compact('category'));
     }
 }
