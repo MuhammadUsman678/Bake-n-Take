@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\ShopProduct;
 use App\Category;
 use Illuminate\Http\Request;
-
+use App\quotation;
+use App\quotation_detail;
+use App\shop;
 class HomeController extends Controller
 {
     
@@ -23,6 +25,25 @@ class HomeController extends Controller
     public function quotation()
     {
         $category=Category::get();
-        return view('quotation_request',compact('category'));
+        $shop=shop::get();
+        return view('quotation_request',compact('category','shop'));
+    }
+    public function postquotation(Request $request){
+        $quotation=quotation::create([
+            'user_id'=>auth()->user()->id,
+            'name'=>$request->productname,
+            'category'=>$request->category,
+            'price'=>$request->price,
+            'description'=>$request->description,
+            'date'=>$request->date,
+
+        ]);
+        for ($i=0;$i<count($request->shop);$i++){
+            quotation_detail::create([
+                'quotation_id'=>$quotation->id,
+            'shop_id'=>$request->shop[$i],
+            ]);
+        }
+        return back();
     }
 }

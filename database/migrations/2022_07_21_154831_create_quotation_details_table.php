@@ -18,7 +18,7 @@ class CreateQuotationDetailsTable extends Migration
             $table->unsignedBigInteger('quotation_id')->nullable();
             $table->unsignedBigInteger('shop_id')->nullable();
             $table->integer('status')->default(0);
-            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('CASCADE');
+            ;
             $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('CASCADE');
             $table->timestamps();
         });

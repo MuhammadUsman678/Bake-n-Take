@@ -82,7 +82,7 @@ class CheckOutController extends Controller
          } 
         OrderProduct::insert($pivot_data);
 
-        $cartItems->delete();
+        Cart::with('product:id,price')->where('user_id',(auth()->user()->id))->delete();
 		return redirect()->route('front.orders');
     }
 

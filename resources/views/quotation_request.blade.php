@@ -16,12 +16,12 @@
                     <div class="sb-form-content">
                         <div class="sb-main-content">
                             <h3 class="sb-mb-30">Register your Shop</h3>
-                            <form method="POST" action="{{ url('storeshop') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('quotation_post') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
-                                            <input type="text" name="productname" class="form-control"  id="shopname"  placeholder="Enter Product Name" >
+                                            <input type="text" name="productname" class="form-control"  id="shopname"  placeholder="Enter Product Name" required>
                                             
                                            
                                       
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
-                                            <select name="category" id="" value="" class="form-control custom-select">
+                                            <select name="category" id="" value="" class="form-control custom-select" required>
                                                 <option value="pakistan" disabled selected="">Select Category</option>
                                                 @foreach($category as $cat)
                                                 <option value="{{$cat->id}}">{{$cat->category_name}}</option>
@@ -44,10 +44,10 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
-                                            <select name="shop" id="id-name" multiple="multiple" class="form-control select2-multiple">
-                                                <option value="pakistan" disabled selected="">Selects Shop</option>
-                                                @foreach($category as $cat)
-                                                <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                                            <select name="shop[]" id="id-name" multiple="multiple" class="form-control select2-multiple" required>
+                                                <option  disabled selected="">Selects Shop</option>
+                                                @foreach($shop as $shop)
+                                                <option value="{{$shop->id}}">{{$shop->shop_name}}</option>
                                                 @endforeach
                                             </select>
                                             
