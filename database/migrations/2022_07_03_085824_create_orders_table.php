@@ -20,15 +20,21 @@ class CreateOrdersTable extends Migration
             $table->float('sub_total');
             $table->float('total_amount');
             $table->integer('quantity');
-            $table->enum('payment_method',['jazzcash','cash_on_pickup'])->default('cash_on_pickup');
+            $table->enum('payment_method',['jazzcash','cash_on_delivery','stripe'])->default('cash_on_delivery');
             $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
             $table->enum('status',['new','process','delivered','cancel'])->default('new');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('country');
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->mediumText('description')->nullable();
+            $table->mediumText('notes')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('city')->nullable();
+            $table->timestamp('delivery_date');
+            $table->string('post_code')->nullable();
+            $table->string('street')->nullable();
+            $table->string('state')->nullable();
+            $table->string('country')->nullable();
             $table->timestamps();
         });
     }

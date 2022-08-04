@@ -15,13 +15,14 @@ class CreateProductReviewsTable extends Migration
     {
         Schema::create('product_reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('product_id')->nullable();
-            $table->tinyInteger('rate')->default(0);
-            $table->text('review')->nullable();
-            $table->enum('status',['active','inactive'])->default('active');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('SET NULL');
-            $table->foreign('product_id')->references('id')->on('shop_products')->onDelete('SET NULL');
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('product_id')->nullable();
+            $table->bigInteger('order_id')->nullable();
+            $table->ipAddress('ip_address')->nullable();
+            $table->tinyInteger('rating')->default(0);
+            $table->boolean('is_spam')->default(0);
+            $table->text('comment')->nullable();
+            $table->enum('status',['pending','approved'])->default('pending');
             $table->timestamps();
         });
     }

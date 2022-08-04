@@ -109,6 +109,13 @@
                   <label class="filled-input-label">Email</label>
                 </div>
               </div>
+              <div class="col-lg-6">
+                <div class="sb-group-input">
+                  <input type="datetime-local"  name="delivery_date" id="delivery_date" min="{{ now()->addHours(8)->format('Y-m-d').'T'.now()->format('H:i') }}"  value="{{ old('delivery_date') }}" required>
+                  <span class="sb-bar"></span>
+                  <label class="filled-input-label">Delivery Date</label>
+                </div>
+              </div>
             </div>
             <div class="sb-mb-30">
               <h3>Additional information</h3>
@@ -135,7 +142,7 @@
               </ul>
             </div>
             <!-- button -->
-            <button type="submit" class="sb-btn sb-m-0">
+            <button @if(count($products) ===0) ? {{ 'disabled' }} @endif  type="submit" class="sb-btn sb-m-0 disabled">
               <span class="sb-icon">
                 <img src="{{ asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
               </span>
@@ -308,8 +315,9 @@
         var $street=$("#street").val()
         var $post_code=$("#post_code").val();
         var $phone=$("#phone").val();
+        var $delivery_date=$("#delivery_date").val();
       
-        if($city=="" || $state=="" || $street=="" || $post_code=="" || $phone=="" || $country=="" ){
+        if($city=="" || $state=="" || $street=="" || $post_code=="" || $phone=="" || $country=="" || $delivery_date ==""){
           e.preventDefault();
           $(".required-error").removeClass('d-none');
         }else{

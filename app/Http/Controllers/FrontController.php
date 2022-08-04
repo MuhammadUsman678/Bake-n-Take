@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Alert;
 use App\Demo;
+use App\Order;
+use App\ProductReview;
 use App\ShopProduct;
 use Str;
 
@@ -135,7 +137,8 @@ class FrontController extends Controller
     }
 
     public function singleProduct($slug){
-        $product=ShopProduct::with('category')->where('slug',$slug)->first();
+        $product=ShopProduct::with('category','rating')->where('slug',$slug)->first();
+        
         $realtedProducts=ShopProduct::with('category')->where('category_id',$product->category_id)->get()->take(8);
         return view('single-product',compact('product','realtedProducts'));
     }
@@ -144,4 +147,39 @@ class FrontController extends Controller
       $products=ShopProduct::with('category')->where('status',1)->paginate(4);
       return view('all-products',compact('products'));
     }
+
+    public function productReview($product_id,$order_id){
+        $product_id=base64_decode($product_id);
+        $order_id=base64_decode($order_id);
+        return view('product-review',compact('product_id','order_id'));
+    }
+
+    public function productReviewStore(Request $request,$product_id,$order_id){
+        $request->validate([
+            'rating' =>'required',
+        ]);
+        
+        $checkSpam=ProductReview::where('product_id',$product_id)->where('order_id',$order_id)->when($request->ip_address !=null,function($q) use ($request) {
+            $q->where('ip_address',$request->ip_address);
+        })->where('user_id',auth()->user()->id)->count();
+        $order=Order::find($order_id);
+        if($checkSpam > 4){
+           return redirect()->route('front.view.order',[$order->order_number])->with('error','Spam Review Detected');
+        }
+        ProductReview::create([
+            'rating' =>$request->rating,
+            'comment'=>$request->comment,
+            'user_id'=>auth()->user()->id,
+            'ip_address'=>$request->ip_address ?? '',
+            'is_spam'=> ($checkSpam > 0) ? 1 : ($request->ip_address ? 0 : 1),
+            'product_id'=>$product_id,
+            'order_id'=>$order_id,
+        ]);
+
+        return redirect()->route('front.view.order',[$order->order_number])->with('success','Product Review Successfully Submitted');
+    }
+    
+    
+
+    
 }

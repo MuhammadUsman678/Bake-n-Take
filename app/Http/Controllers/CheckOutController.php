@@ -63,6 +63,7 @@ class CheckOutController extends Controller
 			'total_amount' => $price,
 			'description' => 'Stripe',
 			'status' 	  => 'new',
+            'delivery_date'=>$request->delivery_date?? now(),
 			'payment_status' 	  => $request->method =='stripe' ?'paid' : 'unpaid',
             'full_name'   =>$request->full_name?? '',
             'country'     =>$request->country?? '',

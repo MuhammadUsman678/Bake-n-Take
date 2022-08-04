@@ -27,8 +27,20 @@
   <!-- checkout -->
   <section class="sb-p-90-90">
     <div class="container" data-sticky-container>
+      
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+@endif
+    @if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+    </div>
+@endif
       <div class="row">
-        <div class="col-lg-8">
+       
+        <div class="col-lg-7">
           <div class="alert alert-warning d-block">
             Order Status is <span class="text-info"> {{ ucfirst($order->status) }} </span>
         </div>
@@ -114,23 +126,27 @@
             </div>
           </form>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-5">
           <div class="sb-pad-type-2 sb-sticky" data-margin-top="120">
             <div class="sb-co-cart-frame">
               <div class="sb-cart-table">
                 <div class="sb-cart-table-header">
                   <div class="row">
-                    <div class="col-lg-9">Product</div>
-                    <div class="col-lg-3 text-right">Total</div>
+                    <div class="col-lg-6">Product</div>
+                    <div class="col-lg-{{ ($order->status==='delivered') ?'3' :'6' }} text-right">Total</div>
+                    @if($order->status==='delivered')
+                      <div class="col-lg-3 text-right">Review</div>
+                    @endif
                   </div>
                 </div>
                 @php
                     $total_amount=0;
                 @endphp
+                
                 @foreach ($products as $row)
                 <div class="sb-cart-item">
                     <div class="row align-items-center">
-                      <div class="col-lg-9">
+                      <div class="col-lg-6">
                         <a class="sb-product" href="{{ route('front.single.product',[$row['slug']]) }}">
                           <div class="sb-cover-frame"> 
                             <img src="{{ $row['image'] ?? 'https://via.placeholder.com/270?text=No+Image+Found'  }}" alt="product">
@@ -141,12 +157,19 @@
                           </div>
                         </a>
                       </div>
-                      <div class="col-lg-3 text-md-right">
+                      <div class="col-lg-{{ ($order->status==='delivered') ?'3' :'6' }} text-md-right">
                         <div class="sb-price-2"><span>Total: </span>Rs {{ $row['price']*$row['quantity'] }}</div>
                         @php
                             $total_amount+=$row['price']*$row['quantity'];
                         @endphp
                       </div>
+                      @if($order->status==='delivered')
+                        <div class="col-lg-3 text-md-right">
+                          <div class="sb-price-2">
+                            <a data-no-swup href="{{ route('front.product.review',[base64_encode($order->id),base64_encode($row['product_id'])]) }}" class="btn sb-btn  ">Rating</a>
+                          </div>
+                        </div>
+                      @endif
                     </div>
                   </div>
                 @endforeach
@@ -157,7 +180,7 @@
                       <div class="col-6">
                         <div class="sb-total-title">Subtotal:</div>
                       </div>
-                      <div class="col-6">
+                      <div class="col-{{ ($order->status==='delivered') ?'3' :'6' }}">
                         <div class="sb-price-1 text-right">Rs {{ $total_amount }}</div>
                       </div>
                     </div>
@@ -167,7 +190,7 @@
                       <div class="col-6">
                         <div class="sb-total-title">Total:</div>
                       </div>
-                      <div class="col-6">
+                      <div class="col-{{ ($order->status==='delivered') ?'3' :'6' }}">
                         <div class="sb-price-2 text-right">Rs {{ $total_amount }}</div>
                       </div>
                     </div>

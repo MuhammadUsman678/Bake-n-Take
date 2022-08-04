@@ -35,6 +35,9 @@
         }, 300);
     });
 
+    
+
+
     $('.sb-btn-cart').on('click', function() {
         $.ajax({
             url: "{{ route('front.getCartItems') }}",

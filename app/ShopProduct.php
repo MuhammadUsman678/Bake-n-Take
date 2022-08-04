@@ -44,4 +44,9 @@ class ShopProduct extends Model implements HasMedia
     public function carts(){
         return $this->hasOne(Cart::class,'product_id','id');
     }
+
+    public function rating()
+    {
+        return $this->hasMany(ProductReview::class,'product_id')->with('user');
+    }
 }

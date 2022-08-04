@@ -57,7 +57,7 @@
               <div class="col-6 col-lg-3">
                 <div class="sb-input-number-frame">
                   <div class="sb-input-number-btn sb-sub" data-id="{{ $row->id }}" data-price="{{ $row->product->price }}">-</div>
-                  <input type="number" id="quantity-{{ $row->id }}" data-quantity="{{ $row->id }}" value="{{ $row->quantity }}" min="1" >
+                  <input type="number" readonly id="quantity-{{ $row->id }}" data-quantity="{{ $row->id }}" value="{{ $row->quantity }}" min="1" max="100">
                   <div class="sb-input-number-btn sb-add" data-id="{{ $row->id }}" data-price="{{ $row->product->price }}">+</div>
                 </div>
               </div>
@@ -98,7 +98,7 @@
             </div>
             <div class="sb-cart-btns-frame text-right">
               <!-- button -->
-              <a href="shop-1.html" class="sb-btn sb-btn-2 sb-btn-gray">
+              <a href="{{ route('front.all.products')}}" class="sb-btn sb-btn-2 sb-btn-gray">
                 <span class="sb-icon">
                   <img src="{{ asset('front/assets/img/ui/icons/arrow-2.svg')}}" alt="icon">
                 </span>
@@ -106,7 +106,7 @@
               </a>
               <!-- button end -->
               <!-- button -->
-              <a href="checkout.html" class="sb-btn sb-m-0">
+              <a href="{{ route('front.checkout') }}" class="sb-btn sb-m-0">
                 <span class="sb-icon">
                   <img src="{{ asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                 </span>
@@ -120,4 +120,7 @@
     </div>
   </section>
   <!-- cart end -->
+@endsection
+@section('script')
+
 @endsection

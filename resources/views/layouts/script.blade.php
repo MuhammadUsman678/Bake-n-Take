@@ -13,7 +13,7 @@
 <!-- sticky -->
 <script src="{{ asset('front/assets/js/plugins/sticky.js')}}"></script>
 <!-- mapbox js -->
-<script src="{{ asset('front/assets/js/plugins/mapbox.min.js')}}"></script>
+{{-- <script src="{{ asset('front/assets/js/plugins/mapbox.min.js')}}"></script> --}}
 <!-- fancybox js -->
 <script src="{{ asset('front/assets/js/plugins/fancybox.min.js')}}"></script>
 <!-- starbelly js -->

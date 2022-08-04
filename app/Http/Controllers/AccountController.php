@@ -18,6 +18,7 @@ class AccountController extends Controller
         foreach($order->products as $key=>$row){
             $data[$key]['name']=$row->productDetails->product_name;
             $data[$key]['quantity']=$row->quantity;
+            $data[$key]['product_id']=$row->productDetails->id;
             $data[$key]['price']=$row->productDetails->price;
             $data[$key]['slug']=$row->productDetails->slug;
             $data[$key]['image']=$row->productDetails->getFirstMediaUrl('images','thumb') ? $row->productDetails->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';

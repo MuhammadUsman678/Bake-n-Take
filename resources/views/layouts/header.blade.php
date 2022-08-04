@@ -12,12 +12,12 @@
       </div>
     </div>
   </div>
-  <!-- preloader end -->
-  <!-- click effect -->
-  <div class="sb-click-effect"></div>
   <!-- loader -->
   <div class="sb-load"></div>
   @endif
+  <!-- preloader end -->
+  <!-- click effect -->
+  <div class="sb-click-effect"></div>
   <!-- top bar -->
   <div class="sb-top-bar-frame">
     <div class="sb-top-bar-bg"></div>
@@ -32,7 +32,7 @@
           <nav id="sb-dynamic-menu" class="sb-menu-transition">
             <ul class="sb-navigation">
               <li class="sb-has-children">
-                <a href="{{ url('/') }}">Home</a>
+                <a data-no-swup href="{{ url('/') }}">Home</a>
               </li>
               <li class="sb-has-children">
                 <a href="#" target="_blank" data-no-swup="">Categories</a>
@@ -44,10 +44,10 @@
                 </ul>
               </li>
               <li class="sb-has-children">
-                <a href="{{url('all_shop')}}">Shop</a>
+                <a data-no-swup href="{{url('all_shop')}}">Shop</a>
               </li>
               <li class="sb-has-children">
-                <a href="{{ route('front.all.products')}}">Products</a>
+                <a data-no-swup href="{{ route('front.all.products')}}">Products</a>
               </li>
               <!-- <li class="sb-active sb-has-children">
                 <a href="about-1.html">Pages</a>
@@ -172,7 +172,7 @@
       <div class="sb-minicart-footer">
         @auth
         <!-- button -->
-        <a href="{{ route('front.cart') }}" class="sb-btn sb-btn-gray sb-btn-text">
+        <a data-no-swup href="{{ route('front.cart') }}" class="sb-btn sb-btn-gray sb-btn-text">
           <span>View order</span>
         </a>
         <!-- button end -->

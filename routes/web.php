@@ -45,6 +45,13 @@ Route::get('/logout',function(){
 })->middleware('auth');
 
 
+Route::get('search', 'FrontController@searchProducts')->name('front.search.products');
+Route::get('single-product/{slug}', 'FrontController@singleProduct')->name('front.single.product');
+Route::get('products', 'FrontController@allProducts')->name('front.all.products');
+
+
+
+
 // Frontend
 Route::group(['as'=>'front.','middleware' => ['auth']],function () {
    
@@ -54,12 +61,10 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/increment-quantity','CartController@incrementQuantity')->name('incrementQuantity');
     Route::get('product/decrement-quantity','CartController@decrementQuantity')->name('decrementQuantity');
     Route::get('product/cart','CartController@cart')->name('cart');
+    Route::get('product/cart/page','CartController@cartPage')->name('cart.page');
 
     Route::get('checkout','CheckOutController@checkout')->name('checkout');
     Route::post('confirm-order','CheckOutController@order')->name('order.confirm');
-    Route::get('search', 'FrontController@searchProducts')->name('search.products');
-    Route::get('single-product/{slug}', 'FrontController@singleProduct')->name('single.product');
-    Route::get('products', 'FrontController@allProducts')->name('all.products');
 
 
     Route::get('orders', 'AccountController@orders')->name('orders');
@@ -67,6 +72,9 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
 
 
     Route::get('product/{slug}','CartController@cart')->name('product.show');
+
+    Route::get('product/review/{product_id}/{order_id}','FrontController@productReview')->name('product.review');
+    Route::post('product/review/{product_id}/{order_id}','FrontController@productReviewStore')->name('product.review');
 
 
 

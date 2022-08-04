@@ -1,5 +1,12 @@
 @extends('layouts.master')
-@section('title','Checkout')
+@section('title','Product Detail')
+@section('style')
+<style>
+  .no-start{
+    color: rgb(182, 178, 178);
+  }
+</style>
+@endsection
 @section('content')
    <!-- banner -->
    <section class="sb-banner sb-banner-xs sb-banner-color">
@@ -41,21 +48,25 @@
             <!-- button end -->
           </div>
         </div>
+        
         <div class="col-lg-6">
           <div class="sb-product-description sb-mb-90">
             <div class="sb-price-frame sb-mb-30">
               <h3>{{ $product->product_name }}</h3>
               <div class="sb-price"><sub>Rs</sub> {{ $product->price }}</div>
             </div>
+            @php
+              $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
+            @endphp
             <ul class="sb-stars sb-mb-25">
-              <li><i class="fas fa-star"></i></li>
-              <li><i class="fas fa-star"></i></li>
-              <li><i class="fas fa-star"></i></li>
-              <li><i class="fas fa-star"></i></li>
-              <li><i class="fas fa-star"></i></li>
-              <li><span>(4 ratings)</span></li>
+              <li><i class="fas fa-star {{ $avgRating >= 1 ?'' : 'no-start' }}" ></i></li>
+              <li><i class="fas fa-star {{ $avgRating >= 2 ?'' : 'no-start' }}"></i></li>
+              <li><i class="fas fa-star {{ $avgRating >= 3 ?'' : 'no-start' }}"></i></li>
+              <li><i class="fas fa-star {{ $avgRating >= 4 ?'' : 'no-start' }}"></i></li>
+              <li><i class="fas fa-star {{ $avgRating == 5 ?'' : 'no-start' }}"></i></li>
+              <li><span>({{ $product->rating->count()}} ratings)</span></li>
             </ul>
-            <p class="sb-text sb-mb-30"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p>
+            {{-- <p class="sb-text sb-mb-30"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p> --}}
             <div class="row">
               <div class="col-lg-4">
                 <div class="sb-features-item sb-features-item-sm sb-mb-30">
@@ -120,64 +131,45 @@
       <div class="sb-filter">
         {{-- <a href="#." data-filter=".sb-ingredients-tab" class="sb-filter-link sb-active">Ingredients</a> --}}
         <a href="#." data-filter=".sb-details-tab" class="sb-filter-link sb-active">Product details</a>
-        <a href="#." data-filter=".sb-reviews-tab" class="sb-filter-link">Reviews</a>
+        <a href="#." data-filter=".sb-reviews-tab" class="sb-filter-link">Reviews ({{ $product->rating->count() }})</a>
       </div>
       <!-- filter end -->
       <div class="sb-masonry-grid sb-tabs">
         <div class="sb-grid-sizer"></div>
         <div class="sb-grid-item sb-details-tab">
           <div class="sb-tab">
-            <p class="sb-text sb-mb-15">
-            {{ $product->description }}.</p>
-            <div class="sb-text">Consectetur adipisicing elit. Delectus quibusdam repellendus nesciunt cumque fugit numquam adipisci voluptatum quam, sapiente doloribus ut eaque natus laudantium alias illum quos maiores, quia perferendis.</div>
+            {{-- <p class="sb-text sb-mb-15">
+            {{ $product->product_description }}.</p> --}}
+            <div class="sb-text">{{ $product->product_description }}.</div>
           </div>
         </div>
         <div class="sb-grid-item sb-reviews-tab" style="position: absolute">
           <div class="sb-tab">
             <div class="row">
+             @foreach ($product->rating as $row)
               <div class="col-lg-6">
                 <div class="sb-review-card sb-mb-60">
                   <div class="sb-review-header sb-mb-15">
-                    <h4 class="sb-mb-10">Very tasty</h4>
+                    {{-- <h4 class="sb-mb-10">Very tasty</h4> --}}
                     <ul class="sb-stars">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
+                      <li><i class="fas fa-star {{ $row->rating >= 1 ?'' : 'no-start' }}" ></i></li>
+                      <li><i class="fas fa-star {{ $row->rating >= 2 ?'' : 'no-start' }}"></i></li>
+                      <li><i class="fas fa-star {{ $row->rating >= 3 ?'' : 'no-start' }}"></i></li>
+                      <li><i class="fas fa-star {{ $row->rating >= 4 ?'' : 'no-start' }}"></i></li>
+                      <li><i class="fas fa-star {{ $row->rating == 5 ?'' : 'no-start' }}"></i></li>
                     </ul>
                   </div>
-                  <p class="sb-text sb-mb-15">Inventore possimus laudantium provident, rem eligendi velit. Aut molestias, ipsa itaque laborum, natus
-                    tempora, ut soluta animi ducimus dignissimos deserunt doloribus in reprehenderit rem accusamus! Quibusdam labore, aliquam dolor harum!</p>
+                  <p class="sb-text sb-mb-15"> {{ $row->comment }} </p>
                   <div class="sb-author-frame">
                     <div class="sb-avatar-frame">
-                      <img src="img/faces/1.jpg" alt="Guest">
+                      <img src="{{ asset('front/assets/img/faces/3.jpg') }}" alt="Guest">
                     </div>
-                    <h4>Emma Newman</h4>
+                    <h4>{{ $row->user->name }}</h4>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="sb-review-card sb-mb-60">
-                  <div class="sb-review-header sb-mb-15">
-                    <h4 class="sb-mb-10">I have lunch here every day</h4>
-                    <ul class="sb-stars">
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                      <li><i class="fas fa-star"></i></li>
-                    </ul>
-                  </div>
-                  <p class="sb-text sb-mb-15">Tempora ut soluta animi ducimus dignissimos deserunt doloribus in reprehenderit Reprehenderit rem accusamus! Quibusdam labore, aliquam dolor harum!</p>
-                  <div class="sb-author-frame">
-                    <div class="sb-avatar-frame">
-                      <img src="img/faces/2.jpg" alt="Guest">
-                    </div>
-                    <h4>Paul Trueman</h4>
-                  </div>
-                </div>
-              </div>
+              
+             @endforeach
             </div>
           </div>
         </div>

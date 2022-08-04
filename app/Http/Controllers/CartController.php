@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
     public function cart(){
+        return redirect()->route('front.cart.page');
+    }
+    public function cartPage(){
         $cart=Cart::with('product')->where('user_id',(auth()->user()->id))->get();
         return view('cart',compact('cart'));
     }
