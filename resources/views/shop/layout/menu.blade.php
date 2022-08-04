@@ -15,7 +15,7 @@
                 <li class="nav-item hover"><a href="{{ route('shop.product.index') }}"><i class="feather icon-eye"></i><span class="menu-title" data-i18n="Profile">View Products</span></a>
                 </li>
       
-                    <li class="nav-item"><a href="#"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">View Rfq</span></a>
+                    <li class="nav-item"><a href="{{url('shop/rfq')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">View Rfq</span></a>
                     </li>
                     <li class="nav-item"><a href="{{url('shop/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat With Admin</span></a>
                     </li> 

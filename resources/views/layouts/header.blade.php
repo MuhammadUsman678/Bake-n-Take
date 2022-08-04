@@ -157,6 +157,7 @@
         <ul class="sb-list sb-mb-30">
           <li> <a href="#"><b>My Account:</b> </a> </li>
           <li> <a href="{{ route('front.orders') }}"><b>Orders:</b> </a> </li>
+          <li> <a href="{{ route('front.quotation') }}"><b>Quotations:</b> </a> </li>
           <li> <a href="#"><b>Phone:</b> </a> </li>
           <li> <a href="#"><b>Email:</b> </a> </li>
         </ul>

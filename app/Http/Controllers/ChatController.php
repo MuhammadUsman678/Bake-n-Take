@@ -68,4 +68,13 @@ class ChatController extends Controller
    
         return view('shop.chat.index',compact('users','mychat','user'));
     }
+    public function userchat($id)
+    {
+      
+        $users =User::find($id);
+        $mychat=Chat::whereIn('user_id',[auth()->user()->id,$users->id])->whereIn('sender_id',[auth()->user()->id,$users->id])->orderBy("created_at")->get();
+       
+   
+        return view('shop.chat.userchat',compact('users','mychat'));
+    } 
 }

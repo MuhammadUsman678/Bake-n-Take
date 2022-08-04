@@ -63,6 +63,7 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
 
 
     Route::get('orders', 'AccountController@orders')->name('orders');
+    Route::get('quotation', 'AccountController@quotation')->name('quotation');
     Route::get('view-order/{uuid}', 'AccountController@viewOrder')->name('view.order');
 
 
@@ -120,7 +121,8 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::post('/product/{id}','Shop\ProductController@update');
     Route::get('/product/delete/{id}','Shop\ProductController@destroy')->name('product.delete');
     Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
-
+//Rfq
+Route::get('/rfq', 'Shop\RfqController@index');
     // Shop Products Images
     Route::get('product/images/{id}', 'Shop\ProductController@images')->name('products.images');
     Route::post('product/images/upload/{id}', 'Shop\ProductController@uploadImages')->name('products.store');
@@ -128,6 +130,8 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::post('product/image/remove', 'Shop\ProductController@remvoeImage')->name('products.remove');
     Route::get('/chat','ChatController@shopindex')->name('chat');
     Route::get('/chat/{id}','ChatController@shopchat');
+
+    Route::get('chat/{id}','ChatController@userchat');
 
 });
 Route::get('/get-message','ChatController@getMessages');
