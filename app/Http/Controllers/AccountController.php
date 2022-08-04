@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\quotation;
 class AccountController extends Controller
 {
     
@@ -25,5 +25,9 @@ class AccountController extends Controller
         }
         $products= $data;
         return view('account.view-order',compact('order','products'));
+    }
+    public function quotation(){
+        $quote=quotation::where('user_id',auth()->user()->id)->get();
+dd($quote);
     }
 }
