@@ -1,11 +1,7 @@
 @extends('layouts.master')
 @section('title','Product Detail')
 @section('style')
-<style>
-  .no-start{
-    color: rgb(182, 178, 178);
-  }
-</style>
+
 @endsection
 @section('content')
    <!-- banner -->

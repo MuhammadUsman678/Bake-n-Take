@@ -116,6 +116,20 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
 //Chat Api
     Route::get('/chat','ChatController@index')->name('chat');
     Route::get('/chat/{id}','ChatController@chat');
+
+    Route::get('/product-reviews','Admin\ProductReviewController@index')->name('product-review');
+    Route::get('/product-fake-reviews','Admin\ProductReviewController@fakeReviews')->name('product-fake-review');
+    Route::get('/product-reviews/status-change/{id}/{status}','Admin\ProductReviewController@changeStatus')->name('product.review.status-change');
+
+
+    Route::get('/transactions','Admin\TransactionController@index')->name('transactions');
+
+    Route::get('/orders/new','Admin\OrderController@newOrders')->name('orders.new');
+    Route::get('/orders/pending','Admin\OrderController@pendingOrders')->name('orders.pending');
+    Route::get('/orders/complete','Admin\OrderController@completeOrders')->name('orders.complete');
+    Route::get('/orders/detail/{id}','Admin\OrderController@orderDetail')->name('order.detail');
+
+
 });
  //end Admin Side   
 

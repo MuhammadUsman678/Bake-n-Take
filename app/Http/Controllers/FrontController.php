@@ -132,7 +132,7 @@ class FrontController extends Controller
     }
     public function shopproduct($id){
         $shop=shop::findorfail($id);
-        $shopproduct=ShopProduct::where('shop_id',$shop->id)->get();
+        $shopproduct=ShopProduct::with('rating')->where('shop_id',$shop->id)->get();
       return view('shopproduct',compact('shop','shopproduct'));
     }
 
@@ -144,7 +144,7 @@ class FrontController extends Controller
     }
 
     public function allProducts(Request $request){
-      $products=ShopProduct::with('category')->where('status',1)->paginate(4);
+      $products=ShopProduct::with('category','rating')->where('status',1)->paginate(4);
       return view('all-products',compact('products'));
     }
 
