@@ -9,6 +9,6 @@ class OrderProduct extends Model
     protected $guarded = [];
 
     public function productDetails(){
-        return $this->hasOne(ShopProduct::class,'id','product_id');
+        return $this->hasOne(ShopProduct::class,'id','product_id')->with('shop');
     }
 }
