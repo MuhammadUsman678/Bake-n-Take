@@ -87,22 +87,22 @@
         <ul class="sb-list sb-mb-30">
           @if(empty(auth()->user()))
           <li>
-            <a href="{{ route('login') }}">Login</a>
+            <a data-no-swup="" href="{{ route('login') }}">Login</a>
           </li>
           <li>
-            <a href="{{ route('register') }}">Register</a>
+            <a data-no-swup="" href="{{ route('register') }}">Register</a>
           </li>
           @endif
           @auth 
            
-            <li> <a href="{{url('/myaccount')}}"><b>My Account:</b> </a> </li>
-          <li> <a href="{{ route('front.orders') }}"><b>Orders:</b> </a> </li>
-          <li> <a href="{{ route('front.quotation') }}"><b>View Quotations:</b> </a> </li>
+            <li> <a  data-no-swup="" href="{{url('/myaccount')}}"><b>My Account:</b> </a> </li>
+          <li> <a data-no-swup="" href="{{ route('front.orders') }}"><b>Orders:</b> </a> </li>
+          <li> <a  data-no-swup="" href="{{ route('front.quotation') }}"><b>View Quotations:</b> </a> </li>
             <li>
-              <a href="{{ url('/request_quotation') }}" >Request Quotations</a>
+              <a data-no-swup="" href="{{ url('/request_quotation') }}" >Request Quotations</a>
             </li>
             <li>
-              <a href="{{ url('/logout') }}" >Logout</a>
+              <a data-no-swup="" href="{{ url('/logout') }}" >Logout</a>
             </li>
             @if(auth()->user()->role_id !=2)
             <li >

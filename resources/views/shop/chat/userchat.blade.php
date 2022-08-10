@@ -196,7 +196,7 @@
                                 </span>
                                 <div class="header-profile-sidebar">
                                     <div class="avatar">
-                                        <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="user_avatar" height="70" width="70">
+                                        <img src="{{ asset('profileimages/'.$users->image)}}" alt="user_avatar" height="70" width="70">
                                         <span class="avatar-status-busy avatar-status-lg"></span>
                                     </div>
                                     <h4 class="chat-user-name">{{$users->name}}</h4>

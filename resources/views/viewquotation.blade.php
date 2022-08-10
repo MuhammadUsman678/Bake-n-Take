@@ -69,7 +69,7 @@ Accepted
                                         </td>
                                         <td>Rs.{{ $order->price }}</td>
                                         <td>
-                                            <a href="{{url('quotation/message/'.$order->id)}}" class="btn-small d-block" style="color: #f5c332"><i class="fas fa-comment"></i></a>
+                                            <a data-no-swup="" href="{{url('quotation/message/'.$order->id)}}" class="btn-small d-block" style="color: #f5c332"><i class="fas fa-comment"></i></a>
                                         
                                         
                                         </td>

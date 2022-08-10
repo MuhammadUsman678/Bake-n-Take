@@ -110,7 +110,7 @@
                                 $shop=App\shop::where('id',$row->shop_id)->first();
                                
                                 @endphp
-                                <a href="{{ url('front/chat/'.$shop->id) }}">
+                                <a data-no-swup=""  href="{{ url('front/chat/'.$shop->id) }}">
                                 <li class="
                                
                                 ">
