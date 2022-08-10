@@ -65,13 +65,17 @@
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
+                            @if($product->rating->count() > 0)
                             <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 1 ?'' : 'no-start' }}" ></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 2 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 3 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 4 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') == 5 ?'' : 'no-start' }}"></i></li>
                             </ul>
+                            @else
+                            Not rated yet.
+                            @endif
                         </div>
                         <div class="sb-card-buttons-frame">
                             <!-- button -->

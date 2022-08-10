@@ -19,8 +19,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products=ShopProduct::with('category:id,category_name')->where('status',1)->get();
-        return view('index',compact('products'));
+        $products=ShopProduct::with('category:id,category_name','rating')->where('status',1)->get();
+        $top_rated=$products->filter(function($q){
+            return $q->rating->sum('rating') > 3;
+        });
+        return view('index',compact('products','top_rated'));
     }
     public function quotation()
     {

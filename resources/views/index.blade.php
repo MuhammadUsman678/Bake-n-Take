@@ -201,6 +201,103 @@
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
+                <h2 class="sb-mb-30"><span>Top</span> Rated</h2>
+            </div>
+            <div class="sb-right sb-mb-30">
+                <!-- slider navigation -->
+                <div class="sb-slider-nav">
+                    <div class="sb-prev-btn sb-short-menu-prev swiper-button-disabled" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="true"><i class="fas fa-arrow-left"></i></div>
+                    <div class="sb-next-btn sb-short-menu-next" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <!-- slider navigation end -->
+                <!-- button -->
+                <a href="#" class="sb-btn">
+                    <span class="sb-icon">
+                        <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
+                    </span>
+                    <span>All Products</span>
+                </a>
+                <!-- button end -->
+            </div>
+        </div>
+        <div class="swiper-container sb-short-menu-slider-4i swiper-container-horizontal">
+            <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+               @forelse ($top_rated as $key => $product)    
+                <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
+                    <a data-fancybox="menu" data-no-swup="" href="{{ $product->getFirstMediaurl('images') ? $product->getFirstMediaurl('images') : 'https://via.placeholder.com/270?text=No+Image+Found'  }}" class="sb-menu-item">
+                        <div class="sb-cover-frame">
+                            <img src="{{ $product->getFirstMediaurl('images') ? $product->getFirstMediaurl('images') : 'https://via.placeholder.com/270?text=No+Image+Found'  }}" alt="{{ $product->product_name}}">
+                            <div class="sb-badge sb-vegan">{{ $product->category->category_name }}</div>
+                        </div>
+                        <div class="sb-card-tp">
+                            <h4 class="sb-card-title">{{ $product->product_name }}</h4>
+                            <div class="sb-price"><sub>Rs.</sub> {{ $product->price }}</div>
+                        </div>
+                        <div class="sb-description">
+                            <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
+                            @if($product->rating->count() > 0)
+                            <ul class="sb-stars">
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 1 ?'' : 'no-start' }}" ></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 2 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 3 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 4 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') == 5 ?'' : 'no-start' }}"></i></li>
+                            </ul>
+                            @else
+                            Not rated yet.
+                            @endif
+                        </div>
+                        <div class="sb-card-buttons-frame">
+                            <!-- button -->
+                            <a href="{{ route('front.single.product',[$product->slug]) }}" class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 float-left">
+                              <span class="sb-icon">
+                                <img src="{{ asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
+                              </span>
+                            </a>
+                            <!-- button end -->
+                            <!-- button -->
+                            @auth    
+                                <a data-id="{{ $product->id }}"  href="#" class="sb-btn sb-atc sb-atc-add-to-cart float-right">
+                                <span class="sb-icon">
+                                    <img src="{{ asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
+                                </span>
+                                <span class="sb-add-to-cart-text">Add to cart</span>
+                                <span class="sb-added-text">Added</span>
+                                </a>
+                            @endauth
+                            @guest
+                               <a href="{{ route('login') }}" class="sb-btn sb-atc float-right">
+                                    <span class="sb-icon">
+                                        <img src="{{ asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
+                                    </span>
+                                    <span class="sb-add-to-cart-text">Add to cart</span>
+                                    <span class="sb-added-text">Added</span>
+                                </a>
+                            @endguest
+                            
+                            <!-- button end -->
+                          </div>
+                    </a>
+                </div>
+               @empty
+               <p class="text-center">No Products Found!</p>
+               @endforelse
+              
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="sb-short-menu sb-p-0-90">
+    <div class="sb-bg-2">
+        <div></div>
+    </div>
+    <div class="container">
+        <div class="sb-group-title sb-mb-30">
+            <div class="sb-left sb-mb-30">
                 <h2 class="sb-mb-30"><span>All</span> Products</h2>
                 <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
             </div>
@@ -236,13 +333,17 @@
                         </div>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
+                            @if($product->rating->count() > 0)
                             <ul class="sb-stars">
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
-                                <li><i class="fas fa-star"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 1 ?'' : 'no-start' }}" ></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 2 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 3 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') >= 4 ?'' : 'no-start' }}"></i></li>
+                                <li><i class="fas fa-star {{ (int) $product->rating->sum('rating') == 5 ?'' : 'no-start' }}"></i></li>
                             </ul>
+                            @else
+                            Not rated yet.
+                            @endif
                         </div>
                         <div class="sb-card-buttons-frame">
                             <!-- button -->

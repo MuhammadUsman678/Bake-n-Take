@@ -47,6 +47,10 @@ class ShopProduct extends Model implements HasMedia
 
     public function rating()
     {
-        return $this->hasMany(ProductReview::class,'product_id')->with('user');
+        return $this->hasMany(ProductReview::class,'product_id')->where('is_spam',0)->where('status','approved')->with('user');
+    }
+
+    public function shop(){
+        return $this->hasOne(shop::class,'id','shop_id');
     }
 }

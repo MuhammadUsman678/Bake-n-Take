@@ -25,20 +25,24 @@
 
                 <li class="nav-item"><a href="{{url('admin/category')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Category</span></a>
                 </li>
+                <li class="nav-item"><a href="{{route('admin.product-review')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Products Reviews</span></a>
+                </li>
                 <li class="nav-item has-sub "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Orders</span></a>
                     <ul class="menu-content" style="">
-                        <li class="is-shown"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Pending Orders</span></a>
+                        <li class="is-shown"><a href="{{ route('admin.orders.new') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">New Orders</span></a>
+                        </li> 
+                        <li class="is-shown"><a href="{{ route('admin.orders.pending') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Pending Orders</span></a>
                         </li>
-                        <li class="is-shown"><a href="#"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Complete Orders</span></a>
+                        <li class="is-shown"><a href="{{ route('admin.orders.complete') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Complete Orders</span></a>
                         </li>
                         
                     </ul>
                 </li>
                     <li class="nav-item"><a href="#"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Manage Complains</span></a>
                     </li>
-                    <li class="nav-item"><a href="#"><i class="feather icon-briefcase"></i><span class="menu-title" data-i18n="Quill Editor">Manage Transactions</span></a>
+                    <li class="nav-item"><a href="{{ route('admin.transactions')  }}"><i class="feather icon-briefcase"></i><span class="menu-title" data-i18n="Quill Editor">Manage Transactions</span></a>
                     </li> 
-                    <li class="nav-item"><a href="#"><i class="feather icon-search"></i><span class="menu-title" data-i18n="Quill Editor">Detect Fake Reviews</span></a>
+                    <li class="nav-item"><a href="{{route('admin.product-fake-review')}}"><i class="feather icon-search"></i><span class="menu-title" data-i18n="Quill Editor">Detect Fake Reviews</span></a>
                     </li> 
                 
                 {{-- <li class=" nav-item"><a href="#"><i class="feather icon-user"></i><span class="menu-title" data-i18n="User">Customers</span></a>

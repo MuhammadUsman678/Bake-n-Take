@@ -46,6 +46,11 @@
     
     @yield('style')
     <meta name="_token" content="{{csrf_token()}}" />
+    <style>
+      .no-start{
+        color: rgb(182, 178, 178);
+      }
+    </style>
     <style type="text/css">
         .panel-title {
         display: inline;
