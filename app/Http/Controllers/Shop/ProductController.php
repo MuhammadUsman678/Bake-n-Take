@@ -11,6 +11,7 @@ use Validator;
 use Image;
 use App\Category;
 use App\shop;
+use App\User;
 use App\Http\Resources\ProductsImagesResource;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -177,5 +178,10 @@ return redirect()->action('Shop\ProductController@index')->with('success',$reque
         $file_name=$request->file_name;
         Media::where('file_name',$file_name)->delete();
         return $file_name;
+    }
+    public function editprofile(){
+        $user=User::find(auth()->user()->id);
+       
+        return view('shop.editprofile',compact('user'));
     }
 }

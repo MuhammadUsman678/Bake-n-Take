@@ -75,6 +75,14 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="sb-group-input">
+                                            <input type="file" name="image"    >
+                                            <span class="sb-bar"></span>
+                                            
+                                            <label>Product Image</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="sb-group-input">
                                             <input type="text" name="date" data-language="en" class="datepicker-here sb-datepicker" data-timepicker="true" data-position="bottom left" required=""  placeholder="Time and Date">
                                             <span class="sb-bar"></span>
                                             

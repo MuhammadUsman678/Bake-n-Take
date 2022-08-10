@@ -29,6 +29,15 @@ class HomeController extends Controller
         return view('quotation_request',compact('category','shop'));
     }
     public function postquotation(Request $request){
+        if ($request->hasfile('image'))
+        {
+        $image=$request->file('image');
+        $imageName = $image->getClientOriginalName();
+       
+        $image->move('shopdocument',$imageName);
+        }else{
+            $imageName=null;   
+        }
         $quotation=quotation::create([
             'user_id'=>auth()->user()->id,
             'name'=>$request->productname,
@@ -36,7 +45,7 @@ class HomeController extends Controller
             'price'=>$request->price,
             'description'=>$request->description,
             'date'=>$request->date,
-
+            'image'=>$imageName,
         ]);
         for ($i=0;$i<count($request->shop);$i++){
             quotation_detail::create([
@@ -44,6 +53,6 @@ class HomeController extends Controller
             'shop_id'=>$request->shop[$i],
             ]);
         }
-        return back();
+        return back()->with('success',"Yor Quotation Send to All selcted Shops");
     }
 }

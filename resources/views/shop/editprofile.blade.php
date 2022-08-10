@@ -1,11 +1,11 @@
-@extends('admin.layout.admin')
+@extends('shop.layout.shop')
 
 
 
 
 
 @section('main')
-<div class="">
+<div class="app-content content">
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper">
@@ -93,7 +93,7 @@
                                                             <span>Confirm  Password</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <input type="password" id="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+                                                            <input type="password" id="password" class="form-control " name="confirm_password" placeholder="Confirm Password">
                                                         </div>
                                                         @if($errors->has('confirm_password'))
 

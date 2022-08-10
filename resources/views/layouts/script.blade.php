@@ -26,7 +26,11 @@
 <script src="{{ asset('assets/js/sweetalert.js')}}"></script>
 <!-- Start of Async Drift Code -->
 
-
+<script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+   
+</script>
     <!-- End of Async Drift Code -->
     <!-- End of Async Drift Code -->
 

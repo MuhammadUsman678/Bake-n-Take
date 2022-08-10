@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class notification_user extends Model
 {
-     protected $guarded = ['id'];
+    protected $guarded = ['id'];
 
     protected $casts = [
         'data' => 'array'

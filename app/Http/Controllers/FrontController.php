@@ -68,12 +68,15 @@ class FrontController extends Controller
        ];
        \Mail::to($user->email)->send(new registermail($maildetail));
         //    $user->notify(new newusernotification($user));
-    $details =$user->name.' Requested for new shp registeration';
+    $details =$user->name.' Requested for new sh0p registeration';
 
-    $id="1";
-    $this->userNotify($id,$details);
-    Alert::success('Congrats', 'You\'ve Successfully Registered');
-       return back();
+    $user2=User::where('role_id','1')->get();
+            foreach($user2 as $row)
+            {
+                $this->userNotify($row->id,$details);
+            }
+
+       return back()->with('success','Your shop request is submitted our team contact for furthure detais');
     }
     function userNotify($id,$details)
     {

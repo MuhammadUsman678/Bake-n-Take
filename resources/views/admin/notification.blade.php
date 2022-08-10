@@ -51,13 +51,13 @@
                                                     <div
                                                         class="col-md-12 rounded border border-light {{ $notification->is_read === 0 ? 'bg-light' : '' }}">
                                                         <div class="card-body">
-                                                            @foreach ($notification->data as $item)
+                                                           
 
                                                                 <h5 class="card-title font-18">
-                                                                    {{ $item }}
+                                                                    {{ $notification->data}}
                                                                 </h5>
 
-                                                            @endforeach
+                                                          
 
                                                             <p class="card-text"><small class="text-muted text-dark">
                                                                     {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>

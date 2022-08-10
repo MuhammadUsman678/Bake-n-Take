@@ -3,7 +3,7 @@
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto">
                         <div class="brand-logo"></div>
-                        <h2 class="brand-text mb-0"style="color:#FFC107">BakeenTake</h2>
+                       <a href="{{url('shop/dashboard')}}"> <h2 class="brand-text mb-0"style="color:#FFC107">BakeenTake</h2></a>
                     </li>
                
             </ul> 
@@ -17,7 +17,7 @@
       
                     <li class="nav-item"><a href="{{url('shop/rfq')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">View Rfq</span></a>
                     </li>
-                    <li class="nav-item"><a href="{{url('shop/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat With Admin</span></a>
+                    <li class="nav-item"><a href="{{url('shop/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat</span></a>
                     </li> 
                     <li class="nav-item"><a href="#"><i class="feather icon-search"></i><span class="menu-title" data-i18n="Quill Editor">View place Orders</span></a>
                     </li>

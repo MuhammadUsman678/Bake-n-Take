@@ -20,6 +20,7 @@ class CreateQuotationsTable extends Migration
             $table->integer('category')->nullable();
             $table->integer('price')->nullable();
             $table->string('description')->nullable();
+            $table->string('image')->nullable();
             $table->string('date')->nullable();
             $table->integer('status')->default(0);
             $table->integer('seller_id')->nullable();

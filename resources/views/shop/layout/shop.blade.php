@@ -37,12 +37,34 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/card-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/tour/tour.css')}}">
     <!-- END: Page CSS-->
-
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <!-- END: Custom CSS-->
     <!-- END: Custom CSS-->
     @yield('css')
+    {{-- <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+    
+        var pusher = new Pusher('7e3258345f5b5323ac90', {
+          cluster: 'mt1'
+        });
+    
+        var channel = pusher.subscribe('Bake;n Take');
+        channel.bind('Notification', function(data) {
+            $(".count").css("display","block");
+      op +='<a href="'+data['id']+'" class="dropdown-item py-3">'+
+                '<p class="mb-0 font-weight-medium float-left">'+data['msg']+'</p>'+  
+              '</a>';
+
+                      
+        
+    
+      $(".append_noti").append(op);
+        });
+      </script> --}}
 </head>
 <!-- END: Head-->
 
@@ -93,6 +115,11 @@
 
     <!-- BEGIN: Page JS-->
     <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script>
+    <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+   
+</script>
     <!-- END: Page JS-->
     <!-- END: Custom JS-->
     @yield('js')

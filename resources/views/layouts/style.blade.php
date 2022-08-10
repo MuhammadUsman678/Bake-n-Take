@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="{{ asset('front/assets/css/plugins/fancybox.min.css')}}" />
     <!-- starbelly css -->
     <link rel="stylesheet" href="{{ asset('front/assets/css/style.css')}}" />
-  
+ 
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>

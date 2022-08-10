@@ -37,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/card-analytics.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/plugins/tour/tour.css')}}">
     <!-- END: Page CSS-->
-
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
 
@@ -90,7 +90,11 @@
     <script src="{{asset('app-assets/js/core/app.js')}}"></script>
     <script src="{{asset('app-assets/js/scripts/components.js')}}"></script>
     <!-- END: Theme JS-->
-
+    <script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
+    <script>
+        $('.dropify').dropify();
+       
+    </script>
     <!-- BEGIN: Page JS-->
     {{-- <script src="{{asset('app-assets/js/scripts/pages/dashboard-analytics.js')}}"></script> --}}
     @yield('js')

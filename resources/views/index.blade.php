@@ -27,15 +27,15 @@
                         <h1 class="sb-mb-30">Bake Take <span>Team</span></h1>
                         <p class="sb-text sb-text-lg sb-mb-30">Provide You Facility To Order Online.<br>Now in Gujranwala</p>
                         <!-- button -->
-                        <a href="#" class="sb-btn">
+                        <a href="{{url('all_shop')}}" class="sb-btn">
                             <span class="sb-icon">
                                 <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
                             </span>
-                            <span>Our menu</span>
+                            <span>Our Shops</span>
                         </a>
                         <!-- button end -->
                         <!-- button -->
-                        <a href="#team" class="sb-btn sb-btn-2 sb-btn-gray">
+                        <a href="{{url('#team')}}" class="sb-btn sb-btn-2 sb-btn-gray">
                             <span class="sb-icon">
                                 <img src="{{asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                             </span>
@@ -288,7 +288,7 @@
 
 
 <!-- team -->
-<section class="sb-p-0-60">
+<section class="sb-p-0-60" id="team">
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
@@ -306,7 +306,7 @@
                 <!-- button end -->
             </div>
         </div>
-        <div class="row" id="team">
+        <div class="row" >
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
@@ -316,10 +316,8 @@
                         <h4 class="sb-mb-10">Talha Nawaz</h4>
                         <p class="sb-text sb-text-sm sb-mb-10">Group Leader</p>
                         <ul class="sb-social">
-                            <li><a href="#."><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#."><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#."><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#."><i class="fab fa-youtube"></i></a></li>
+                            <li>Contact:<a href="#">03211647878</li>
+                           
                         </ul>
                     </div>
                 </div>
@@ -333,10 +331,7 @@
                         <h3 class="sb-mb-10">Muhammad Hamdan</h3>
                         <p class="sb-text sb-text-sm sb-mb-10">Team Member</p>
                         <ul class="sb-social">
-                            <li><a href="#."><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#."><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#."><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#."><i class="fab fa-youtube"></i></a></li>
+                            <li>Contact:<a href="#">03211647878</li>
                         </ul>
                     </div>
                 </div>
@@ -350,10 +345,7 @@
                         <h3 class="sb-mb-10">Ahsan Ilyas</h3>
                         <p class="sb-text sb-text-sm sb-mb-10">Team Member</p>
                         <ul class="sb-social">
-                            <li><a href="#."><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#."><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#."><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#."><i class="fab fa-youtube"></i></a></li>
+                            <li>Contact:<a href="#">03211647878</li>
                         </ul>
                     </div>
                 </div>
@@ -367,10 +359,7 @@
                         <h3 class="sb-mb-10">Hanan Ali</h3>
                         <p class="sb-text sb-text-sm sb-mb-10">Team Member</p>
                         <ul class="sb-social">
-                            <li><a href="#."><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#."><i class="fab fa-instagram"></i></a></li>
-                            <li><a href="#."><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#."><i class="fab fa-youtube"></i></a></li>
+                            <li>Contact:<a href="#">03211647878</li>
                         </ul>
                     </div>
                 </div>

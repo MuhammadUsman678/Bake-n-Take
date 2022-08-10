@@ -77,7 +77,8 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/review/{product_id}/{order_id}','FrontController@productReview')->name('product.review');
     Route::post('product/review/{product_id}/{order_id}','FrontController@productReviewStore')->name('product.review');
 
-
+    Route::get('/myaccount', 'AccountController@myaccount');
+    Route::post('/updateregister', 'AccountController@updateregister')->name('updateregister');
 
 });
 
@@ -94,8 +95,8 @@ Route::get('test',function(){
     return $order;
 });
 
-
-
+Route::get('quotation/message/{id}','AccountController@quotationmessage');
+Route::get('front/chat/{id}','AccountController@getmessages');
 
 
 //Admin Side
@@ -140,6 +141,7 @@ Route::get('/rfq', 'Shop\RfqController@index');
     Route::get('/chat/{id}','ChatController@shopchat');
 
     Route::get('chat/{id}','ChatController@userchat');
+    Route::get('/editprofile', 'shop\ProductController@editprofile');
 
 });
 Route::get('/get-message','ChatController@getMessages');
@@ -150,6 +152,7 @@ Route::post('/chat/store/messages','ChatController@storeMessage');
     Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/request_quotation','HomeController@quotation');
 Route::post('/quotation_post','HomeController@postquotation');
+
 });
 
 
