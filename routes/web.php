@@ -77,6 +77,8 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/review/{product_id}/{order_id}','FrontController@productReview')->name('product.review');
     Route::post('product/review/{product_id}/{order_id}','FrontController@productReviewStore')->name('product.review');
 
+    Route::post('products','FrontController@allProducts')->name('rangeSearch');
+
 
 
 });

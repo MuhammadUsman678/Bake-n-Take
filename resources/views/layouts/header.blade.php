@@ -138,7 +138,7 @@
         </a>
         <!-- button end -->
         <!-- button -->
-        <a href="{{ route('front.checkout') }}" class="sb-btn sb-btn-text">
+        <a data-no-swup href="{{ route('front.checkout') }}" class="sb-btn sb-btn-text">
           <span>Checkout</span>
         </a>
         @endauth
