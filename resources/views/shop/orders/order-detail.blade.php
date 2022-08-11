@@ -1,11 +1,6 @@
-@extends('admin.layout.admin')
-@section('title', 'Complete Orders')
+@extends('shop.layout.shop')
+@section('title', 'Order Detail<b>')
 @section('css')
-<style>
-    html body .content {
-       margin-left: 130px !important;
-    }
-    </style>
 @include('partials._datatable-css')
 @endsection
 @section('main')
@@ -19,12 +14,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Complete Orders</h2>
+                        <h2 class="content-header-title float-left mb-0">Order Detail</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Complete Orders
+                                <li class="breadcrumb-item active">Order Detail
                                 </li>
                             </ol>
                         </div>
@@ -52,7 +47,7 @@
                                         </div>
                                     @endif
                                     <div class="col-md-4 col-lg-6 col-sm-6 col-xs-6">
-                                        <h4 class="card-title">{{ "Complete Orders" }}</h4>
+                                        <h4 class="card-title">{{ "Order Detail" }}</h4>
                                     </div>
                                     <div class="col-md-8 col-lg-6 col-sm-6 col-xs-6 pull-right">
 
@@ -61,33 +56,57 @@
                             </div>
                             <div class="card-content">
                                 <div class="card-body card-dashboard">
-                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                           <b> Full Name</b> : {{ $order->full_name }}
+                                        </div>
+                                        <div class="col-md-6">
+                                           <b> Email </b>: {{ $order->email }}
+                                        </div>
+                                        <div class="col-md-6">
+                                           <b> Phone</b> : {{ $order->phone }}
+                                        </div>
+                                        <div class="col-md-6">
+                                           <b> City</b> : {{ $order->city }}
+                                        </div>
+                                        <div class="col-md-6">
+                                           <b> Country </b>: {{ $order->country }}
+                                        </div>
+                                        <div class="col-md-6">
+                                           <b> Street</b> : {{ $order->street }}
+                                        </div>
+                                        <div class="col-md-6">
+                                           <b> Delivery Date </b> :{{ date('Y-F-d H:i:A',strtotime($order->delivery_date)) }}
+                                        </div>
+                                        
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-striped data-table" id="datatable">
                                             <thead>
                                                 <tr>
                                                     <th>Sr#</th>
-                                                    <th>Order#</th>
-                                                    <th>Payment Method</th>
-                                                    <th>Payment Status</th>
+                                                    <th>Product Name</th>
+                                                    <th>Shop Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    <th>Packing Date</th>
+                                                    @endif
                                                     <th>Amount</th>
-                                                    <th>Order Status</th>
-                                                    <th>Action</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($completeOrders as $key=>$row)
+                                                @forelse ($order->shopProducts as $key=>$row)
                                                 <tr>
                                                     <td> {{ ++$key }} </td>
-                                                    <td> {{ $row->order_number }} </td>
-                                                    <td> {{ $row->payment_method }} </td>
-                                                    <td> {{ $row->payment_status }} </td>
-                                                    <td> {{ $row->total_amount }} </td>
-                                                    <td> {{ $row->status }} </td>
-                                                    <td>
-                                                        <a href="{{ route('admin.order.detail',[$row->id]) }}" class="btn btn-primary btn-sm">Order Detail</a>
-                                                    </td>
+                                                    <td> {{ $row->productDetails->product_name }} </td>
+                                                    <td> {{ $row->productDetails->shop->shop_name }} </td>
+                                                    <td> {{ $row->quantity }} </td>
+                                                    <td> {{ $row->productDetails->price }} </td>
+                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                     <td>{{ $row->status_change_date }}</td>
+                                                    @endif
+                                                    <td> {{ $row->quantity * $row->productDetails->price }} </td>
                                                 </tr>
                                                 @empty
                                                     
@@ -97,13 +116,14 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>Sr#</th>
-                                                    <th>Order#</th>
-                                                    <th>Payment Method</th>
-                                                    <th>Payment Status</th>
+                                                    <th>Product Name</th>
+                                                    <th>Shop Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    <th>Packing Date</th>
+                                                    @endif
                                                     <th>Amount</th>
-                                                    <th>Order Status</th>
-                                                    <th>Action</th>
-
                                                 </tr>
                                             </tfoot>
                                         </table>

@@ -116,4 +116,11 @@
     @include('partials._datatable-js')
     <!-- END: Page Vendor JS-->
     <!-- END: Page JS-->
+
+    <script type="text/javascript">
+        $(function () {
+          var table = $('#datatable').DataTable();
+    });
+
+      </script>
 @endsection

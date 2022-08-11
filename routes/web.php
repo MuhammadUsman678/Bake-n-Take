@@ -32,7 +32,7 @@ Route::post('files/remove', 'FileController@remvoeFile')->name('file.remove');
 
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/all_shop', 'FrontController@allshop');
 Route::get('/shop_product/{id}', 'FrontController@shopproduct');
 Route::get('shop/register','FrontController@shopregister');
@@ -77,8 +77,7 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/review/{product_id}/{order_id}','FrontController@productReview')->name('product.review');
     Route::post('product/review/{product_id}/{order_id}','FrontController@productReviewStore')->name('product.review');
 
-    Route::get('/myaccount', 'AccountController@myaccount');
-    Route::post('/updateregister', 'AccountController@updateregister')->name('updateregister');
+
 
 });
 
@@ -95,12 +94,14 @@ Route::get('test',function(){
     return $order;
 });
 
-Route::get('quotation/message/{id}','AccountController@quotationmessage');
-Route::get('front/chat/{id}','AccountController@getmessages');
+
+
 
 
 //Admin Side
-Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],function () {
+Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdminUser']],function () {
+    Route::get('/', 'Admin\AdminDashboard@dashboard');
+
     Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('dashboard');
     Route::get('/pendingapproved', 'Admin\AdminDashboard@pendingapproved');
     Route::get('/editprofile', 'Admin\AdminDashboard@editprofile');
@@ -130,20 +131,36 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('/orders/complete','Admin\OrderController@completeOrders')->name('orders.complete');
     Route::get('/orders/detail/{id}','Admin\OrderController@orderDetail')->name('order.detail');
 
+    Route::get('/orders/changeStatus/{id}/{status}','Admin\OrderController@changeStatus')->name('order.changeStatus');
+
+    Route::get('/orders/paid/{id}','Admin\OrderController@paid')->name('order.paid');
+
 
 });
  //end Admin Side   
 
 
 
- Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth']],function () {
+ Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth','isShopUser']],function () {
+    
+    Route::get('/dashboard', 'Shop\DashboardController@dashboard');
+
+
     Route::get('/product','Shop\ProductController@index')->name('product.index');
     Route::get('/product/create','Shop\ProductController@create')->name('product.create');
     Route::post('/product','Shop\ProductController@store')->name('product.store');
     Route::get('/product/{id}','Shop\ProductController@edit')->name('product.edit');
     Route::post('/product/{id}','Shop\ProductController@update');
     Route::get('/product/delete/{id}','Shop\ProductController@destroy')->name('product.delete');
-    Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
+    Route::get('/dashboard', 'Shop\DashboardController@dashboard')->name('dashboard');
+
+
+    Route::get('/orders','Shop\OrderController@Orders')->name('orders');
+    Route::get('/orders/detail/{id}','Shop\OrderController@orderDetail')->name('order.detail');
+
+    Route::get('/orders/changeStatus/{id}','Shop\OrderController@changeStatus')->name('order.changeStatus');
+   
+
 //Rfq
 Route::get('/rfq', 'Shop\RfqController@index');
     // Shop Products Images
@@ -155,7 +172,6 @@ Route::get('/rfq', 'Shop\RfqController@index');
     Route::get('/chat/{id}','ChatController@shopchat');
 
     Route::get('chat/{id}','ChatController@userchat');
-    Route::get('/editprofile', 'shop\ProductController@editprofile');
 
 });
 Route::get('/get-message','ChatController@getMessages');
@@ -166,7 +182,6 @@ Route::post('/chat/store/messages','ChatController@storeMessage');
     Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/request_quotation','HomeController@quotation');
 Route::post('/quotation_post','HomeController@postquotation');
-
 });
 
 

@@ -80,6 +80,7 @@ class CheckOutController extends Controller
 		$order=Order::create($values);
         foreach ($pivot_data as $key => $value) {
             $pivot_data[$key]['order_id']=$order->id;
+            $pivot_data[$key]['status']='new';
          } 
         OrderProduct::insert($pivot_data);
 

@@ -19,7 +19,18 @@
                     </li>
                     <li class="nav-item"><a href="{{url('shop/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat</span></a>
                     </li> 
-                    <li class="nav-item"><a href="#"><i class="feather icon-search"></i><span class="menu-title" data-i18n="Quill Editor">View place Orders</span></a>
+                    {{-- <li class="nav-item"><a href="#"><i class="feather icon-search"></i><span class="menu-title" data-i18n="Quill Editor">View place Orders</span></a>
+                    </li> --}}
+                    <li class="nav-item has-sub "><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Orders</span></a>
+                        <ul class="menu-content" style="">
+                            <li class="is-shown"><a href="{{ route('shop.orders') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Orders</span></a>
+                            </li> 
+                            {{-- <li class="is-shown"><a href="{{ route('shop.orders.pending') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Pending Orders</span></a>
+                            </li>
+                            <li class="is-shown"><a href="{{ route('shop.orders.complete') }}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Details">Complete Orders</span></a>
+                            </li> --}}
+                            
+                        </ul>
                     </li>
                     <li class="nav-item"><a href="#"><i class="feather icon-eye-off"></i><span class="menu-title" data-i18n="Quill Editor">Report Buyer</span></a>
                     </li>

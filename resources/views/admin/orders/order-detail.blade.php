@@ -87,8 +87,29 @@
                                            <b> Payment Method  </b>: {{ $order->payment_method }}
                                         </div>
                                         <div class="col-md-6">
-                                           <b> Payment Status : {{ $order->payment_status }}
+                                           <b> Payment Status : </b> {{ $order->payment_status }}
                                         </div>
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-6 mt-5">
+                                            @php
+                                              if($order->status=='new') $status='process';
+                                              else if($order->status=='process') $status ='delivered';
+                                              else $status ='Complete'
+
+                                            @endphp
+                                            Chage Order Status :
+                                            @if(($order->status !='delivered'))
+                                            <a onclick="return confirm('Are you sure you want to change order status ?')" href=" {{  route('admin.order.changeStatus',[$order->id,$status]) }}" class="btn btn-primary btn-sm"> {{ strtoupper($order->status) }}</a>
+                                            @else
+                                            <a  href="#" class="btn btn-primary btn-sm"> {{ strtoupper($order->status) }}</a>
+                                            @endif
+                                         </div>
+
+                                         @if($order->payment_status=='unpaid')
+                                            <div class="col-md-6 mt-5">
+                                                <a onclick="return confirm('Are you sure you want to paid this order ?')" href=" {{  route('admin.order.paid',[$order->id]) }}" class="btn btn-success ">Click Here to Get Paid</a>
+                                            </div>
+                                         @endif
                                         
                                     </div>
                                     <div class="table-responsive">
@@ -148,4 +169,11 @@
     @include('partials._datatable-js')
     <!-- END: Page Vendor JS-->
     <!-- END: Page JS-->
+
+    <script type="text/javascript">
+        $(function () {
+          var table = $('#datatable').DataTable();
+    });
+
+      </script>
 @endsection

@@ -91,7 +91,7 @@
                             </a>
                             <!-- button end -->
                             <!-- button -->
-                            @auth    
+                            @isUser    
                                 <a data-id="{{ $product->id }}"  href="#" class="sb-btn sb-atc sb-atc-add-to-cart float-right">
                                 <span class="sb-icon">
                                     <img src="{{ asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
@@ -99,7 +99,7 @@
                                 <span class="sb-add-to-cart-text">Add to cart</span>
                                 <span class="sb-added-text">Added</span>
                                 </a>
-                            @endauth
+                            @endisUser
                             @guest
                                <a href="{{ route('login') }}" class="sb-btn sb-atc float-right">
                                     <span class="sb-icon">

@@ -93,7 +93,7 @@
             <a data-no-swup="" href="{{ route('register') }}">Register</a>
           </li>
           @endif
-          @auth 
+          @isUser 
            
             <li> <a  data-no-swup="" href="{{url('/myaccount')}}"><b>My Account:</b> </a> </li>
           <li> <a data-no-swup="" href="{{ route('front.orders') }}"><b>Orders:</b> </a> </li>
@@ -101,14 +101,16 @@
             <li>
               <a data-no-swup="" href="{{ url('/request_quotation') }}" >Request Quotations</a>
             </li>
-            <li>
-              <a data-no-swup="" href="{{ url('/logout') }}" >Logout</a>
-            </li>
+            @endisUser
+          @auth  
             @if(auth()->user()->role_id !=2)
             <li >
               <a href="{{ (auth()->user()->role_id ==1) ? url('admin/dashboard') : 'shop/dashboard' }}" >Dashboard</a>
             </li>
             @endif
+            <li>
+              <a data-no-swup="" href="{{ url('/logout') }}" >Logout</a>
+            </li>
           @endauth
           @guest  
             <li class="sb-has-children">
