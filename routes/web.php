@@ -32,7 +32,7 @@ Route::post('files/remove', 'FileController@remvoeFile')->name('file.remove');
 
 
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/all_shop', 'FrontController@allshop');
 Route::get('/shop_product/{id}', 'FrontController@shopproduct');
 Route::get('shop/register','FrontController@shopregister');
@@ -99,7 +99,7 @@ Route::get('test',function(){
 
 
 //Admin Side
-Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],function () {
+Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdminUser']],function () {
     Route::get('/', 'Admin\AdminDashboard@dashboard');
 
     Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('dashboard');
@@ -133,14 +133,18 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
 
     Route::get('/orders/changeStatus/{id}/{status}','Admin\OrderController@changeStatus')->name('order.changeStatus');
 
+    Route::get('/orders/paid/{id}','Admin\OrderController@paid')->name('order.paid');
+
 
 });
  //end Admin Side   
 
 
 
- Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth']],function () {
-    Route::view('/', 'shop.dashboard');
+ Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth','isShopUser']],function () {
+    
+    Route::get('/dashboard', 'Shop\DashboardController@dashboard');
+
 
     Route::get('/product','Shop\ProductController@index')->name('product.index');
     Route::get('/product/create','Shop\ProductController@create')->name('product.create');
@@ -148,12 +152,10 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('/product/{id}','Shop\ProductController@edit')->name('product.edit');
     Route::post('/product/{id}','Shop\ProductController@update');
     Route::get('/product/delete/{id}','Shop\ProductController@destroy')->name('product.delete');
-    Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
+    Route::get('/dashboard', 'Shop\DashboardController@dashboard')->name('dashboard');
 
 
-    Route::get('/orders/new','Shop\OrderController@newOrders')->name('orders.new');
-    Route::get('/orders/pending','Shop\OrderController@dispatchedOrders')->name('orders.pending');
-    Route::get('/orders/complete','Shop\OrderController@completeOrders')->name('orders.complete');
+    Route::get('/orders','Shop\OrderController@Orders')->name('orders');
     Route::get('/orders/detail/{id}','Shop\OrderController@orderDetail')->name('order.detail');
 
     Route::get('/orders/changeStatus/{id}','Shop\OrderController@changeStatus')->name('order.changeStatus');

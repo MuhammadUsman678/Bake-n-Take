@@ -8,18 +8,9 @@ use App\Order;
 
 class OrderController extends Controller
 {
-    public function newOrders(){
+    public function Orders(){
         $orders=Order::withCount('shopProducts')->has('shopProducts')->get();
         return view('shop.orders.new-orders',compact('orders'));
-    }
-    public function dispatchedOrders(){
-        $pendingOrders=Order::whereNotIn('status',['delivered','new'])->get();
-        return view('admin.orders.pending-orders',compact('pendingOrders'));
-    }
-
-    public function completeOrders(){
-        $completeOrders=Order::where('status','delivered')->get();
-        return view('admin.orders.complete-orders',compact('completeOrders'));
     }
 
     public function orderDetail($id){

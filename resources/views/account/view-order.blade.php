@@ -103,6 +103,7 @@
                         <div class="sb-prod-description">
                           <h4 class="sb-mb-10">{{ $row['name'] }}</h4>
                           <p class="sb-text sb-text-sm">x{{ $row['quantity'] }}</p>
+                          <p class="sb-text sb-text-sm"><small class="badge badge-info">{{ $order->status==='delivered' ? 'Delivered' : $row['status'] }}</small></p>
                         </div>
                       </a>
                     </div>

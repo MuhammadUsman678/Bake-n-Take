@@ -32,4 +32,9 @@ class OrderController extends Controller
         $order=Order::find($id)->update(['status'=>$status]);
         return redirect()->route('admin.order.detail',[$id]);
     }
+
+    public function paid($id){
+        $order=Order::find($id)->update(['payment_status'=>'paid']);
+        return redirect()->route('admin.order.detail',[$id]);
+    }
 }

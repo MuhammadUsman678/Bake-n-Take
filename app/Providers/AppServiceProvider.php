@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,6 +40,14 @@ class AppServiceProvider extends ServiceProvider
             //...with this variable
             $view->with(['cartItems'=>$cartItems,'productCategories'=>$productCategories]);    
         });  
+
+
+        Blade::if('isUser', function () {
+            if(Auth::check()){
+                return Auth::user()->role_id==2 ?true:false;
+            }
+            return false;
+        });
 
     }
 }

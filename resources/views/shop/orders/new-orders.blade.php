@@ -1,11 +1,6 @@
-@extends('admin.layout.admin')
+@extends('shop.layout.shop')
 @section('title', 'New Orders')
 @section('css')
-<style>
-    html body .content {
-       margin-left: 130px !important;
-    }
-    </style>
 @include('partials._datatable-css')
 @endsection
 @section('main')
@@ -118,4 +113,10 @@
     @include('partials._datatable-js')
     <!-- END: Page Vendor JS-->
     <!-- END: Page JS-->
+    <script type="text/javascript">
+        $(function () {
+          var table = $('#datatable').DataTable();
+    });
+
+      </script>
 @endsection
