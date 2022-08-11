@@ -81,29 +81,8 @@
                                            <b> Street</b> : {{ $order->street }}
                                         </div>
                                         <div class="col-md-6">
-                                           <b> Delivery Date </b> : {{ $order->delivery_date }}
+                                           <b> Delivery Date </b> :{{ date('Y-F-d H:i:A',strtotime($order->delivery_date)) }}
                                         </div>
-                                        <div class="col-md-6">
-                                           <b> Payment Method  </b>: {{ $order->payment_method }}
-                                        </div>
-                                        <div class="col-md-6">
-                                           <b> Payment Status : {{ $order->payment_status }}
-                                        </div>
-
-                                        <div class="col-md-12 mt-5">
-                                            @php
-                                              if($order->status=='new') $status='process';
-                                              else if($order->status=='process') $status ='delivered';
-                                              else $status ='Complete'
-
-                                            @endphp
-                                            Chage Order Status :
-                                            @if(($order->status !='delivered'))
-                                            <a onclick="return confirm('Are you sure you want to change order status ?')" href=" {{  route('admin.order.changeStatus',[$order->id,$status]) }}" class="btn btn-primary btn-sm"> {{ strtoupper($order->status) }}</a>
-                                            @else
-                                            <a  href="#" class="btn btn-primary btn-sm"> {{ strtoupper($order->status) }}</a>
-                                            @endif
-                                         </div>
                                         
                                     </div>
                                     <div class="table-responsive">
@@ -115,17 +94,23 @@
                                                     <th>Shop Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
+                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    <th>Packing Date</th>
+                                                    @endif
                                                     <th>Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($order->products as $key=>$row)
+                                                @forelse ($order->shopProducts as $key=>$row)
                                                 <tr>
                                                     <td> {{ ++$key }} </td>
                                                     <td> {{ $row->productDetails->product_name }} </td>
                                                     <td> {{ $row->productDetails->shop->shop_name }} </td>
                                                     <td> {{ $row->quantity }} </td>
                                                     <td> {{ $row->productDetails->price }} </td>
+                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                     <td>{{ $row->status_change_date }}</td>
+                                                    @endif
                                                     <td> {{ $row->quantity * $row->productDetails->price }} </td>
                                                 </tr>
                                                 @empty
@@ -140,6 +125,9 @@
                                                     <th>Shop Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
+                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    <th>Packing Date</th>
+                                                    @endif
                                                     <th>Amount</th>
                                                 </tr>
                                             </tfoot>

@@ -77,8 +77,7 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/review/{product_id}/{order_id}','FrontController@productReview')->name('product.review');
     Route::post('product/review/{product_id}/{order_id}','FrontController@productReviewStore')->name('product.review');
 
-    Route::get('/myaccount', 'AccountController@myaccount');
-    Route::post('/updateregister', 'AccountController@updateregister')->name('updateregister');
+
 
 });
 
@@ -95,12 +94,14 @@ Route::get('test',function(){
     return $order;
 });
 
-Route::get('quotation/message/{id}','AccountController@quotationmessage');
-Route::get('front/chat/{id}','AccountController@getmessages');
+
+
 
 
 //Admin Side
 Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],function () {
+    Route::get('/', 'Admin\AdminDashboard@dashboard');
+
     Route::get('/dashboard', 'Admin\AdminDashboard@dashboard')->name('dashboard');
     Route::get('/pendingapproved', 'Admin\AdminDashboard@pendingapproved');
     Route::get('/editprofile', 'Admin\AdminDashboard@editprofile');
@@ -130,6 +131,8 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::get('/orders/complete','Admin\OrderController@completeOrders')->name('orders.complete');
     Route::get('/orders/detail/{id}','Admin\OrderController@orderDetail')->name('order.detail');
 
+    Route::get('/orders/changeStatus/{id}/{status}','Admin\OrderController@changeStatus')->name('order.changeStatus');
+
 
 });
  //end Admin Side   
@@ -137,6 +140,8 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
 
 
  Route::group(['prefix'=>'/shop','as'=>'shop.','middleware' => ['auth']],function () {
+    Route::view('/', 'shop.dashboard');
+
     Route::get('/product','Shop\ProductController@index')->name('product.index');
     Route::get('/product/create','Shop\ProductController@create')->name('product.create');
     Route::post('/product','Shop\ProductController@store')->name('product.store');
@@ -144,6 +149,16 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth']],functi
     Route::post('/product/{id}','Shop\ProductController@update');
     Route::get('/product/delete/{id}','Shop\ProductController@destroy')->name('product.delete');
     Route::view('/dashboard', 'shop.dashboard')->name('dashboard');
+
+
+    Route::get('/orders/new','Shop\OrderController@newOrders')->name('orders.new');
+    Route::get('/orders/pending','Shop\OrderController@dispatchedOrders')->name('orders.pending');
+    Route::get('/orders/complete','Shop\OrderController@completeOrders')->name('orders.complete');
+    Route::get('/orders/detail/{id}','Shop\OrderController@orderDetail')->name('order.detail');
+
+    Route::get('/orders/changeStatus/{id}','Shop\OrderController@changeStatus')->name('order.changeStatus');
+   
+
 //Rfq
 Route::get('/rfq', 'Shop\RfqController@index');
     // Shop Products Images
@@ -155,7 +170,6 @@ Route::get('/rfq', 'Shop\RfqController@index');
     Route::get('/chat/{id}','ChatController@shopchat');
 
     Route::get('chat/{id}','ChatController@userchat');
-    Route::get('/editprofile', 'shop\ProductController@editprofile');
 
 });
 Route::get('/get-message','ChatController@getMessages');
@@ -166,7 +180,6 @@ Route::post('/chat/store/messages','ChatController@storeMessage');
     Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/request_quotation','HomeController@quotation');
 Route::post('/quotation_post','HomeController@postquotation');
-
 });
 
 

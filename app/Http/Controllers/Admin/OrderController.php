@@ -27,4 +27,9 @@ class OrderController extends Controller
         // return $order;
         return view('admin.orders.order-detail',compact('order'));
     }
+
+    public function changeStatus($id,$status){
+        $order=Order::find($id)->update(['status'=>$status]);
+        return redirect()->route('admin.order.detail',[$id]);
+    }
 }
