@@ -1,5 +1,62 @@
 @extends('layouts.master')
 @section('title','All Products')
+
+<style>
+   #range-slider {
+            max-width  : 80%;
+            margin     : 0 auto;
+            padding-top: 50px;
+        }
+
+        /* #slider-range { background-color: #df4a4a; } */
+
+        .ui-slider-horizontal .ui-slider-range {
+            background-color: #2EAC9D!important;
+        }
+
+        .w__84 {
+            display      : flex;
+            width        : 84%;
+            padding-right: var(--bs-gutter-x, .75rem);
+            padding-left : var(--bs-gutter-x, .75rem);
+            margin-right : auto;
+            margin-left  : auto;
+        }
+
+        .ui-slider .ui-slider-handle {
+            box-shadow   : 0 0 5px 0 rgba(0, 0, 0, 0.20);
+            border-radius: 50%;
+            height       : 20px;
+            width        : 20px;
+        }
+
+        /* .ui-widget-content {
+	border: 1px solid #dddddd;
+	background: #F5F5F5 !important;
+	color: #333333;
+} */
+
+        .ui-state-default,
+        .ui-widget-content .ui-state-default {
+            border     : 1px solid #c5c5c5;
+            background : #2EAC9D !important;
+            font-weight: normal;
+            color      : #454545;
+        }
+
+        #amount {
+            font-size  : 1.75em;
+            font-weight: 300;
+            line-height: 1.6875em;
+            color      : #2EAC9D;
+            text-align : center;
+            width      : 100%;
+            margin-top : 20px;
+        }
+
+        /* end slider */
+  </style>
+
 @section('content')
 
 <section class="sb-banner sb-banner-xs sb-banner-color">
@@ -25,8 +82,20 @@
 
    <!-- shop list -->
    <section class="sb-menu-section sb-p-90-60">
+    <div id="range-slider" class="rounded-pill">
+
+      <div id="slider-range"></div>
+      <p>
+          <input type="text" id="amount" readonly style="border:0;">
+      </p>
+  </div> <!-- close range-slider div -->
+
+ 
+
+ 
     <div class="sb-bg-1">
       <div></div>
+    
     </div>
     <div class="container">
       <div class="row">
@@ -105,4 +174,23 @@
 
 
 
+@endsection
+@section('script')
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script>
+$(function() {
+  $("#slider-range").slider({
+      range: true,
+      min: 1500,
+      max: 10000,
+      step: 100,
+      values: [3000, 6000],
+      slide: function(event, ui) {
+          $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+      }
+  });
+  $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+      " - $" + $("#slider-range").slider("values", 1));
+});
+</script>
 @endsection
