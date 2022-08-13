@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use App\mail\ordermail;
 
 class CheckOutController extends Controller
 {
@@ -202,7 +203,11 @@ class CheckOutController extends Controller
             $pivot_data[$key]['order_id']=$order->id;
          } 
         OrderProduct::insert($pivot_data);
-
+        $maildetail=[
+            'username'=>$request->name,
+         
+        ];
+        \Mail::to($request->email)->send(new ordermail($maildetail));
 		Session::put('post_data',$post_data);
 		return view('do_checkout_v');
     }
