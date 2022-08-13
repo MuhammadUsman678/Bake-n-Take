@@ -147,8 +147,15 @@ class FrontController extends Controller
     }
 
     public function allProducts(Request $request){
-      $products=ShopProduct::with('category','rating')->where('status',1)->paginate(4);
-      return view('all-products',compact('products'));
+       
+      $products=ShopProduct::with('category','rating')->where('status',1)->when($request->has('range'),function($q) use ($request) {
+        $range=explode(',',$request->range);
+        return $q->where('price','>=',$range[0])->where('price','<=',$range[1]);
+      })->paginate(4);
+      info($products);
+      $min=ShopProduct::with('category','rating')->min('price');
+      $max=ShopProduct::with('category','rating')->max('price');
+      return view('all-products',compact('products','min','max'));
     }
 
     public function productReview($product_id,$order_id){
