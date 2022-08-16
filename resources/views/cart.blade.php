@@ -106,7 +106,7 @@
               </a>
               <!-- button end -->
               <!-- button -->
-              <a href="{{ route('front.checkout') }}" class="sb-btn sb-m-0">
+              <a data-no-swup href="{{ route('front.checkout') }}" class="sb-btn sb-m-0">
                 <span class="sb-icon">
                   <img src="{{ asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                 </span>

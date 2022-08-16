@@ -173,15 +173,16 @@ class FrontController extends Controller
             $q->where('ip_address',$request->ip_address);
         })->where('user_id',auth()->user()->id)->count();
         $order=Order::find($order_id);
-        if($checkSpam > 4){
+        if($checkSpam > 3){
            return redirect()->route('front.view.order',[$order->order_number])->with('error','Spam Review Detected');
         }
+        
         ProductReview::create([
             'rating' =>$request->rating,
             'comment'=>$request->comment,
             'user_id'=>auth()->user()->id,
             'ip_address'=>$request->ip_address ?? '',
-            'is_spam'=> ($checkSpam > 0) ? 1 : ($request->ip_address ? 0 : 1),
+            'is_spam'=> ($checkSpam > 0) ? 1 : 0,
             'product_id'=>$product_id,
             'order_id'=>$order_id,
         ]);

@@ -56,12 +56,14 @@
           <div class="sb-buttons-frame">
             <!-- button -->
             <a href="#" data-target=".search-modal" data-toggle="modal" style="margin-right: 10px;margin-top: 10px;"> <i class="fa fa-search" style="font-size: 25px"><span></span></i></a> 
+            @isUser
             <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-btn-cart">
               <span class="sb-icon">
                 <img src="{{asset('front/assets/img/ui/icons/cart.svg')}}" alt="icon">
               </span>
               <i class="sb-cart-number">{{ $cartItems }}</i>
             </div>
+            @endisUser
             {{-- <div class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0 sb-account-bar">
               <span class="sb-icon">
                 <img style="width: 45px" src="{{asset('front/assets/img/ui/icons/account.svg')}}" alt="icon">

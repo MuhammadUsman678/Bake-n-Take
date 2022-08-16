@@ -19,7 +19,6 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->float('sub_total');
             $table->float('total_amount');
-            $table->integer('quantity');
             $table->enum('payment_method',['jazzcash','cash_on_delivery','stripe'])->default('cash_on_delivery');
             $table->enum('payment_status',['paid','unpaid'])->default('unpaid');
             $table->enum('status',['new','process','delivered','cancel'])->default('new');
