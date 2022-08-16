@@ -188,6 +188,8 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+                <li class="nav-item"><a href="{{url('admin/dashboard')}}"><i class="feather icon-home"></i><span class="menu-title" data-i18n="Quill Editor">Dashboard</span></a>
+                </li>
                 <li class="nav-item has-sub"><a href="#"><i class="feather icon-shopping-cart"></i><span class="menu-title" data-i18n="Ecommerce">Sellers</span></a>
                     <ul class="menu-content" style="">
                         <li class="is-shown"><a href="{{url('admin/approvedshop')}}"><i class="feather icon-circle"></i><span class="menu-item" data-i18n="Shop">Approved Seller</span></a>
@@ -197,7 +199,7 @@
                         
                     </ul>
                 </li>
-                <li class="nav-item"><a href="{{url('admin/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat With Buyer</span></a>
+                <li class="nav-item"><a href="{{url('admin/chat')}}"><i class="feather icon-message-square"></i><span class="menu-title" data-i18n="Quill Editor">Chat</span></a>
                 </li> 
 
                 <li class="nav-item"><a href="{{url('admin/category')}}"><i class="feather icon-edit"></i><span class="menu-title" data-i18n="Quill Editor">Category</span></a>
@@ -383,6 +385,7 @@
                         </div>
                         @endif
                         </section>
+                        @if(!empty($users))
                         <!-- User Chat profile right area -->
                         <div class="user-profile-sidebar">
                             <header class="user-profile-header">
@@ -391,17 +394,18 @@
                                 </span>
                                 <div class="header-profile-sidebar">
                                     <div class="avatar">
-                                        <img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="user_avatar" height="70" width="70">
+                                        <img src="{{ asset('profileimages/'.$users->image)}}" alt="user_avatar" height="70" width="70">
                                         <span class="avatar-status-busy avatar-status-lg"></span>
                                     </div>
-                                    <h4 class="chat-user-name">Felecia Rower</h4>
+                                    <h4 class="chat-user-name">{{$users->shop->shop_name}}</h4>
                                 </div>
                             </header>
                             <div class="user-profile-sidebar-area p-2">
                                 <h6>About</h6>
-                                <p>Toffee caramels jelly-o tart gummi bears cake I love ice cream lollipop. Sweet liquorice croissant candy danish dessert icing. Cake macaroon gingerbread toffee sweet.</p>
+                                <p>{{$users->shop->description}}</p>
                             </div>
                         </div>
+                        @endif
                         <!--/ User Chat profile right area -->
 
                     </div>

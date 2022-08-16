@@ -2,7 +2,7 @@
 @section('title','Create product')
 @section('css')
 
-@include('partials._form_validation-css')
+
 @endsection
 @section('main')
 <!-- BEGIN: Content-->
@@ -64,10 +64,12 @@
                                                 <tr>
                                                     <th>Sr#</th>
                                                     <th>User Name</th>
-                                                    >
+                                                    
                                                     <th>Product Name</th>
                                                     <th>Category</th>
                                                     <th>Price</th>
+                                                    <th>Description</th>
+                                                    <th>image</th>
                                                     <th>Dilevery Date</th>
                                                     
                                                     <th width="280px">Action</th>
@@ -95,9 +97,21 @@
                                                    <td></td> 
                                                 @endif
                                                 <td>{{$cate->quotation->price}}</td>
+                                                <td>{{$cate->quotation->description}}</td>
+                                                <td>  <a href="{{asset('shopdocument')}}/{{$cate->quotation->image}}" download="{{$cate->quotation->images}}">
+                                                    Document({{$cate->quotation->image}}) <i class="icon-download-alt"></i></a></td>
                                                 <td>{{$cate->quotation->date}}</td>
                                                 
-                                                <td width="20px"><a href="{{url('shop/chat/'.$user->id)}}"><i class="feather icon-message-square"></i><a></td>
+                                                <td width="20px"><a href="{{url('shop/chat/'.$user->id)}}"><i class="feather icon-message-square"></i><a>
+                                                    @if($cate->status==0)
+                                                    <span class=" useraccept" userId="{{$cate->shop_id}}" shop="{{$cate->quotation_id}}"><button type="button" class="btn btn-success">Accept</button></span>
+                                                    <span class=" userreject" shopId="{{$cate->shop_id}}" quotationid="{{$cate->quotation_id}}"><button type="button" class="btn btn-danger">Reject</button></span>
+                                                    @elseif($cate->status==1)
+                                                    <span class=" userprogress" userId="{{$cate->shop_id}}" shop="{{$cate->quotation_id}}"><button type="button" class="btn btn-success">Inprogress</button></span>
+                                                    @else
+                                                    <button type="button" class="btn btn-success">Completed</button>
+                                                    @endif
+                                                </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
@@ -105,10 +119,12 @@
                                                 <tr>
                                                     <th>Sr#</th>
                                                     <th>User Name</th>
-                                                    <th>Address</th>
+                                                   
                                                     <th>Product Name</th>
                                                     <th>Category</th>
                                                     <th>Price</th>
+                                                    <th>Description</th>
+                                                    <th>image</th>
                                                     <th>Dilevery Date</th>
                                                     
                                                     <th width="20px">Action</th>
@@ -130,16 +146,129 @@
     </div>
 </div>
 <!-- END: Content-->
-<script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
-<script>
-CKEDITOR.replace( 'summary-ckeditor' );
-</script>
+
 @endsection
 @section('js')
-<!-- BEGIN: Page Vendor JS-->
-<!-- END: Page Vendor JS-->
-    <!-- BEGIN: Page JS-->
-    @include('partials._form_validation-js')
-    <!-- END: Page JS-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{asset('app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+
+ <script>
+    $(document).ready(function () {
+        $('#datatable').DataTable();
+      
+    })
+</script>
+<script>
+$('.userreject').click(function(e){
+            e.preventDefault();
+           var user_id= $(this).attr('shopId');
+           var quotationid= $(this).attr('quotationid');
+
+            swal({
+                title: "Are you sure?",
+                text: "You want to reject this quotation!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+            .then((willDelete) => {
+                if (willDelete) {
+                      $.ajax({
+                        url:'{{URL::to('shop/reject_quotation')}}',
+                        type:'get',
+                        data:{
+                            'shopid':user_id,
+                            'quotationid':quotationid
+                        },
+                        success:function(result)
+                        {
+                        swal(result.success, {
+                         icon: "success",
+                         })
+                         .then((result) => {
+                           location.reload();
+                        });
+                        // window.reload();
+                         }
+                    });
+                        // admin/deleteuser
+                }
+            });
+        });
+
+        $('.useraccept').click(function(e){
+            e.preventDefault();
+           var user_id= $(this).attr('userId');
+           var quotationid= $(this).attr('shop');
+
+            swal({
+                title: "Are you sure?",
+                text: "You want to Accept this quotation!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+            .then((willDelete) => {
+                if (willDelete) {
+                      $.ajax({
+                        url:'{{URL::to('shop/accept_quotation')}}',
+                        type:'get',
+                        data:{
+                            'shopid':user_id,
+                            'quotationid':quotationid
+                        },
+                        success:function(result)
+                        {
+                        swal(result.success, {
+                         icon: "success",
+                         })
+                         .then((result) => {
+                           location.reload();
+                        });
+                        // window.reload();
+                         }
+                    });
+                        // admin/deleteuser
+                }
+            });
+        });
+        $('.userprogress').click(function(e){
+            e.preventDefault();
+           var user_id= $(this).attr('userId');
+           var quotationid= $(this).attr('shop');
+
+            swal({
+                title: "Are you sure?",
+                text: "Yor task is completed!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                })
+            .then((willDelete) => {
+                if (willDelete) {
+                      $.ajax({
+                        url:'{{URL::to('shop/complete_quotation')}}',
+                        type:'get',
+                        data:{
+                            'shopid':user_id,
+                            'quotationid':quotationid
+                        },
+                        success:function(result)
+                        {
+                        swal(result.success, {
+                         icon: "success",
+                         })
+                         .then((result) => {
+                           location.reload();
+                        });
+                        // window.reload();
+                         }
+                    });
+                        // admin/deleteuser
+                }
+            });
+        });
+</script>
    
 @endsection

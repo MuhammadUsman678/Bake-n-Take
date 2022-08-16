@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\quotation;
 use App\quotation_detail;
 use App\shop;
+use App\User;
+use App\notification_user;
 class HomeController extends Controller
 {
     
@@ -41,6 +43,8 @@ class HomeController extends Controller
         }else{
             $imageName=null;   
         }
+        $user=User::find(auth()->user()->id);
+        $details=$user->name."Request for quotation";
         $quotation=quotation::create([
             'user_id'=>auth()->user()->id,
             'name'=>$request->productname,
@@ -54,8 +58,22 @@ class HomeController extends Controller
             quotation_detail::create([
                 'quotation_id'=>$quotation->id,
             'shop_id'=>$request->shop[$i],
+            
             ]);
+            foreach($request->shop as $row)
+            {
+               
+                $shop=shop::whereId($row)->first();
+                $this->userNotify($shop->user_id,$details);
+            }
         }
         return back()->with('success',"Yor Quotation Send to All selcted Shops");
+    }
+    function userNotify($id,$details)
+    {
+        $notify = new notification_user();
+        $notify->user_id =$id;
+        $notify->data = $details;
+        $notify->save();
     }
 }

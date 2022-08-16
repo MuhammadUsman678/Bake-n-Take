@@ -12,6 +12,8 @@ use Image;
 use App\Category;
 use App\shop;
 use App\User;
+use App\reports;
+use App\notification_user;
 use App\Http\Resources\ProductsImagesResource;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
@@ -183,5 +185,34 @@ return redirect()->action('Shop\ProductController@index')->with('success',$reque
         $user=User::find(auth()->user()->id);
        
         return view('shop.editprofile',compact('user'));
+    }
+    public function reportbuyer(){
+        $user=User::where('role_id',2)->get();
+        return view('shop.reportbuyer',compact('user'));
+    }
+    public function postreportbuyer(Request $request){
+        reports::create([
+            'user_id'=>$request->user,
+            'description'=>$request->reason,
+        ]);
+        $details=auth()->user()->name. 'Shop Owner Request to report customer';
+        $user2=User::where('id',1)->get();
+        foreach($user2 as $row)
+        {
+            $this->userNotify($row->id,$details);
+        }
+
+        return back()->with('success','your message send to Admin');
+    }
+    public function complain(){
+        $report=reports::get();
+        return view('admin.managecomplain',compact('report'));
+    }
+    function userNotify($id,$details)
+    {
+        $notify = new notification_user();
+        $notify->user_id =$id;
+        $notify->data = $details;
+        $notify->save();
     }
 }

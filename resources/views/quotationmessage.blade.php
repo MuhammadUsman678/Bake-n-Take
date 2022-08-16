@@ -81,6 +81,7 @@
                     </div> --}}
                     <!--/ User Chat profile area -->
                     <!-- Chat Sidebar area -->
+                    @if(empty($users))
                     <div class="sidebar-content card">
                         <span class="sidebar-close-icon">
                             <i class="feather icon-x"></i>
@@ -102,9 +103,11 @@
                                 </fieldset>
                             </div>
                         </div>
+         
                         <div id="users-list" class="chat-user-list list-group position-relative">
                             <h3 class="primary p-1 mb-0">Chats</h3>
                             <ul class="chat-users-list-wrapper media-list">
+                               
                                 @foreach ($quotation as $row )
                                 @php
                                 $shop=App\shop::where('id',$row->shop_id)->first();
@@ -115,7 +118,7 @@
                                
                                 ">
                                     <div class="pr-1">
-                                        <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle" src="{{ asset('profileimages/'.$shop->image)}}" height="42" width="42" alt="No Image">
+                                        <span class="avatar m-0 avatar-md"><img class="media-object rounded-circle" src="{{ asset('profileimages/'.$shop->user->image)}}" height="42" width="42" alt="No Image">
                                             <i></i>
                                         </span>
 
@@ -139,14 +142,14 @@
                         </div>
                     </div>
                     <!--/ Chat Sidebar area -->
-
+@endif
                 </div>
             </div>
             <div class="content-right">
                 <div class="content-wrapper">
                     <div class="content-header row">
                     </div>
-                    <div class="content-body">
+                    <div class="content-body mt-5">
                         <div class="chat-overlay"></div>
                         <section class="chat-app-window">
                             @if(empty($users))
@@ -172,7 +175,7 @@
                                 <div class="user-chats" style="height:400px;overflow:scroll">
                                     <div class="chats" id="comment">
                                        @include('partials.chat')
-                                   </div>s
+                                   </div>
                             </div>
                             <div class="chat-app-form">
                                 {{-- <form class="chat-app-input d-flex" onsubmit="enter_chat();" action="javascript:void(0);">

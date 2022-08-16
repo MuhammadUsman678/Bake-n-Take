@@ -26,7 +26,9 @@ class AdminDashboard extends Controller
 
     public function dashboard()
     {
-        return view('admin.dashboard');
+        $count['pendingshop']=shop::where('status',0)->count();
+        $count['approved']=shop::where('status',1)->count();
+        return view('admin.dashboard',$count);
     }
     public function pendingapproved()
     {
