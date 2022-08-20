@@ -54,6 +54,30 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex flex-column align-items-start pb-0">
+                               
+                                <h2 class="text-bold-700 mt-1 mb-25">{{$sale}}</h2>
+                                <p class="mb-0">Total Sales</p>
+                            </div>
+                            <div class="card-content">
+                                <div id="orders-received-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="card">
+                            <div class="card-header d-flex flex-column align-items-start pb-0">
+                               
+                                <h2 class="text-bold-700 mt-1 mb-25">{{$adminamount}}</h2>
+                                <p class="mb-0">Total Admin Amount</p>
+                            </div>
+                            <div class="card-content">
+                                <div id="orders-received-chart"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
            
             </section>

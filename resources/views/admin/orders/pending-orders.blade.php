@@ -71,6 +71,7 @@
                                                     <th>Payment Method</th>
                                                     <th>Payment Status</th>
                                                     <th>Amount</th>
+                                                    <th>Admin Amount</th>
                                                     <th>Order Status</th>
                                                     <th>Action</th>
 
@@ -84,6 +85,7 @@
                                                     <td> {{ $row->payment_method }} </td>
                                                     <td> {{ $row->payment_status }} </td>
                                                     <td> {{ $row->total_amount }} </td>
+                                                    <td> {{ $row->adminamount }} </td>
                                                     <td> {{ $row->status }} </td>
                                                     <td>
                                                         <a href="{{ route('admin.order.detail',[$row->id]) }}" class="btn btn-primary btn-sm">Order Detail</a>
@@ -101,6 +103,7 @@
                                                     <th>Payment Method</th>
                                                     <th>Payment Status</th>
                                                     <th>Amount</th>
+                                                    <th>Admin Amount</th>
                                                     <th>Order Status</th>
                                                     <th>Action</th>
 

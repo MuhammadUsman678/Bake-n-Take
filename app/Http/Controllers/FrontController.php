@@ -85,6 +85,11 @@ class FrontController extends Controller
         $notify->data = $details;
         $notify->save();
     }
+    public function aboutus(){
+    
+        return view('aboutus');
+    }
+
 
     public function category($slug){
         $category=Category::where('slug',$slug)->where('status',1)->whereHas('product')->first();

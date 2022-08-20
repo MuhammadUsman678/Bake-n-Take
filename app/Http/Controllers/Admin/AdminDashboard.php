@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\shop;
+use App\order;
 use App\mail\approvedmail;
 use App\mail\rejectmail;
 
@@ -28,6 +29,8 @@ class AdminDashboard extends Controller
     {
         $count['pendingshop']=shop::where('status',0)->count();
         $count['approved']=shop::where('status',1)->count();
+        $count['sale']=order::where('payment_status','paid')->sum('total_amount');
+        $count['adminamount']=order::where('payment_status','paid')->sum('adminamount');
         return view('admin.dashboard',$count);
     }
     public function pendingapproved()

@@ -70,6 +70,7 @@
                                                     <th>Product Name</th>
                                                     <th>Shop Name</th>
                                                     <th>Ratig</th>
+                                                    <th>Comment</th>
                                                     <th>Spam</th>
                                                     <th>Status</th>
                                                     <th width="280px">Action</th>
@@ -82,6 +83,7 @@
                                                     <td> {{ $row->product->product_name }}</td>
                                                     <td> {{ $row->product->shop->shop_name }}</td>
                                                     <td> {{ $row->rating }}</td>
+                                                    <td> {{ $row->comment }}</td>
                                                     <td>  
                                                         @if($row->is_spam==1)
                                                         <span class="label label-danger"> Spam Detected </span> 
@@ -111,6 +113,7 @@
                                                     <th>Product Name</th>
                                                     <th>Shop Name</th>
                                                     <th>Ratig</th>
+                                                    <th>Comment</th>
                                                     <th>Spam</th>
                                                     <th>Status</th>
                                                     <th width="280px">Action</th>

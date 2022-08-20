@@ -64,6 +64,16 @@
                                                 <div class="col-12">
                                                     <div class="form-group row">
                                                         <div class="col-md-4">
+                                                            <span>Image</span>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                    <input type="file" class="dropify" name="image">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
                                                             <span>Reason</span>
                                                         </div>
                                                         <div class="col-md-8">

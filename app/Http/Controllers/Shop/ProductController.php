@@ -27,9 +27,10 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         
-        
+       $user=User::find(auth()->user()->id);
+       $shop=shop::where('user_id',$user->id)->first(); 
         if ($request->ajax()) {
-            $data = ShopProduct::with('category')->latest()->get();
+            $data = ShopProduct::with('category')->where('shop_id',$shop->id)->latest()->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('category', function($row){
@@ -187,13 +188,23 @@ return redirect()->action('Shop\ProductController@index')->with('success',$reque
         return view('shop.editprofile',compact('user'));
     }
     public function reportbuyer(){
-        $user=User::where('role_id',2)->get();
+        $user=User::where('role_id',2)->where('status',0)->get();
         return view('shop.reportbuyer',compact('user'));
     }
     public function postreportbuyer(Request $request){
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension(); // getting image extension
+            $filename = time() . '.' . $extension;
+            $file->move('profileimages', $filename);
+         
+            $image = $filename;
+         
+         }
         reports::create([
             'user_id'=>$request->user,
             'description'=>$request->reason,
+            'image'=>$filename
         ]);
         $details=auth()->user()->name. 'Shop Owner Request to report customer';
         $user2=User::where('id',1)->get();
@@ -215,4 +226,17 @@ return redirect()->action('Shop\ProductController@index')->with('success',$reque
         $notify->data = $details;
         $notify->save();
     }
+    public function status_active(Request $request)
+    {
+        $user=User::findorfail($request->user_id);
+
+$user->update([
+    'status'=>0
+]);
+  
+ reports::where('user_id',$user->id)->delete();  
+
+    return response()->json(['success'=>'User Ban Successfully']);
+  
+   }
 }

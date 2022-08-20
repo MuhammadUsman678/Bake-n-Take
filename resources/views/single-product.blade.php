@@ -34,7 +34,7 @@
         <div class="col-lg-6">
           <div class="sb-gallery-item sb-gallery-square sb-mb-90">
             <img src="{{ $product->getFirstMediaurl('images') }}" alt="photo">
-            <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> Vegan</div>
+            <div class="sb-badge sb-vegan"><i class="fas fa-leaf"></i> {{$product->product_name}}</div>
             <!-- button -->
             <a data-fancybox="menu" data-no-swup href="{{ $product->getFirstMediaurl('images') }}" class="sb-btn sb-btn-2 sb-btn-icon sb-btn-gray sb-zoom">
               <span class="sb-icon">
@@ -158,7 +158,7 @@
                   <p class="sb-text sb-mb-15"> {{ $row->comment }} </p>
                   <div class="sb-author-frame">
                     <div class="sb-avatar-frame">
-                      <img src="{{ asset('front/assets/img/faces/3.jpg') }}" alt="Guest">
+                      <img src="{{ asset('profileimages/'. $row->user->image) }}" alt="Guest">
                     </div>
                     <h4>{{ $row->user->name }}</h4>
                   </div>
@@ -180,20 +180,7 @@
       <div></div>
     </div>
     <div class="container">
-      <div class="sb-group-title sb-mb-30">
-        <div class="sb-left sb-mb-30">
-          <h2 class="sb-cate-title sb-mb-30">It is usually bought together with this product</h2>
-          <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
-        </div>
-        <div class="sb-right sb-mb-30">
-          <!-- slider navigation -->
-          <div class="sb-slider-nav">
-            <div class="sb-prev-btn sb-short-menu-prev"><i class="fas fa-arrow-left"></i></div>
-            <div class="sb-next-btn sb-short-menu-next"><i class="fas fa-arrow-right"></i></div>
-          </div>
-          <!-- slider navigation end -->
-        </div>
-      </div>
+
       <div class="swiper-container sb-short-menu-slider-4i">
         <div class="swiper-wrapper">
             @foreach ($realtedProducts as $key => $product)    
@@ -208,7 +195,7 @@
                         <div class="sb-price"><sub>Rs.</sub> {{ $product->price }}</div>
                     </div>
                     <div class="sb-description">
-                        <p class="sb-text sb-mb-15">{{ \Str::limit($product->product_description,67,'...') }}</p>
+                        <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p>
                         <ul class="sb-stars">
                             <li><i class="fas fa-star"></i></li>
                             <li><i class="fas fa-star"></i></li>

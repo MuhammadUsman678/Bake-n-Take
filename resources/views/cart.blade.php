@@ -12,7 +12,7 @@
               <h1 class="sb-h2">Your order.</h1>
               <ul class="sb-breadcrumbs">
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ url('shop') }}">Shop</a></li>
+                <li><a href="{{ url('all_shop') }}">Shop</a></li>
                 <li><a href="#.">Cart</a></li>
               </ul>
             </div>

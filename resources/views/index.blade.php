@@ -35,7 +35,7 @@
                         </a>
                         <!-- button end -->
                         <!-- button -->
-                        <a href="{{url('#team')}}" class="sb-btn sb-btn-2 sb-btn-gray">
+                        <a href="{{ url('/aboutus') }}" class="sb-btn sb-btn-2 sb-btn-gray" data-no-swup="">
                             <span class="sb-icon">
                                 <img src="{{asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                             </span>
@@ -127,7 +127,7 @@
             </div>
             <div class="sb-right sb-mb-30">
                 <!-- button -->
-                <a href="#" class="sb-btn sb-m-0">
+                <a href="{{url('products')}}" class="sb-btn sb-m-0" data-no-swup="">
                     <span class="sb-icon">
                         <img src="{{asset('front/assets/img/ui/icons/arrow.svg')}}" alt="icon">
                     </span>
@@ -400,7 +400,7 @@
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
                 <h2 class="sb-mb-30">Our <span>Team</span> </h2>
-                <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
+                <p class="sb-text">We Provide best Services.</p>
             </div>
             <div class="sb-right sb-mb-30">
                 <!-- button -->

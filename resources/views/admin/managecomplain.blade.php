@@ -19,12 +19,12 @@
             <div class="content-header-left col-md-9 col-12 mb-2">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Approved Shops</h2>
+                        <h2 class="content-header-title float-left mb-0">Manage Complains</h2>
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active">Approved Shops
+                                <li class="breadcrumb-item active">Manage Complains
                                 </li>
                             </ol>
                         </div>
@@ -63,6 +63,7 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>user Name</th>
+                                                    <th>Image</th>
                                                     <th>Complain</th>
                                                    
                                                     <th>Action</th>
@@ -80,10 +81,11 @@
                                                     @endphp
                                                     <td>{{$no++}}</td>
                                                     <td>{{$user->name}}</td>
+                                                    <td><img src="{{url('profileimages/'.$user->image)}}" style="width:100px;height:100px;"></td>
                                                     <td>{{$reports->description}}</td>
                                                     <td >
                                                         
-                                                        <span class=" userDeleteBtn" userId="{{$reports->user_id}}"><button type="button" class="btn btn-danger">Report</button></span>
+                                                        <span class=" userDeleteBtn" userId="{{$reports->user_id}}"><button type="button" class="btn btn-danger">Ban</button></span>
                                                     </td>
                                                 </tr>
                                              @endforeach      
@@ -132,7 +134,7 @@
             .then((willDelete) => {
                 if (willDelete) {
                       $.ajax({
-                        url:'{{URL::to('admin/delete_shop')}}',
+                        url:'{{URL::to('admin/report_buyer')}}',
                         type:'get',
                         data:{
                             'user_id':user_id

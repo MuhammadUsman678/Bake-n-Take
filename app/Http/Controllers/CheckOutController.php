@@ -56,12 +56,15 @@ class CheckOutController extends Controller
             $total_price +=$cart->quantity*$cart->product->price;
         }
         $price=$total_price;
+        $adminamount=$price*5/100;
+        // dd($adminamount);
 		
         $order_number=(string) Str::uuid();
 
 		$values = array(
 			'sub_total'   => $price,
 			'total_amount' => $price,
+            'adminamount' => $adminamount,
 			'description' => 'Stripe',
 			'status' 	  => 'new',
             'delivery_date'=>$request->delivery_date?? now(),

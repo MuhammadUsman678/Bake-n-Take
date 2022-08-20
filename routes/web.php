@@ -35,6 +35,7 @@ Route::post('files/remove', 'FileController@remvoeFile')->name('file.remove');
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/all_shop', 'FrontController@allshop');
+Route::get('/aboutus', 'FrontController@aboutus');
 Route::get('/shop_product/{id}', 'FrontController@shopproduct');
 Route::get('shop/register','FrontController@shopregister');
 Route::get('category/{slug}','FrontController@category')->name('front.category');
@@ -142,6 +143,7 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
 
     Route::get('/orders/paid/{id}','Admin\OrderController@paid')->name('order.paid');
     Route::get('/managecomplain','Shop\ProductController@complain');
+    Route::get('/report_buyer','Shop\ProductController@status_active');
 
 });
  //end Admin Side   
