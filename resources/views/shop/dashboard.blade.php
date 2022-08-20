@@ -45,8 +45,8 @@
                                         <i class="feather icon-package text-warning font-medium-5"></i>
                                     </div>
                                 </div>
-                                <h2 class="text-bold-700 mt-1 mb-25">6</h2>
-                                <p class="mb-0">Total Rfqs</p>
+                                <h2 class="text-bold-700 mt-1 mb-25">{{$rfq}}</h2>
+                                <p class="mb-0">Complete Rfqs</p>
                             </div>
                             <div class="card-content">
                                 <div id="orders-received-chart"></div>
