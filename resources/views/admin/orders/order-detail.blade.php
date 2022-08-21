@@ -121,6 +121,7 @@
                                                     <th>Shop Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
+                                                    <th>Product Status</th>
                                                     <th>Amount</th>
                                                 </tr>
                                             </thead>
@@ -131,8 +132,9 @@
                                                     <td> {{ $row->productDetails->product_name }} </td>
                                                     <td> {{ $row->productDetails->shop->shop_name }} </td>
                                                     <td> {{ $row->quantity }} </td>
-                                                    <td> {{ $row->productDetails->price }} </td>
-                                                    <td> {{ $row->quantity * $row->productDetails->price }} </td>
+                                                    <td> {{ $row->price }} </td>
+                                                    <td> <span class="badge badge-info text-capitalize">  {{ $row->status }} </span> </td>
+                                                    <td> {{ $row->quantity * $row->price }} </td>
                                                 </tr>
                                                 @empty
                                                     

@@ -67,7 +67,7 @@ $('#search').on('keyup', function () {
                 } else {
                     html += ' <div class="row mb-1">\n' +
                         '      <div class="col-12">\n' +
-                        '                                                  <a onclick="clickRedirect()" class="product-search-redirect" href="' + item.link + '">\n' +
+                        '                                                  <a onclick="clickRedirect()" data-no-swup="" class="product-search-redirect" href="' + item.link + '">\n' +
                         '                                                      <div class="card">\n' +
                         '                                                          <div class="card-horizontal ml-2 mt-2">\n' +
                         '\n' +

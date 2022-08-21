@@ -9,7 +9,8 @@ use App\Order;
 class OrderController extends Controller
 {
     public function Orders(){
-        $orders=Order::withCount('shopProducts')->has('shopProducts')->get();
+        $orders=Order::with('shopProducts')->has('shopProducts')->get();
+        // return $orders;
         return view('shop.orders.new-orders',compact('orders'));
     }
 

@@ -51,17 +51,22 @@
               <h3>{{ $product->product_name }}</h3>
               <div class="sb-price"><sub>Rs</sub> {{ $product->price }}</div>
             </div>
-            @php
-              $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
-            @endphp
-            <ul class="sb-stars sb-mb-25">
-              <li><i class="fas fa-star {{ $avgRating >= 1 ?'' : 'no-start' }}" ></i></li>
-              <li><i class="fas fa-star {{ $avgRating >= 2 ?'' : 'no-start' }}"></i></li>
-              <li><i class="fas fa-star {{ $avgRating >= 3 ?'' : 'no-start' }}"></i></li>
-              <li><i class="fas fa-star {{ $avgRating >= 4 ?'' : 'no-start' }}"></i></li>
-              <li><i class="fas fa-star {{ $avgRating == 5 ?'' : 'no-start' }}"></i></li>
-              <li><span>({{ $product->rating->count()}} ratings)</span></li>
-            </ul>
+            @if($product->rating->count() > 0)
+              @php
+               $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
+              @endphp
+              <ul class="sb-stars sb-mb-25">
+                <li><i class="fas fa-star {{ $avgRating >= 1 ?'' : 'no-start' }}" ></i></li>
+                <li><i class="fas fa-star {{ $avgRating >= 2 ?'' : 'no-start' }}"></i></li>
+                <li><i class="fas fa-star {{ $avgRating >= 3 ?'' : 'no-start' }}"></i></li>
+                <li><i class="fas fa-star {{ $avgRating >= 4 ?'' : 'no-start' }}"></i></li>
+                <li><i class="fas fa-star {{ $avgRating == 5 ?'' : 'no-start' }}"></i></li>
+                <li><span>({{ $product->rating->count()}} ratings)</span></li>
+              </ul>
+            @else
+             No Rated Yet  
+            @endif                
+            
             {{-- <p class="sb-text sb-mb-30"><span>tomatoes</span>, <span>nori</span>, <span>feta cheese</span>, <span>mushrooms</span>, <span>rice noodles</span>, <span>corn</span>, <span>shrimp</span>.</p> --}}
             <div class="row">
               <div class="col-lg-4">
@@ -142,18 +147,25 @@
         <div class="sb-grid-item sb-reviews-tab" style="position: absolute">
           <div class="sb-tab">
             <div class="row">
-             @foreach ($product->rating as $row)
+             @forelse ($product->rating as $row)
               <div class="col-lg-6">
                 <div class="sb-review-card sb-mb-60">
                   <div class="sb-review-header sb-mb-15">
                     {{-- <h4 class="sb-mb-10">Very tasty</h4> --}}
-                    <ul class="sb-stars">
-                      <li><i class="fas fa-star {{ $row->rating >= 1 ?'' : 'no-start' }}" ></i></li>
-                      <li><i class="fas fa-star {{ $row->rating >= 2 ?'' : 'no-start' }}"></i></li>
-                      <li><i class="fas fa-star {{ $row->rating >= 3 ?'' : 'no-start' }}"></i></li>
-                      <li><i class="fas fa-star {{ $row->rating >= 4 ?'' : 'no-start' }}"></i></li>
-                      <li><i class="fas fa-star {{ $row->rating == 5 ?'' : 'no-start' }}"></i></li>
-                    </ul>
+                    @if($product->rating->count() > 0)
+                            @php
+                            $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
+                            @endphp
+                      <ul class="sb-stars">
+                        <li><i class="fas fa-star {{ $avgRating >= 1 ?'' : 'no-start' }}" ></i></li>
+                        <li><i class="fas fa-star {{ $avgRating >= 2 ?'' : 'no-start' }}"></i></li>
+                        <li><i class="fas fa-star {{ $avgRating >= 3 ?'' : 'no-start' }}"></i></li>
+                        <li><i class="fas fa-star {{ $avgRating >= 4 ?'' : 'no-start' }}"></i></li>
+                        <li><i class="fas fa-star {{ $avgRating == 5 ?'' : 'no-start' }}"></i></li>
+                      </ul>
+                    @else
+                      Not rated yet.
+                    @endif
                   </div>
                   <p class="sb-text sb-mb-15"> {{ $row->comment }} </p>
                   <div class="sb-author-frame">
@@ -164,8 +176,9 @@
                   </div>
                 </div>
               </div>
-              
-             @endforeach
+             @empty
+              <div class="sb-text"> Not Rated Yet </div>
+             @endforelse
             </div>
           </div>
         </div>

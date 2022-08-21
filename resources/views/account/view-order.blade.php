@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Checkout')
+@section('title','View Order')
 @section('content')
   <!-- banner -->
   <section class="sb-banner sb-banner-xs sb-banner-color">
@@ -9,7 +9,7 @@
           <!-- main title -->
           <div class="sb-main-title-frame">
             <div class="sb-main-title">
-              <h1 class="sb-h2">Checkout.</h1>
+              <h1 class="sb-h2">Order.</h1>
               <ul class="sb-breadcrumbs">
                 <li><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{ route('front.orders') }}">Orders</a></li>
@@ -118,7 +118,8 @@
                     @if($order->status==='delivered')
                       <div class="col-lg-3 text-md-right">
                         <div class="sb-price-2">
-                          <a data-no-swup href="{{ route('front.product.review',[base64_encode($order->id),base64_encode($row['product_id'])]) }}" class="btn sb-btn  ">Rating</a>
+                         
+                          <a data-no-swup href="{{ route('front.product.review',[base64_encode($row['product_id']),base64_encode($order->id)]) }}" class="btn sb-btn  ">Rating</a>
                         </div>
                       </div>
                     @endif

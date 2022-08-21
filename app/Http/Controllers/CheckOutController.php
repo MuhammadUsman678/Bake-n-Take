@@ -53,6 +53,7 @@ class CheckOutController extends Controller
         foreach($cartItems as $key=>$cart){
             $pivot_data[$key]['quantity']=$cart->quantity;
             $pivot_data[$key]['product_id']=$cart->product->id;
+            $pivot_data[$key]['price']=$cart->product->price;
             $total_price +=$cart->quantity*$cart->product->price;
         }
         $price=$total_price;

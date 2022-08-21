@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Checkout')
+@section('title','Product Review')
 @section('content')
   <!-- banner -->
   <section class="sb-banner sb-banner-xs sb-banner-color">

@@ -45,7 +45,7 @@
                 </form> --}}
                  <form action="#" style="margin:20px">
                                 <input class="form-control" id="search" type="text" name="search"
-                                       placeholder="Search for Products">
+                                       placeholder="Search for Products" autofocus>
                                 {{-- <button type="submit"><i class="fa fa-search"></i></button> --}}
 
                                 <!-- Search bar END - -->

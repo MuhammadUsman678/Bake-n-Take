@@ -69,11 +69,20 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                {{-- @php
+                                                    $orders=$orders->first();
+                                                    // dd($orders->shopProducts);
+                                                    dd();
+                                                @endphp --}}
                                                 @forelse ($orders as $key=>$row)
                                                 <tr>
                                                     <td> {{ ++$key }} </td>
                                                     <td> {{ $row->order_number }} </td>
-                                                    <td> {{ $row->shop_products_count }} </td>
+                                                    <td> {{ $row->shopProducts->reject(function($q){
+                                                             return $q->productDetails->shop_id != auth()->user()->shop->id;
+                                                           })->count()
+                                                         }} 
+                                                    </td>
                                                     <td> {{ date('Y-F-d H:i:A',strtotime($row->delivery_date)) }} </td>
                                                     <td>
                                                         <a href="{{ route('shop.order.detail',[$row->id]) }}" class="btn btn-primary btn-sm">Order Detail</a>
