@@ -174,7 +174,7 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
    
 Route::get('reject_quotation','Shop\RfqController@reject');
 Route::get('accept_quotation','Shop\RfqController@accept');
-Route::get('complete_quotation','Shop\RfqController@complete');
+Route::post('complete_quotation','Shop\RfqController@complete');
 //Rfq
 Route::get('/rfq', 'Shop\RfqController@index');
     // Shop Products Images

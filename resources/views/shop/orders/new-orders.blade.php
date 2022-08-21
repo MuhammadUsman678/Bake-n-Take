@@ -75,13 +75,13 @@
                                                     dd();
                                                 @endphp --}}
                                                 @forelse ($orders as $key=>$row)
+                                                @if($count=$row->shopProducts->reject(function($q){
+                                                    return $q->productDetails->shop_id != auth()->user()->shop->id;
+                                                  })->count() > 0)
                                                 <tr>
                                                     <td> {{ ++$key }} </td>
                                                     <td> {{ $row->order_number }} </td>
-                                                    <td> {{ $row->shopProducts->reject(function($q){
-                                                             return $q->productDetails->shop_id != auth()->user()->shop->id;
-                                                           })->count()
-                                                         }} 
+                                                    <td> {{ $count }} 
                                                     </td>
                                                     <td> {{ date('Y-F-d H:i:A',strtotime($row->delivery_date)) }} </td>
                                                     <td>
@@ -89,6 +89,7 @@
                                                         <a href="{{ url('shop/chat',[$row->user_id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-message-square"></i></a>
                                                     </td>
                                                 </tr>
+                                                @endif
                                                 @empty
                                                     
                                                 @endforelse

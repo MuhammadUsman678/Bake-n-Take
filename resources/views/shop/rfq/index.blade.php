@@ -124,13 +124,15 @@
                                                             <span aria-hidden="true">&times;</span>
                                                           </button>
                                                         </div>
-                                            <form action="{{url('complete_quotation')}}" method="post">
+                                            <form action="{{url('shop/complete_quotation')}}" method="post">
+                                                @csrf
                                                         <div class="modal-body">
                                                         <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-10">
                                                         <label>Select Product</label>
-                                                        <select class="form-control sproducts" quotationid="{{$cate->quotation_id}}"  id="js-example-basic-single" name="product" multiple>
+                                                        <select class="form-control sproducts" quotationid="{{$cate->quotation_id}}"   name="product">
+                                                            <option value="" selected disabled>Select Option</option>
                                                             @foreach($product as $products)
                                                             <option value="{{$products->id}}">{{$products->product_name}}</option>
                                                             @endforeach
@@ -151,18 +153,17 @@
                                                         <input type="hidden" value="{{$user->id}}" class="form-control" name="userid">
                                                     <input type="text" value="{{$user->name}}" class="form-control" name="username">
                                                     </div>
-                                                    <div class="col-md-12 mt-5" >
+                                                    <div class="col-md-12 mt-5 d-none" >
                                                         <label>Products</label>
                                                         <div class="row" id="selectedProducts{{ $cate->quotation->id }}"></div>
                                                     </div>
                                                     </div>
                                                         </div>
                                                       </div>
+                                                      <div class="modal-footer">
+                                                        <button type="submit" disabled="disabled" class="btn btn-primary disabled completeButton">Complete Quotation</button>
+                                                      </div>
                                                   </form>
-                                                        <div class="modal-footer">
-                                                       
-                                                          <button type="submit" class="btn btn-primary">Complete Quotation</button>
-                                                        </div>
                                                       </div>
                                                     </div>
                                                   </div>
@@ -222,25 +223,36 @@
 <script>
     const select = document.querySelector('.sproducts')
     select.onchange = (e) => {
-    const selectedVals = [...e.target.selectedOptions].map(o => parseInt(o.value))
-      var quotationid= e.target.getAttribute('quotationid');
-    //   console.log(selectedVals);
-      
-      var products=@json($product);
-    //   console.log(products);
-      var html ='';
-       products.forEach(element => {
-            if(selectedVals.indexOf(element.id) != -1){
-                html+=`
-                    <div class="col-md-6">${element.product_name}</div>
-                    <div class="col-md-6"> <input type="number" name="product_id" class="form-control" value="${element.price}" /></div>
-                    `
-            }
-        });
-        var element=document.querySelector('#selectedProducts'+quotationid);
-        element.innerHTML = html
-    //   var html=``
+            if(e.target.value ==''){
+                var element = document.querySelector('.completeButton');
+                element.classList.add('disabled');
+                element.setAttribute('disabled', 'disabled');
+            }else{
+                var element = document.querySelector('.completeButton');
+                element.classList.remove('disabled');
+                element.removeAttribute('disabled');
+            };
     }
+    // select.onchange = (e) => {
+    // const selectedVals = [...e.target.selectedOptions].map(o => parseInt(o.value))
+    //   var quotationid= e.target.getAttribute('quotationid');
+    // //   console.log(selectedVals);
+      
+    //   var products=@json($product);
+    // //   console.log(products);
+    //   var html ='';
+    //    products.forEach(element => {
+    //         if(selectedVals.indexOf(element.id) != -1){
+    //             html+=`
+    //                 <div class="col-md-6">${element.product_name}</div>
+    //                 <div class="col-md-6"> <input type="number" name="product_id" class="form-control" value="${element.price}" /></div>
+    //                 `
+    //         }
+    //     });
+    //     var element=document.querySelector('#selectedProducts'+quotationid);
+    //     element.innerHTML = html
+    // //   var html=``
+    // }
     
 $('.userreject').click(function(e){
             e.preventDefault();
