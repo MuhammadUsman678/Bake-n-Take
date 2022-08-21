@@ -326,6 +326,7 @@
             e.preventDefault();
             $method=$('input[name="method"]:checked').val();
             console.log("method",$method);
+            // return;
             if($method==='stripe'){
               $('#StripePayment').modal({backdrop: 'static', keyboard: false})  
             }else{

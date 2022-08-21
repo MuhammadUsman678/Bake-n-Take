@@ -110,17 +110,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse ($order->shopProducts as $key=>$row)
+                                                @php
+                                                    $products=$order->shopProducts->reject(function($q){
+                                                             return $q->productDetails->shop_id != auth()->user()->shop->id;
+                                                           })
+                                                @endphp
+                                                @forelse ($products as $key=>$row)
                                                 <tr>
                                                     <td> {{ ++$key }} </td>
                                                     <td> {{ $row->productDetails->product_name }} </td>
                                                     <td> {{ $row->productDetails->shop->shop_name }} </td>
                                                     <td> {{ $row->quantity }} </td>
-                                                    <td> {{ $row->productDetails->price }} </td>
+                                                    <td> {{ $row->price }} </td>
                                                     @if($order->shopProducts->first()->status == 'packed')
                                                      <td>{{ $row->status_change_date }}</td>
                                                     @endif
-                                                    <td> {{ $row->quantity * $row->productDetails->price }} </td>
+                                                    <td> {{ $row->quantity * $row->price }} </td>
                                                 </tr>
                                                 @empty
                                                     
