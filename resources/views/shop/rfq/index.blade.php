@@ -107,12 +107,65 @@
                                                     <span class=" useraccept" userId="{{$cate->shop_id}}" shop="{{$cate->quotation_id}}"><button type="button" class="btn btn-success">Accept</button></span>
                                                     <span class=" userreject" shopId="{{$cate->shop_id}}" quotationid="{{$cate->quotation_id}}"><button type="button" class="btn btn-danger">Reject</button></span>
                                                     @elseif($cate->status==1)
-                                                    <span class=" userprogress" userId="{{$cate->shop_id}}" shop="{{$cate->quotation_id}}"><button type="button" class="btn btn-success">Inprogress</button></span>
+                                                   <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Inprogress</button></span>
                                                     @else
-                                                    <button type="button" class="btn btn-success">Completed</button>
+                                                    <button type="button" class="btn btn-success" >Completed</button>
                                                     @endif
                                                 </td>
                                                 </tr>
+                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                      <div class="modal-content">
+                                                        <div class="modal-header">
+                                                          <h5 class="modal-title" id="exampleModalLongTitle">Order Detail</h5>
+
+
+                                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                          </button>
+                                                        </div>
+                                        <form action="{{url('complete_quotation')}}" method="post">
+                                                        <div class="modal-body">
+                                                        <div class="col-md-12">
+                                                    <div class="row">
+                                                        <div class="col-md-10">
+                                                        <label>Select Product</label>
+                                                        <select class="form-control" name="product">
+                                                            <option selected disabled>Select Product</option>
+                                                            @foreach($product as $products)
+                                                            <option value="{{$products->id}}">{{$products->product_name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label></label>
+                                                      <a href="{{url('shop/product/create')}}"> <button type="button" class="btn btn-primary ">+</button></a>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label>price</label>
+                                                    <input type="number" value="{{$cate->quotation->price}}" class="form-control" name="price">
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <label>User Name</label>
+                                                        <input type="hidden" value="{{$cate->shop_id}}" class="form-control" name="user_id">
+                                                        <input type="hidden" value="{{$cate->quotation_id}}" class="form-control" name="quotationid">
+                                                        <input type="hidden" value="{{$user->id}}" class="form-control" name="userid">
+                                                    <input type="text" value="{{$user->name}}" class="form-control" name="username">
+                                                    </div>
+                                                    </div>
+                                                        </div>
+                                                      </div>
+                                        </form>
+                                                        <div class="modal-footer">
+                                                       
+                                                          <button type="submit" class="btn btn-primary">Complete Quotation</button>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+
+                                                  
                                                 @endforeach
                                             </tbody>
                                             <tfoot>
@@ -233,42 +286,42 @@ $('.userreject').click(function(e){
                 }
             });
         });
-        $('.userprogress').click(function(e){
-            e.preventDefault();
-           var user_id= $(this).attr('userId');
-           var quotationid= $(this).attr('shop');
+        // $('.userprogress').click(function(e){
+        //     e.preventDefault();
+        //    var user_id= $(this).attr('userId');
+        //    var quotationid= $(this).attr('shop');
 
-            swal({
-                title: "Are you sure?",
-                text: "Yor task is completed!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-            .then((willDelete) => {
-                if (willDelete) {
-                      $.ajax({
-                        url:'{{URL::to('shop/complete_quotation')}}',
-                        type:'get',
-                        data:{
-                            'shopid':user_id,
-                            'quotationid':quotationid
-                        },
-                        success:function(result)
-                        {
-                        swal(result.success, {
-                         icon: "success",
-                         })
-                         .then((result) => {
-                           location.reload();
-                        });
-                        // window.reload();
-                         }
-                    });
-                        // admin/deleteuser
-                }
-            });
-        });
+        //     swal({
+        //         title: "Are you sure?",
+        //         text: "Yor task is completed!",
+        //         icon: "warning",
+        //         buttons: true,
+        //         dangerMode: true,
+        //         })
+        //     .then((willDelete) => {
+        //         if (willDelete) {
+        //               $.ajax({
+        //                 url:'{{URL::to('shop/complete_quotation')}}',
+        //                 type:'get',
+        //                 data:{
+        //                     'shopid':user_id,
+        //                     'quotationid':quotationid
+        //                 },
+        //                 success:function(result)
+        //                 {
+        //                 swal(result.success, {
+        //                  icon: "success",
+        //                  })
+        //                  .then((result) => {
+        //                    location.reload();
+        //                 });
+        //                 // window.reload();
+        //                  }
+        //             });
+        //                 // admin/deleteuser
+        //         }
+        //     });
+        // });
 </script>
    
 @endsection

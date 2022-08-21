@@ -29,6 +29,7 @@ class ProductController extends Controller
         
        $user=User::find(auth()->user()->id);
        $shop=shop::where('user_id',$user->id)->first(); 
+       
         if ($request->ajax()) {
             $data = ShopProduct::with('category')->where('shop_id',$shop->id)->latest()->get();
             return Datatables::of($data)
