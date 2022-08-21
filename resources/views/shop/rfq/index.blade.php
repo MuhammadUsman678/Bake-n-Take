@@ -2,7 +2,7 @@
 @section('title','Create product')
 @section('css')
 
-
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 @section('main')
 <!-- BEGIN: Content-->
@@ -114,7 +114,7 @@
                                                 </td>
                                                 </tr>
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-dialog  modal-lg" role="document">
                                                       <div class="modal-content">
                                                         <div class="modal-header">
                                                           <h5 class="modal-title" id="exampleModalLongTitle">Order Detail</h5>
@@ -124,14 +124,13 @@
                                                             <span aria-hidden="true">&times;</span>
                                                           </button>
                                                         </div>
-                                        <form action="{{url('complete_quotation')}}" method="post">
+                                            <form action="{{url('complete_quotation')}}" method="post">
                                                         <div class="modal-body">
                                                         <div class="col-md-12">
                                                     <div class="row">
                                                         <div class="col-md-10">
                                                         <label>Select Product</label>
-                                                        <select class="form-control" name="product">
-                                                            <option selected disabled>Select Product</option>
+                                                        <select class="form-control sproducts" quotationid="{{$cate->quotation_id}}"  id="js-example-basic-single" name="product" multiple>
                                                             @foreach($product as $products)
                                                             <option value="{{$products->id}}">{{$products->product_name}}</option>
                                                             @endforeach
@@ -143,7 +142,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label>price</label>
-                                                    <input type="number" value="{{$cate->quotation->price}}" class="form-control" name="price">
+                                                    <input readonly type="number" value="{{$cate->quotation->price}}" class="form-control" name="price">
                                                     </div>
                                                     <div class="col-md-12">
                                                         <label>User Name</label>
@@ -152,10 +151,14 @@
                                                         <input type="hidden" value="{{$user->id}}" class="form-control" name="userid">
                                                     <input type="text" value="{{$user->name}}" class="form-control" name="username">
                                                     </div>
+                                                    <div class="col-md-12 mt-5" >
+                                                        <label>Products</label>
+                                                        <div class="row" id="selectedProducts{{ $cate->quotation->id }}"></div>
+                                                    </div>
                                                     </div>
                                                         </div>
                                                       </div>
-                                        </form>
+                                                  </form>
                                                         <div class="modal-footer">
                                                        
                                                           <button type="submit" class="btn btn-primary">Complete Quotation</button>
@@ -202,17 +205,43 @@
 
 @endsection
 @section('js')
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="{{asset('app-assets/js/scripts/ui/data-list-view.js')}}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
  <script>
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2();
+    });
     $(document).ready(function () {
         $('#datatable').DataTable();
       
     })
 </script>
+
 <script>
+    const select = document.querySelector('.sproducts')
+    select.onchange = (e) => {
+    const selectedVals = [...e.target.selectedOptions].map(o => parseInt(o.value))
+      var quotationid= e.target.getAttribute('quotationid');
+    //   console.log(selectedVals);
+      
+      var products=@json($product);
+    //   console.log(products);
+      var html ='';
+       products.forEach(element => {
+            if(selectedVals.indexOf(element.id) != -1){
+                html+=`
+                    <div class="col-md-6">${element.product_name}</div>
+                    <div class="col-md-6"> <input type="number" name="product_id" class="form-control" value="${element.price}" /></div>
+                    `
+            }
+        });
+        var element=document.querySelector('#selectedProducts'+quotationid);
+        element.innerHTML = html
+    //   var html=``
+    }
+    
 $('.userreject').click(function(e){
             e.preventDefault();
            var user_id= $(this).attr('shopId');

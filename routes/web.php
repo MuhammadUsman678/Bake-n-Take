@@ -172,9 +172,9 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
 
     Route::get('/orders/changeStatus/{id}/{status}','Shop\OrderController@changeStatus')->name('order.changeStatus');
    
-Route::get('reject_quotation','shop\RfqController@reject');
-Route::get('accept_quotation','shop\RfqController@accept');
-Route::get('complete_quotation','shop\RfqController@complete');
+Route::get('reject_quotation','Shop\RfqController@reject');
+Route::get('accept_quotation','Shop\RfqController@accept');
+Route::get('complete_quotation','Shop\RfqController@complete');
 //Rfq
 Route::get('/rfq', 'Shop\RfqController@index');
     // Shop Products Images
