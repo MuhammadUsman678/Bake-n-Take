@@ -14,9 +14,9 @@
             <div class="sb-main-title">
               <h1 class="sb-h2">Online shop</h1>
               <ul class="sb-breadcrumbs">
-                <li><a href="home-1.html">Home</a></li>
-                <li><a href="shop-1.html">Shop</a></li>
-                <li><a href="#.">Product</a></li>
+                <li><a href="{{url('/')}}">Home</a></li>
+              
+                <li><a href="">Product</a></li>
               </ul>
             </div>
           </div>
@@ -74,7 +74,7 @@
                   <div class="sb-number">01</div>
                   <div class="sb-feature-text">
                     <h4 class="sb-mb-15">Add to the cart and place an order</h4>
-                    <p class="sb-text sb-text-sm">Porro comirton pera nemo veniam</p>
+                   
                   </div>
                 </div>
               </div>
@@ -83,7 +83,7 @@
                   <div class="sb-number">02</div>
                   <div class="sb-feature-text">
                     <h4 class="sb-mb-15">Enter your phone number and address</h4>
-                    <p class="sb-text sb-text-sm">Eligendi adipisci numquam.</p>
+                  
                   </div>
                 </div>
               </div>
@@ -92,7 +92,7 @@
                   <div class="sb-number">03</div>
                   <div class="sb-feature-text">
                     <h4 class="sb-mb-15">Enjoy your favorite food at home!</h4>
-                    <p class="sb-text sb-text-sm">Nnecessitatibus praesentium</p>
+                    
                   </div>
                 </div>
               </div>
