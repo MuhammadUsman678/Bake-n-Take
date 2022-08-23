@@ -80,7 +80,9 @@
                                         <td>
                                             <a data-no-swup="" href="{{url('quotation/message/'.$order->id)}}" class="btn-small d-block" style="color: #f5c332"><i class="fas fa-comment"></i></a>
                                         
-                                        
+                                            @if($order->status==2)
+                                            <a href="{{url('view-order/'.$order->ordernumber)}}" class="btn-small d-block" style="color: #f5c332">View</a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endif

@@ -75,13 +75,15 @@
                                                     dd();
                                                 @endphp --}}
                                                 @forelse ($orders as $key=>$row)
-                                                @if($count=$row->shopProducts->reject(function($q){
+                                                @if($row->products->reject(function($q){
                                                     return $q->productDetails->shop_id != auth()->user()->shop->id;
                                                   })->count() > 0)
                                                 <tr>
                                                     <td> {{ ++$key }} </td>
                                                     <td> {{ $row->order_number }} </td>
-                                                    <td> {{ $count }} 
+                                                    <td> {{ $row->products->reject(function($q){
+                                                        return $q->productDetails->shop_id != auth()->user()->shop->id;
+                                                      })->count() }} 
                                                     </td>
                                                     <td> {{ date('Y-F-d H:i:A',strtotime($row->delivery_date)) }} </td>
                                                     <td>

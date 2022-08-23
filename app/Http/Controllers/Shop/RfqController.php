@@ -43,7 +43,7 @@ class RfqController extends Controller
     return response()->json(['success'=>'Quotation Accepted and now in progress']);
   }
   public function complete(Request $request){
-      $update=quotation_detail::where('quotation_id',$request->quotationid)->where('shop_id',$request->shopid)->update([
+      $update=quotation_detail::where('quotation_id',$request->quotationid)->update([
         'status'=>2,
       ]);
       $quotation=quotation::find($request->quotationid);
@@ -101,6 +101,8 @@ class RfqController extends Controller
         'order_id'=>$order->id,
         'status'=>'new'
       ]);
+      $quotation->ordernumber=$order_number;
+      $quotation->update();
 
     return back()->with(['success'=>'congratulation on completed your order']);
   }

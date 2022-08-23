@@ -189,7 +189,7 @@ return redirect()->action('Shop\ProductController@index')->with('success',$reque
         return view('shop.editprofile',compact('user'));
     }
     public function reportbuyer(){
-        $user=User::where('role_id',2)->where('status',0)->get();
+        $user=User::where('role_id',2)->where('status',1)->get();
         return view('shop.reportbuyer',compact('user'));
     }
     public function postreportbuyer(Request $request){

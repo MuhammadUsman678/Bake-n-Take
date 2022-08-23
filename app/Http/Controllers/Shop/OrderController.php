@@ -9,13 +9,13 @@ use App\Order;
 class OrderController extends Controller
 {
     public function Orders(){
-        $orders=Order::with('shopProducts')->has('shopProducts')->get();
-        // return $orders;
+        // return auth()->user()->shop;
+        $orders=Order::with('products')->has('products')->get();
         return view('shop.orders.new-orders',compact('orders'));
     }
 
     public function orderDetail($id){
-        $order=Order::with('shopProducts')->has('shopProducts')->find($id);
+        $order=Order::with('products')->has('products')->find($id);
         return view('shop.orders.order-detail',compact('order'));
     }
 

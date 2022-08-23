@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="col-md-12 mt-5">
                                             @php
-                                              $product_status=$order->shopProducts->first()->status;
+                                              $product_status=$order->products->first()->status;
                                               if($product_status=='new') $status='packed';
                                               else if($product_status=='packed') $status ='delivered';
                                               else if($product_status=='delivered') $status =null;
@@ -103,7 +103,7 @@
                                                     <th>Shop Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
-                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    @if($order->products->first()->status == 'packed')
                                                     <th>Packing Date</th>
                                                     @endif
                                                     <th>Amount</th>
@@ -111,7 +111,7 @@
                                             </thead>
                                             <tbody>
                                                 @php
-                                                    $products=$order->shopProducts->reject(function($q){
+                                                    $products=$order->products->reject(function($q){
                                                              return $q->productDetails->shop_id != auth()->user()->shop->id;
                                                            })
                                                 @endphp
@@ -122,7 +122,7 @@
                                                     <td> {{ $row->productDetails->shop->shop_name }} </td>
                                                     <td> {{ $row->quantity }} </td>
                                                     <td> {{ $row->price }} </td>
-                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    @if($order->products->first()->status == 'packed')
                                                      <td>{{ $row->status_change_date }}</td>
                                                     @endif
                                                     <td> {{ $row->quantity * $row->price }} </td>
@@ -139,7 +139,7 @@
                                                     <th>Shop Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
-                                                    @if($order->shopProducts->first()->status == 'packed')
+                                                    @if($order->products->first()->status == 'packed')
                                                     <th>Packing Date</th>
                                                     @endif
                                                     <th>Amount</th>

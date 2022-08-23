@@ -11,6 +11,11 @@
                     <div class="sb-contact-form-frame">
                         <div class="sb-form-content">
                             <div class="sb-main-content">
+                                @if(session('error'))
+                                  <div class="alert alert-danger">
+                                    {{{session()->pull('error')}}}
+                                  </div> 
+                                @endif
                                 <h3 class="sb-mb-30">Login</h3>
                                 <form method="POST" action="{{ route('login') }}" autocomplete="off">
                                     @csrf
