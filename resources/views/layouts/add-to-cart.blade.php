@@ -88,7 +88,7 @@
         var cart_id = $(this).data("id");
         var product_price = $(this).data("price");
         var quantity = $(`#quantity-${cart_id}`).val();
-        if(quantity > 1){
+        if(quantity >= 1){
             $.ajax({
                 url: '{{ route("front.decrementQuantity") }}',
                 data: { "_token": "{{ csrf_token() }}", cart_id: cart_id},
