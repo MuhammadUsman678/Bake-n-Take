@@ -75,21 +75,21 @@
                         <div class="sb-number">01</div>
                         <div class="sb-feature-text">
                             <h3 class="sb-mb-15">Fill Registration Form on Our Site</h3>
-                            <p class="sb-text">Porro nemo veniam necessitatibus praesentium eligendi rem temporibus adipisci quo modi numquam.</p>
+                            
                         </div>
                     </li>
                     <li class="sb-features-item sb-mb-60">
                         <div class="sb-number">02</div>
                         <div class="sb-feature-text">
                             <h3 class="sb-mb-15">Our Team Will Contact And verify</h3>
-                            <p class="sb-text">Consectetur numquam porro nemo veniam necessitatibus praesentium eligendi rem temporibus adipisci quo modi.</p>
+                            
                         </div>
                     </li>
                     <li class="sb-features-item sb-mb-60">
                         <div class="sb-number">03</div>
                         <div class="sb-feature-text">
                             <h3 class="sb-mb-15">You  upload Your Product after verification</h3>
-                            <p class="sb-text">Necessitatibus praesentium eligendi rem temporibus adipisci quo modi. Lorem ipsum dolor sit.</p>
+                            
                         </div>
                     </li>
                 </ul>
@@ -123,7 +123,7 @@
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
                 <h2 class="sb-mb-30">What do you <span>like today?</span></h2>
-                <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
+                <p class="sb-text">You can order All Kinds of bakery items.</p>
             </div>
             <div class="sb-right sb-mb-30">
                 <!-- button -->
@@ -302,7 +302,7 @@
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
                 <h2 class="sb-mb-30"><span>All</span> Products</h2>
-                <p class="sb-text">Consectetur numquam poro nemo veniam<br>eligendi rem adipisci quo modi.</p>
+                <p class="sb-text"></p>
             </div>
             <div class="sb-right sb-mb-30">
                 <!-- slider navigation -->

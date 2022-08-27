@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Order;
 use App\OrderProduct;
+use App\ShopProduct;
+use App\notification_user;
+use App\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -46,6 +49,7 @@ class CheckOutController extends Controller
         ['method.required'=>'Please Choose Payment Method']
          );
 		$data = $request->input();
+      
 		// print_r($data);
         $cartItems=Cart::with('product:id,price')->where('user_id',(auth()->user()->id))->get();
         $total_price=0;
@@ -56,6 +60,7 @@ class CheckOutController extends Controller
             $pivot_data[$key]['price']=$cart->product->price;
             $total_price +=$cart->quantity*$cart->product->price;
         }
+       
         $price=$total_price;
         $adminamount=$price*5/100;
         // dd($adminamount);
@@ -87,10 +92,26 @@ class CheckOutController extends Controller
             $pivot_data[$key]['order_id']=$order->id;
             $pivot_data[$key]['status']='new';
          } 
-        OrderProduct::insert($pivot_data);
-
+       $oo=OrderProduct::insert($pivot_data);
+       $details ='You have new Order Please check your orders';
+       foreach($cartItems as $row)
+       {
+           $shop=ShopProduct::where('id',$row->product->id)->first();
+         
+           $user=Shop::where('id',$shop->shop_id)->first();
+           $this->userNotify($user->user_id,$details);
+       }
         Cart::with('product:id,price')->where('user_id',(auth()->user()->id))->delete();
+      
+
 		return redirect()->route('front.orders');
+    }
+    function userNotify($id,$details)
+    {
+        $notify = new notification_user();
+        $notify->user_id =$id;
+        $notify->data = $details;
+        $notify->save();
     }
 
     public function jazzcashOrder(Request $request){

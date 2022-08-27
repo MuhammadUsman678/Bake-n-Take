@@ -152,11 +152,14 @@ class FrontController extends Controller
     }
 
     public function allProducts(Request $request){
-       
+if($request->range!=null){
       $products=ShopProduct::with('category','rating')->where('status',1)->when($request->has('range'),function($q) use ($request) {
         $range=explode(',',$request->range);
         return $q->where('price','>=',$range[0])->where('price','<=',$range[1]);
-      })->paginate(4);
+      })->paginate(12);
+    }else{
+        $products=ShopProduct::with('category','rating')->where('status',1)->paginate(12);
+    }
       info($products);
       $min=ShopProduct::with('category','rating')->min('price');
       $max=ShopProduct::with('category','rating')->max('price');

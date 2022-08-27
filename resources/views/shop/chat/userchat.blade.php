@@ -169,7 +169,7 @@
                                 <div class="user-chats" style="height:400px;overflow:scroll">
                                     <div class="chats" id="comment">
                                        @include('admin.partials.chat')
-                                   </div>s
+                                   </div>
                             </div>
                             <div class="chat-app-form">
                                 {{-- <form class="chat-app-input d-flex" onsubmit="enter_chat();" action="javascript:void(0);">

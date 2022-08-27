@@ -3,7 +3,7 @@
 <div class="chat @if($mycomm->user_id!=auth()->user()->id) chat-left @else chat-right @endif ">
     <div class="chat-avatar">
         <a class="avatar m-0" data-toggle="tooltip" href="#" data-placement="left" title="" data-original-title="">
-            <img src="@if(!empty($mycomm->image)) {{ asset('productimages/'.auth()->user()->image)}} @else {{ asset('app-assets/images/portrait/small/avatar-s-7.jpg')}} @endif" alt="avatar" height="40" width="40" />
+           
         </a>
     </div>
     <div class="chat-body">

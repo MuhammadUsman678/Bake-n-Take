@@ -24,6 +24,7 @@ class OrderController extends Controller
 
     public function orderDetail($id){
         $order=Order::with('products')->find($id);
+        
         // return $order;
         return view('admin.orders.order-detail',compact('order'));
     }
