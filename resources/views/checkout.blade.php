@@ -139,6 +139,11 @@
                   <label for="option-3">Cash on delivery</label>
                   <div class="sb-check"></div>
                 </li>
+                <li class="sb-radio">
+                  <input type="radio" id="option-4" value="jazzcash" name="method" required>
+                  <label for="option-4">Takeaway</label>
+                  <div class="sb-check"></div>
+                </li>
               </ul>
             </div>
             <!-- button -->
@@ -329,6 +334,8 @@
             // return;
             if($method==='stripe'){
               $('#StripePayment').modal({backdrop: 'static', keyboard: false})  
+            }else if($method==='cash_on_delivery'){
+              $form2.get(0).submit();
             }else{
               $form2.get(0).submit();
             }

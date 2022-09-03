@@ -71,7 +71,7 @@
             </div> --}}
             <!-- button end -->
             <!-- menu btn -->
-            <div class="sb-menu-btn"><span></span></div>
+            <div class="sb-menu-btn"><span><img style="width: 45px" src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon"></span></div>
             <!-- info btn -->
             <div class="sb-info-btn"><span class="sb-icon">
               <img style="width: 45px" src="{{asset('front/assets/img/ui/icons/account.svg')}}" alt="icon">

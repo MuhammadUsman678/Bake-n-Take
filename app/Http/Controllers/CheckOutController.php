@@ -66,15 +66,24 @@ class CheckOutController extends Controller
         // dd($adminamount);
 		
         $order_number=(string) Str::uuid();
-
+if($request->method=='jazzcash'){
+    $status='delivered';
+    $payment_status='paid';
+}elseif($request->method=='stripe'){
+    $status='new';
+    $payment_status='paid';
+}else{
+    $status='new';
+    $payment_status='unpaid';
+}
 		$values = array(
 			'sub_total'   => $price,
 			'total_amount' => $price,
             'adminamount' => $adminamount,
 			'description' => 'Stripe',
-			'status' 	  => 'new',
+			'status' 	  => $status,
             'delivery_date'=>$request->delivery_date?? now(),
-			'payment_status' 	  => $request->method =='stripe' ?'paid' : 'unpaid',
+			'payment_status' 	  => $payment_status,
             'full_name'   =>$request->full_name?? '',
             'country'     =>$request->country?? '',
             'city'        =>$request->city?? '',
@@ -90,7 +99,7 @@ class CheckOutController extends Controller
 		$order=Order::create($values);
         foreach ($pivot_data as $key => $value) {
             $pivot_data[$key]['order_id']=$order->id;
-            $pivot_data[$key]['status']='new';
+            $pivot_data[$key]['status']=$status;
          } 
        $oo=OrderProduct::insert($pivot_data);
        $details ='You have new Order Please check your orders';
