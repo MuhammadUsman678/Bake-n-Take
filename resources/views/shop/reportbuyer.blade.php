@@ -51,7 +51,7 @@
                                                             <span>Select Customer</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                            <select class="form-control" name="user">
+                                                            <select class="form-control" name="user" requires>
                                                                 @foreach($user as $users)
                                                                 <option value="{{$users->id}}">
                                                                     {{$users->name}}
@@ -67,7 +67,7 @@
                                                             <span>Image</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                    <input type="file" class="dropify" name="image">
+                                                    <input type="file" class="dropify" name="image" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                                             <span>Reason</span>
                                                         </div>
                                                         <div class="col-md-8">
-                                                    <textarea class="form-control" name="reason"></textarea>
+                                                    <textarea class="form-control" name="reason" required></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
