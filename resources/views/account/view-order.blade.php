@@ -41,10 +41,28 @@
       <div class="row">
         <div class="row">
           <div class="col-md-12 alert alert-warning d-block">
-            Order Status is <span class="text-info"> {{ ucfirst($order->status) }} </span>
+            Order Status 
+            <br>
+            <marquee width="100%" direction="right" height="30px">
+              <span class="text-info"><h4> Your Order is {{ ucfirst($order->status) }} </h4>  </span>
+              </marquee>
+           <div class="row">
+            <div class="col-md-2">
+              {{-- <svg width="500" height="100">
+                <text x="0" y="80" font-size="80"> {{ ucfirst($order->status) }}
+                  <animate attributeType="XML" attributeName="x" 
+                      values="520;-880;520" dur="5s" repeatCount="indefinite"/>
+                </text>
+              </svg> --}}
+            </div>
+           </div>
         </div>
           <div class="col-md-12 alert alert-success d-block">
-            Payment Status is <span class="text-primary">{{ ucfirst($order->payment_status) }} </span>
+            Payment Status
+            <br>
+            <marquee width="100%" direction="right" height="30px">
+              <span class="text-primary"><h4> Your Payment is {{ ucfirst($order->payment_status) }}</h4>  </span>
+              </marquee>
         </div>
           <div class="col-md-6">
              <b> Full Name</b> : {{ $order->full_name }}
