@@ -1,5 +1,64 @@
 @extends('layouts.master')
 @section('title','View Order')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <style>
+    .steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+.step-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--prm-gray);
+    transition: .4s;
+}
+.step-button[aria-expanded="true"] {
+    width: 60px;
+    height: 60px;
+    background-color: var(--prm-color);
+    color: #fff;
+}
+.done {
+    background-color: var(--prm-color);
+    color: #fff;
+}
+.step-item {
+    z-index: 10;
+    text-align: center;
+}
+#progress {
+  -webkit-appearance:none;
+    position: absolute;
+    width: 95%;
+    z-index: 5;
+    height: 10px;
+    margin-left: 18px;
+    margin-bottom: 18px;
+}
+/* to customize progress bar */
+#progress::-webkit-progress-value {
+    background-color: var(--prm-color);
+    transition: .5s ease;
+}
+#progress::-webkit-progress-bar {
+    background-color: var(--prm-gray);
+ 
+}
+.blue{
+  background: blue!important;
+}
+.green{
+  background: green!important;
+}
+.red{
+  background:red!important;
+}
+    </style>
 @section('content')
   <!-- banner -->
   <section class="sb-banner sb-banner-xs sb-banner-color">
@@ -38,25 +97,45 @@
         {{ session('status') }}
     </div>
 @endif
+<div class="container">
+  <div class="accordion" id="accordionExample">
+  <div class="steps">
+      <progress id="progress" value=0 max=100 ></progress>
+      <div class="step-item">
+          <button class="step-button text-center step1" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color:white;">
+              1
+          </button>
+          <div class="step-title">
+             New
+          </div>
+      </div>
+      <div class="step-item">
+          <button class="step-button text-center collapsed step2" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color:white;">
+              2
+          </button>
+          <div class="step-title">
+            In progress
+          </div>
+      </div>
+      <div class="step-item">
+          <button class="step-button text-center collapsed step3" type="button" data-bs-toggle="collapse"
+              data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color:white;">
+              3
+          </button>
+          <div class="step-title">
+              Completed
+          </div>
+      </div>
+  </div>
+   <input type="hidden" value={{$order->status}} id="checkme">
+
+  </div>
+  </div>
       <div class="row">
         <div class="row">
-          <div class="col-md-12 alert alert-warning d-block">
-            Order Status 
-            <br>
-            <marquee width="100%" direction="right" height="30px">
-              <span class="text-info"><h4> Your Order is {{ ucfirst($order->status) }} </h4>  </span>
-              </marquee>
-           <div class="row">
-            <div class="col-md-2">
-              {{-- <svg width="500" height="100">
-                <text x="0" y="80" font-size="80"> {{ ucfirst($order->status) }}
-                  <animate attributeType="XML" attributeName="x" 
-                      values="520;-880;520" dur="5s" repeatCount="indefinite"/>
-                </text>
-              </svg> --}}
-            </div>
-           </div>
-        </div>
+         
           <div class="col-md-12 alert alert-success d-block">
             Payment Status
             <br>
@@ -188,4 +267,45 @@
 
 @endsection
 @section('script')
+
+<!-- Stepper JavaScript -->
+{{-- <script>
+const stepButtons = document.querySelectorAll('.step-button');
+const progress = document.querySelector('#progress');
+ 
+Array.from(stepButtons).forEach((button,index) => {
+    button.addEventListener('click', () => {
+        progress.setAttribute('value', index * 100 /(stepButtons.length - 1) );//there are 3 buttons. 2 spaces.
+ 
+        stepButtons.forEach((item, secindex)=>{
+            if(index > secindex){
+                item.classList.add('done');
+            }
+            if(index < secindex){
+                item.classList.remove('done');
+            }
+        })
+    })
+})
+</script> --}}
+<script>
+  $(document).ready(function(){
+    setTimeout(function() {
+var val=$('#checkme').val();
+if(val=='new'){
+$('.step1').addClass('blue');
+$('.step2').addClass('red');
+$('.step3').addClass('red');
+}else if(val=='process'){
+  $('.step1').addClass('green');
+$('.step2').addClass('blue');
+$('.step3').addClass('red');
+}
+else{
+  $('.step1').addClass('green');
+$('.step2').addClass('green');
+$('.step3').addClass('green');
+}}, 2000);
+  });
+  </script>
 @endsection
