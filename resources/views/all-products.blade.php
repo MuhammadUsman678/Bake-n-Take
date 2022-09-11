@@ -64,8 +64,8 @@
               <h4 class="sb-card-title"><a href="{{ route('front.single.product',[$product->slug]) }}">{{ $product->product_name }}</a></h4>
               <div class="sb-price"><sub>Rs</sub> {{ $product->price }}</div>
             </div>
-            {{-- <div class="sb-description">
-              <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p> --}}
+            <div class="sb-description">
+              <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,30) !!}</p>
               @if($product->rating->count() > 0)
               @php
               $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
@@ -80,7 +80,7 @@
               @else
               Not rated yet.
               @endif
-            {{-- </div> --}}
+            </div>
             
             <div class="sb-card-buttons-frame">
               <!-- button -->
