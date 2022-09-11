@@ -41,10 +41,7 @@
  
 
  
-    <div class="sb-bg-1">
-      <div></div>
-    
-    </div>
+   
     <div class="container">
       Filter by price interval: </br> 
       <b class="mr-2">RS {{ $min }}</b> <input id="ex2" type="text" class="span2 ml-2 mr-2" value="" data-slider-min="{{ $min }}" data-slider-max="{{ $max }}" data-slider-step="5" data-slider-value="[{{ $min }},{{ $max }}]"/> <b class="ml-2">RS {{ $max }}</b>
@@ -54,7 +51,9 @@
           <input type="hidden" name="range" id="rangeInput">
           <button class="btn btn-primary">Search</button>
       </form>
+      <div class="col-lg-12">
       <div class="row mt-5">
+    
         @foreach ($products as $product)    
           <div class="col-lg-3">
           <div class="sb-menu-item sb-mb-30">
@@ -65,8 +64,8 @@
               <h4 class="sb-card-title"><a href="{{ route('front.single.product',[$product->slug]) }}">{{ $product->product_name }}</a></h4>
               <div class="sb-price"><sub>Rs</sub> {{ $product->price }}</div>
             </div>
-            <div class="sb-description">
-              <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p>
+            {{-- <div class="sb-description">
+              <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p> --}}
               @if($product->rating->count() > 0)
               @php
               $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
@@ -81,7 +80,8 @@
               @else
               Not rated yet.
               @endif
-            </div>
+            {{-- </div> --}}
+            
             <div class="sb-card-buttons-frame">
               <!-- button -->
               <a href="{{ route('front.single.product',[$product->slug]) }}" class="sb-btn sb-btn-2 sb-btn-gray sb-btn-icon sb-m-0">
@@ -126,6 +126,7 @@
         </ul> --}}
       </div>
     </div>
+  </div>
   </section>
   <!-- shop list end -->
 

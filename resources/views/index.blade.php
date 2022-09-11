@@ -335,7 +335,7 @@
                             <div class="sb-price"><sub>Rs.</sub> {{ $product->price }}</div>
                         </div>
                         <div class="sb-description">
-                            <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p>
+                            <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,30) !!}</p>
                             @if($product->rating->count() > 0)
                             @php
                             $avgRating= (int)(($product->rating->sum('rating') / ($product->rating->count()*5))*5)
