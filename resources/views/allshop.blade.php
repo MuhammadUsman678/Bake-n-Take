@@ -38,7 +38,7 @@
             <a   href="{{url('shop_product/'.$shp->id)}}" class="sb-menu-item sb-mb-30">
                
               <div class="sb-cover-frame">
-                <img src="{{url('shopdocument/'.$shp->user->image)}}" alt="shop">
+                <img src="{{url('profileimages/'.$shp->user->image)}}" alt="shop">
               </div>
               <div class="sb-card-tp">
                 <h4 class="sb-card-title">{{$shp->shop_name}}</h4>
