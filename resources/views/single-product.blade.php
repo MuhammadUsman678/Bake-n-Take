@@ -208,7 +208,7 @@
                         <div class="sb-price"><sub>Rs.</sub> {{ $product->price }}</div>
                     </div>
                     <div class="sb-description">
-                        <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p>
+                        <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,30) !!}</p>
                         <ul class="sb-stars">
                             <li><i class="fas fa-star"></i></li>
                             <li><i class="fas fa-star"></i></li>
