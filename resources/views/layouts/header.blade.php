@@ -32,7 +32,7 @@
           <nav id="sb-dynamic-menu" class="sb-menu-transition">
             <ul class="sb-navigation">
               <li class="sb-has-children">
-                <a data-no-swup href="{{ url('/') }}">Home</a>
+                <a data-no-swup=""  href="{{ url('/') }}">Home</a>
               </li>
               <li class="sb-has-children">
                 <a href="javascript:void(0);"  data-no-swup="">Categories</a>
@@ -44,10 +44,10 @@
                 </ul>
               </li>
               <li class="sb-has-children">
-                <a data-no-swup href="{{url('all_shop')}}">Shop</a>
+                <a data-no-swup=""  href="{{url('all_shop')}}">Shop</a>
               </li>
               <li class="sb-has-children">
-                <a data-no-swup href="{{ route('front.all.products')}}">Products</a>
+                <a data-no-swup=""  href="{{ route('front.all.products')}}">Products</a>
               </li>
              
            
