@@ -65,6 +65,7 @@
                                                     <th>Order#</th>
                                                     <th>Products</th>
                                                     <th>Delivery Date</th>
+                                                    <th>Payment Method</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -86,6 +87,13 @@
                                                       })->count() }} 
                                                     </td>
                                                     <td> {{ date('Y-F-d H:i:A',strtotime($row->delivery_date)) }} </td>
+                                                    <td> 
+                                                        @if($row->payment_method=='jazzcash')
+                                                        Takeaway
+                                                        @else
+                                                        {{ $row->payment_method }}
+                                                    @endif
+                                                    </td>
                                                     <td>
                                                         <a href="{{ route('shop.order.detail',[$row->id]) }}" class="btn btn-primary btn-sm">Order Detail</a>
                                                         <a href="{{ url('shop/chat',[$row->user_id]) }}" class="btn btn-warning btn-sm"><i class="feather icon-message-square"></i></a>

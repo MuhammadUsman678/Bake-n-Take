@@ -170,6 +170,9 @@ Route::group(['prefix'=>'/admin','as'=>'admin.','middleware' => ['auth','isAdmin
     Route::get('/orders','Shop\OrderController@Orders')->name('orders');
     Route::get('/orders/detail/{id}','Shop\OrderController@orderDetail')->name('order.detail');
 
+    Route::post('/order/add-take-way-time/{id}','Shop\OrderController@addTakeWayTime')->name('add.take.time');
+
+
     Route::get('/orders/changeStatus/{id}/{status}','Shop\OrderController@changeStatus')->name('order.changeStatus');
    
 Route::get('reject_quotation','Shop\RfqController@reject');

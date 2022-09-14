@@ -1,7 +1,12 @@
 @extends('layouts.master')
 @section('title','View Order')
+<link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/flipclock.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('front/assets/css/quiz.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
   <style>
+    .flip-clock-dot{
+      display: none;
+    }
     .steps {
     display: flex;
     justify-content: space-between;
@@ -135,7 +140,7 @@
   </div>
       <div class="row">
         <div class="row">
-         
+          
           <div class="col-md-12 alert alert-success d-block">
             Payment Status
             <br>
@@ -189,7 +194,7 @@
                   $total_amount=0;
               @endphp
               
-              @foreach ($products as $row)
+              @foreach ($products as $key=>$row)
               <div class="sb-cart-item">
                   <div class="row align-items-center">
                     <div class="col-lg-6">
@@ -201,6 +206,11 @@
                           <h4 class="sb-mb-10">{{ $row['name'] }}</h4>
                           <p class="sb-text sb-text-sm">x{{ $row['quantity'] }}</p>
                           <p class="sb-text sb-text-sm"><small class="badge badge-info">{{ $order->status==='delivered' ? 'Delivered' : $row['status'] }}</small></p>
+                          @if($row['take_way_time'] !=0)
+                          <div class="countdown-wrapper">
+                            <div id="countdown{{$key}}" class="countdown countdown{{$key}}"></div>
+                        </div>
+                        @endif
                         </div>
                         <a data-no-swup="" href="{{url('front/chat/'.$row['shop_id'])}}" class="btn-small d-block" style="color: #f5c332"><i class="fas fa-comment"></i> Chat Now</a>
 
@@ -308,4 +318,80 @@ $('.step3').addClass('green');
 }}, 2000);
   });
   </script>
+
+
+
+<script src="{{ asset('front/assets/js/flipclock.js') }}"></script>
+<script src="{{ asset('front/assets/js/countdown.js') }}"></script>
+<script src="{{ asset('front/assets/js/counterup.js') }}"></script>
+
+@foreach ($products as $key=>$row)
+@if($row['take_way_time'] !=0)
+<script>
+(function () {
+    var countdown, init_countdown, set_countdown;
+    var row=@json($row);
+
+    countdown = init_countdown = function () {
+        countdown = new FlipClock($('.countdown'+{{$key}}), {
+            clockFace: 'MinuteCounter',
+            language: 'en',
+            autoStart: false,
+            countdown: true,
+            showSeconds: true,
+            callbacks: {
+                start: function () {
+                    /*here start the exam*/
+                    return console.log('The clock has started!');
+                },
+                stop: function () {
+                    /*here e3nd the exam*/
+                    $('#regForm').submit();
+                    return console.log('The clock has stopped!');
+                },
+                interval: function () {
+                    /*here time is going*/
+                    var time;
+                    time = this.factory.getTime().time;
+                    if (time) {
+                        return console.log('Clock interval', time);
+                    }
+                }
+            }
+        });
+
+
+        return countdown;
+    };
+
+    set_countdown = function (minutes, start) {
+        var elapsed, end, left_secs, now, seconds;
+        if (countdown.running) {
+            return;
+        }
+        seconds = minutes * 60;
+        now = new Date();
+        start = new Date(start);
+        end = start.getTime() + seconds * 1000;
+        left_secs = Math.round((end - now.getTime()) / 1000);
+        elapsed = false;
+        if (left_secs < 0) {
+            left_secs *= -1;
+            elapsed = true;
+        }
+        countdown.setTime(left_secs);
+        return countdown.start();
+    };
+
+    init_countdown();
+
+    set_countdown(row.take_way_time, new Date());
+
+}).call(this);
+
+@endif
+
+</script>   
+@endforeach
+
 @endsection

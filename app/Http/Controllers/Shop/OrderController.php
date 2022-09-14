@@ -34,4 +34,17 @@ class OrderController extends Controller
     }
         return redirect()->route('shop.order.detail',[$order->id]);
     }
+
+    public function addTakeWayTime(Request $request,$id){
+        $myshop=shop::where('user_id',auth()->user()->id)->first();
+        $product=ShopProduct::where('shop_id',$myshop->id)->get();
+        $order=Order::find($id);
+        foreach($product as $p){
+            $shop=OrderProduct::where('order_id',$order->id)->where('product_id',$p->id)->first();
+            if($shop){
+                $shop->update(['take_way_time'=>$request->time,'take_way_date_time'=>now()->addMinutes($request->time)]);
+            }   
+        }
+        return back();
+    }
 }

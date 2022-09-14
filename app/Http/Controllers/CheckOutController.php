@@ -67,8 +67,8 @@ class CheckOutController extends Controller
 		
         $order_number=(string) Str::uuid();
 if($request->method=='jazzcash'){
-    $status='delivered';
-    $payment_status='paid';
+    $status='new';
+    $payment_status='unpaid';
 }elseif($request->method=='stripe'){
     $status='new';
     $payment_status='paid';

@@ -1,6 +1,7 @@
 @extends('shop.layout.shop')
 @section('title', 'Order Detail<b>')
 @section('css')
+
 @include('partials._datatable-css')
 @endsection
 @section('main')
@@ -93,8 +94,18 @@
                                             <a  href="#" class="btn btn-primary btn-sm">  Delivered From Your Site </a>
                                             @endif
                                          </div>
+                                         @if($order->payment_method =='jazzcash')
+                                         <div class="col-md-12 mt-5">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                                Add Delivery Time
+                                            </button>
+                                         </div>
+                                         @endif
                                     </div>
                                     <div class="table-responsive">
+
+                                        
+
                                         <table class="table table-striped data-table" id="datatable">
                                             <thead>
                                                 <tr>
@@ -105,6 +116,9 @@
                                                     <th>Price</th>
                                                     @if($order->products->first()->status == 'packed')
                                                     <th>Packing Date</th>
+                                                    @endif
+                                                    @if($order->products->first()->take_way_time)
+                                                    <th >Take Way Time</th>
                                                     @endif
                                                     <th>Amount</th>
                                                 </tr>
@@ -125,6 +139,9 @@
                                                     @if($order->products->first()->status == 'packed')
                                                      <td>{{ $row->status_change_date }}</td>
                                                     @endif
+                                                    @if($order->products->first()->take_way_time)
+                                                    <td>{{ $row->take_way_time }}</td>
+                                                   @endif
                                                     <td> {{ $row->quantity * $row->price }} </td>
                                                 </tr>
                                                 @empty
@@ -142,6 +159,9 @@
                                                     @if($order->products->first()->status == 'packed')
                                                     <th>Packing Date</th>
                                                     @endif
+                                                    @if($order->products->first()->take_way_time)
+                                                     <th >Take Way Time</th>
+                                                    @endif
                                                     <th>Amount</th>
                                                 </tr>
                                             </tfoot>
@@ -154,6 +174,32 @@
                 </div>
             </section>
             <!-- Column selectors with Export Options and print table -->
+            <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Takeway Time</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{route('shop.add.take.time',$order->id) }}" method="POST">
+            @method('POST')
+            @csrf
+            <div class="form-group">
+                <label for="exampleInputEmail1">Add Time in Minutes</label>
+                <input type="number" class="form-control" id="exampleInputEmail1" name="time" aria-describedby="emailHelp" placeholder="Enter Time Example : 10">
+                <small id="emailHelp" class="form-text text-muted">Please Enter Minutes Only.</small>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
         </div>
     </div>
 </div>

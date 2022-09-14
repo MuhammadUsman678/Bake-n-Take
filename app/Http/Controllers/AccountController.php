@@ -8,6 +8,7 @@ use App\shop;
 use App\chat;
 use App\User;
 use App\quotation_detail;
+use Carbon\Carbon;
 use Image;
 use Illuminate\Support\Facades\Hash;
 class AccountController extends Controller
@@ -21,6 +22,8 @@ class AccountController extends Controller
     public function viewOrder($uuid){
         $order=\App\Order::with('products')->where('order_number',$uuid)->first();
         $data=[];
+
+        
         foreach($order->products as $key=>$row){
             $data[$key]['name']=$row->productDetails->product_name;
             $data[$key]['quantity']=$row->quantity;
@@ -28,10 +31,15 @@ class AccountController extends Controller
             $data[$key]['shop_id']=$row->productDetails->shop_id;
             $data[$key]['status']=$row->status;
             $data[$key]['price']=$row->price;
+            $t1 = Carbon::parse($row->take_way_time);
+            $t2 = Carbon::parse(now());
+            $diff = $t1->diff($t2);
+            $data[$key]['take_way_time']=$diff->i.'.'.$diff->s;;
             $data[$key]['slug']=$row->productDetails->slug;
             $data[$key]['image']=$row->productDetails->getFirstMediaUrl('images','thumb') ? $row->productDetails->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
         }
         $products= $data;
+        
         return view('account.view-order',compact('order','products'));
     }
     public function quotation(){
