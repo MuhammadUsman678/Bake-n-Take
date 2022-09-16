@@ -52,13 +52,13 @@
                 <!-- button end -->
             </div>
         </div>
-        @foreach ($shopp as  $product)
+       
         <div class="swiper-container sb-short-menu-slider-4i swiper-container-horizontal">
           
             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                 
                
-               
+                @foreach ($shopp as  $product)
                 <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
                     <a data-fancybox="menu" data-no-swup="" href="{{ $product->getFirstMediaurl('images') ? $product->getFirstMediaurl('images') : 'https://via.placeholder.com/270?text=No+Image+Found'  }}" class="sb-menu-item">
                         <div class="sb-cover-frame">
@@ -119,12 +119,12 @@
                     </a>
                 </div>
              
-              
+                @endforeach
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
            
         </div>
-        @endforeach
+       
        
     </div>
     
