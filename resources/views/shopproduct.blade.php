@@ -29,12 +29,15 @@
     </div>
    
 
-
+@foreach($shopproduct as $categor=>$shopp)
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
-                <h2 class="sb-mb-30"><span>All</span> Products</h2>
-                <p class="sb-text">All shop products of {{$shop->shop_name}}.</p>
+                @php
+                $category=App\Category::find($categor)
+                @endphp
+                <h2 class="sb-mb-30">{{$category->category_name}}</h2>
+               
             </div>
             <div class="sb-right sb-mb-30">
                 <!-- slider navigation -->
@@ -44,19 +47,17 @@
                 </div>
                 <!-- slider navigation end -->
                 <!-- button -->
-                <a href="#" class="sb-btn">
-                    <span class="sb-icon">
-                        <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
-                    </span>
-                    <span>All {{$shop->shop_name}} Products</span>
-                </a>
+                
+               
                 <!-- button end -->
             </div>
         </div>
+        @foreach ($shopp as  $product)
         <div class="swiper-container sb-short-menu-slider-4i swiper-container-horizontal">
+          
             <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                 
-               @foreach ($shopproduct as  $product) 
+               
                
                 <div class="swiper-slide" style="width: 270px; margin-right: 30px;">
                     <a data-fancybox="menu" data-no-swup="" href="{{ $product->getFirstMediaurl('images') ? $product->getFirstMediaurl('images') : 'https://via.placeholder.com/270?text=No+Image+Found'  }}" class="sb-menu-item">
@@ -117,12 +118,17 @@
                           </div>
                     </a>
                 </div>
-               @endforeach
+             
               
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+           
         </div>
+        @endforeach
+       
     </div>
+    
+    @endforeach
 </section>
 
 

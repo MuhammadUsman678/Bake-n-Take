@@ -31,10 +31,13 @@ class AccountController extends Controller
             $data[$key]['shop_id']=$row->productDetails->shop_id;
             $data[$key]['status']=$row->status;
             $data[$key]['price']=$row->price;
-            $t1 = Carbon::parse($row->take_way_time);
+            $t1 = Carbon::parse($row->take_way_date_time);
             $t2 = Carbon::parse(now());
             $diff = $t1->diff($t2);
-            $data[$key]['take_way_time']=$diff->i.'.'.$diff->s;;
+            // dd($diff);
+            if(\Carbon\Carbon::now()->greaterThan($t1)) $time = 0;
+            else $time=(($diff->h*60)+$diff->i).'.'.$diff->s;
+            $data[$key]['take_way_time']=$time;
             $data[$key]['slug']=$row->productDetails->slug;
             $data[$key]['image']=$row->productDetails->getFirstMediaUrl('images','thumb') ? $row->productDetails->getFirstMediaUrl('images','thumb') : 'https://via.placeholder.com/60?text=No+Image+Found';
         }

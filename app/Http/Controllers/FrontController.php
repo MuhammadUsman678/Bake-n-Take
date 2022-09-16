@@ -140,7 +140,8 @@ class FrontController extends Controller
     }
     public function shopproduct($id){
         $shop=shop::findorfail($id);
-        $shopproduct=ShopProduct::with('rating')->where('shop_id',$shop->id)->get();
+        $shopproduct=ShopProduct::with('rating')->where('shop_id',$shop->id)->get()->groupBy('category_id');
+  
       return view('shopproduct',compact('shop','shopproduct'));
     }
 
@@ -156,9 +157,9 @@ if($request->range!=null){
       $products=ShopProduct::with('category','rating')->where('status',1)->when($request->has('range'),function($q) use ($request) {
         $range=explode(',',$request->range);
         return $q->where('price','>=',$range[0])->where('price','<=',$range[1]);
-      })->paginate(12);
+      })->inRandomOrder()->paginate(12);
     }else{
-        $products=ShopProduct::with('category','rating')->where('status',1)->paginate(12);
+        $products=ShopProduct::with('category','rating')->where('status',1)->inRandomOrder()->paginate(12);
     }
       info($products);
       $min=ShopProduct::with('category','rating')->min('price');

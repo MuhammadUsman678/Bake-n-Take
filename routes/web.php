@@ -16,6 +16,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('test2',function(){
+    $t1 = \Carbon\Carbon::parse('2022-09-14 14:10:52');
+    if(\Carbon\Carbon::now()->greaterThan($t1)) return "hello";
+    $t2 = \Carbon\Carbon::parse(now());
+    $diff = $t1->diff($t2);
+    // return \Carbon\Carbon::now()->addMinutes(10);
+            dd($diff);
+});
 Auth::routes(['verify'=>true]);
 
 Route::get('/mark-as-read/{id}', 'UserNotificationController@mark_as_read')->name('mark_as_read');
