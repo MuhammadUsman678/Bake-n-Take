@@ -8,7 +8,7 @@
                     </ul>
                  
                     <ul class="nav navbar-nav">
-                        <li class="nav-item d-none d-lg-block"><a class="nav-link bookmark-star"><i class="ficon feather icon-star warning"></i></a>
+                        <li class="nav-item d-none d-lg-block"><i class="ficon feather icon-star warning"></i>
                             <div class="bookmark-input search-input">
                                 <div class="bookmark-input-icon"><i class="feather icon-search primary"></i></div>
                                 <input class="form-control input" type="text" placeholder="Explore Vuexy..." tabindex="0" data-search="template-list">

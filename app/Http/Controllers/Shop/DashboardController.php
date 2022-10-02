@@ -13,7 +13,9 @@ class DashboardController extends Controller
     public function dashboard(Request $request){
         $shop=shop::where('user_id',\Auth::user()->id)->first();
        
-        $totalOrder=Order::has('shopProducts')->count();
+        $totalOrder=Order::wherehas('shopProducts',function($q) use ($shop){
+            $q->where('shop_id',$shop->id);
+        })->count();
         $rfq=quotation_detail::where('shop_id',$shop->id)->where('status',2)->count();
         return view('shop.dashboard',compact('totalOrder','rfq'));
     }

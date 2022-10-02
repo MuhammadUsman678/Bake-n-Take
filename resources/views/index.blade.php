@@ -145,7 +145,7 @@
                         </div>
                         <div class="sb-card-descr">
                             <h3 class="sb-mb-10">Starters</h3>
-                            <p class="sb-text">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                            <p class="sb-text">Eat Crispy Healthy starter to Settle Your Hunger For Food.</p>
                         </div>
                     </div>
                 </a>
@@ -158,7 +158,7 @@
                         </div>
                         <div class="sb-card-descr">
                             <h3 class="sb-mb-10">Main dishes</h3>
-                            <p class="sb-text">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                            <p class="sb-text">Tru Out Variety Of Food(Chessy and Tender Taste).</p>
                         </div>
                     </div>
                 </a>
@@ -171,7 +171,7 @@
                         </div>
                         <div class="sb-card-descr">
                             <h3 class="sb-mb-10">Drinks</h3>
-                            <p class="sb-text">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                            <p class="sb-text">Try Out Fresh Juices and Hot Coffee or Tea To Vanish Your Stresss.</p>
                         </div>
                     </div>
                 </a>
@@ -184,7 +184,7 @@
                         </div>
                         <div class="sb-card-descr">
                             <h3 class="sb-mb-10">Desserts</h3>
-                            <p class="sb-text">Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                            <p class="sb-text">Try Out Sweet Taste Of Variety of Dishes(Choclate Vanilla and etcs).</p>
                         </div>
                     </div>
                 </a>
@@ -301,7 +301,7 @@
     <div class="container">
         <div class="sb-group-title sb-mb-30">
             <div class="sb-left sb-mb-30">
-                <h2 class="sb-mb-30"><span>All</span> Products</h2>
+                <h2 class="sb-mb-30"><span>Top</span> Products</h2>
                 <p class="sb-text"></p>
             </div>
             <div class="sb-right sb-mb-30">
@@ -316,7 +316,7 @@
                     <span class="sb-icon">
                         <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
                     </span>
-                    <span>All Products</span>
+                    <span>Top Products</span>
                 </a>
                 <!-- button end -->
             </div>
@@ -447,7 +447,7 @@
             <div class="col-lg-3">
                 <div class="sb-team-member sb-mb-30">
                     <div class="sb-photo-frame sb-mb-15">
-                        <img src="{{asset('front/assets/img/team/ahsan.jpg')}}" alt="Team member">
+                        <img src="{{asset('front/assets/img/team/ahsan.jpg')}}" alt="Team member" style="height:550px;">
                     </div>
                     <div class="sb-member-description">
                         <h3 class="sb-mb-10">Ahsan Ilyas</h3>

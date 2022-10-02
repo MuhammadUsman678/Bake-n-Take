@@ -27,6 +27,7 @@ class HomeController extends Controller
         $top_rated=$products->filter(function($q){
             return $q->rating->sum('rating') > 3;
         });
+        
         return view('index',compact('products','top_rated'));
     }
     public function quotation()

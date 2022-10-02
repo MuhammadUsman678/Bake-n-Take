@@ -18,13 +18,14 @@ trait RedirectTrait {
         } elseif ($role===3) {
             return route('shop.dashboard');
 
-        } elseif($role==2) {
-            if(Auth::user()->status==0){
+        } elseif($role===2) {
+            if(Auth::user()->status===0){
                 Auth::logout();
                 session()->flash('error','Account Banned by the admin');
                 return route('login');
-            }
+            }else{
             return '/';
+            }
         }
     }
 }
