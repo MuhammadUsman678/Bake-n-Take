@@ -15,7 +15,7 @@
                 <div class="sb-contact-form-frame">
                     <div class="sb-form-content">
                         <div class="sb-main-content">
-                            <h3 class="sb-mb-30">Register your Shop</h3>
+                            <h3 class="sb-mb-30">Request For Quotation</h3>
                             <form method="POST" action="{{ url('quotation_post') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">

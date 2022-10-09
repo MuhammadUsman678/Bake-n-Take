@@ -63,6 +63,7 @@
                             <h4 class="sb-card-title">{{ $product->product_name }}</h4>
                             <div class="sb-price"><sub>Rs.</sub> {{ $product->price }}</div>
                         </div>
+                        Shop Name:<b>{{ $product->shop->shop_name }}</b>
                         <div class="sb-description">
                             <p class="sb-text sb-mb-15">{!! \Str::limit($product->product_description,67,'...') !!}</p>
                             @if($product->rating->count() > 0)
