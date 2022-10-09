@@ -211,7 +211,7 @@
                 </div> --}}
                 <!-- slider navigation end -->
                 <!-- button -->
-                <a href="#" class="sb-btn">
+                <a data-no-swup="true" href="{{ url('/products') }}" class="sb-btn">
                     <span class="sb-icon">
                         <img src="{{asset('front/assets/img/ui/icons/menu.svg')}}" alt="icon">
                     </span>

@@ -52,9 +52,13 @@ $(function() {
   });
 
 
+
+  var baseUrl=$("#base_url").val();
  
   /***************************
 
+
+  
   
 
 
@@ -183,9 +187,11 @@ $(function() {
     if (jQuery(e.target).closest(el).length) return;
     $('.sb-minicart , .sb-btn-cart , .sb-menu-btn , .sb-navigation , .sb-info-btn , .sb-info-bar').removeClass('sb-active');
   });
-
+  var baseUrl=$("#base_url").val();var baseUrl=$("#base_url").val();
   if ($(window).width() < 992) {
     $(".sb-has-children > a").attr("href", "#.")
+    // $("#mhome").attr("href", baseUrl);
+    // $("#mproducts").attr("href", baseUrl+"products")
   }
   $(window).resize(function() {
     if ($(window).width() < 992) {

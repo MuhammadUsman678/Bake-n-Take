@@ -145,5 +145,7 @@
   @include('layouts.add-to-cart')
   <!-- End of Async Drift Code -->
   <div class="overlay"></div>
+
+  <input type="hidden" id="base_url" value="{{ url('/') }}">
   </body>
 </html>
