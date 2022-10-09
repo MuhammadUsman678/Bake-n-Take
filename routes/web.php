@@ -59,6 +59,7 @@ Route::get('/logout',function(){
 Route::get('search', 'FrontController@searchProducts')->name('front.search.products');
 Route::get('single-product/{slug}', 'FrontController@singleProduct')->name('front.single.product');
 Route::get('products', 'FrontController@allProducts')->name('front.all.products');
+Route::post('products','FrontController@allProducts')->name('rangeSearch');
 
 
 
@@ -92,7 +93,6 @@ Route::group(['as'=>'front.','middleware' => ['auth']],function () {
     Route::get('product/review/{product_id}/{order_id}','FrontController@productReview')->name('product.review');
     Route::post('product/review/{product_id}/{order_id}','FrontController@productReviewStore')->name('product.review');
 
-    Route::post('products','FrontController@allProducts')->name('rangeSearch');
 
 
 

@@ -44,9 +44,9 @@
    
     <div class="container">
       Filter by price interval: </br> 
-      <b class="mr-2">RS {{ $min }}</b> <input id="ex2" type="text" class="span2 ml-2 mr-2" value="" data-slider-min="{{ $min }}" data-slider-max="{{ $max }}" data-slider-step="5" data-slider-value="[{{ $min }},{{ $max }}]"/> <b class="ml-2">RS {{ $max }}</b>
-      <span id="ex6CurrentSliderValLabel">Price Range: <span id="ex6SliderVal">{{ $min }}  , {{ $max }}</span></span>
-      <form method="post" id="rangeSearchForm" action="{{ route('front.rangeSearch') }}">
+      <b class="mr-2">RS {{ $min }}</b> <input name="range" id="ex2" type="text" class="span2 ml-2 mr-2" value="" data-slider-min="{{ $min }}" data-slider-max="{{ $max }}" data-slider-step="5" data-slider-value="[{{ $min }},{{ $max }}]"/> <b class="ml-2">RS {{ $max }}</b>
+      <span id="ex6CurrentSliderValLabel">Price Range: <span id="ex6SliderVal">{{ ($minRange) ? ($minRange) : $min }}  , {{ ($maxRange) ? ($maxRange) : $max }}</span></span>
+      <form method="post" id="rangeSearchForm" action="{{ route('rangeSearch') }}">
         @csrf
           <input type="hidden" name="range" id="rangeInput">
           <button class="btn btn-primary">Search</button>
