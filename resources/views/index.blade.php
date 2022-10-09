@@ -205,10 +205,10 @@
             </div>
             <div class="sb-right sb-mb-30">
                 <!-- slider navigation -->
-                <div class="sb-slider-nav">
+                {{-- <div class="sb-slider-nav">
                     <div class="sb-prev-btn sb-short-menu-prev swiper-button-disabled" tabindex="0" role="button" aria-label="Previous slide" aria-disabled="true"><i class="fas fa-arrow-left"></i></div>
                     <div class="sb-next-btn sb-short-menu-next" tabindex="0" role="button" aria-label="Next slide" aria-disabled="false"><i class="fas fa-arrow-right"></i></div>
-                </div>
+                </div> --}}
                 <!-- slider navigation end -->
                 <!-- button -->
                 <a href="#" class="sb-btn">

@@ -24,7 +24,8 @@ class HomeController extends Controller
         $products=ShopProduct::with('category:id,category_name','rating')->where('status',1)->inRandomOrder()
         ->limit(5)->get();
         
-        $top_rated=$products->filter(function($q){
+        $top_rated=ShopProduct::with('category:id,category_name','rating')->where('status',1)->get()
+        ->filter(function($q){
             return $q->rating->sum('rating') > 3;
         });
         
